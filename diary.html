@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>আমার ডায়েরি - অভি</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcomeMessage" class="welcome-message"></div>
+
+    <div class="theme-toggle">
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+    </nav>
+
+    <h1>📓 আমার ডিজিটাল ডায়েরি</h1>
+    <p>নিচে তোমার মনের কথা লিখে রাখো। সব নোট তোমার ব্রাউজারে সেইভ থাকবে!</p>
+
+    <div class="diary-toolbar">
+        <input type="text" id="searchInput" placeholder="🔍 নোট সার্চ করো..." oninput="searchNotes()">
+        <span id="noteCount">📋 মোট নোট: 0</span>
+        <button onclick="deleteAllNotes()" class="clear-all-btn">🗑️ সব মুছো</button>
+    </div>
+
+    <div class="diary-input">
+        <textarea id="noteInput" placeholder="এখানে তোমার নোট লিখো... (এন্টার চাপলে সেভ হবে)" oninput="updateCharCount()" onkeydown="handleEnter(event)"></textarea>
+        <div class="input-footer">
+            <span id="charCount">০ অক্ষর</span>
+            <button onclick="addNote()" id="addBtn">➕ নোট যোগ করো</button>
+        </div>
+    </div>
+
+    <div id="notesContainer"></div>
+
+    <hr>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+
+    <script src="script.js"></script>
+</body>
+</html>
