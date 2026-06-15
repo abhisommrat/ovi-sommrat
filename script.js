@@ -200,84 +200,242 @@ document.addEventListener("DOMContentLoaded", function() {
     loadNotes();
 });
 
-// ==================== ৭. পাথর কাগজ কাঁচি গেম ====================
+// ==================== ৭. পাথর কাগজ কাঁচি PRO ====================
+
+let comboCount = 0;
 
 function getScore() {
-    let score = JSON.parse(localStorage.getItem("rpsScore")) || { player: 0, computer: 0, draw: 0 };
-    return score;
+    return JSON.parse(localStorage.getItem("rpsScore")) || { player: 0, computer: 0, draw: 0, total: 0 };
 }
 
 function saveScore(score) {
     localStorage.setItem("rpsScore", JSON.stringify(score));
 }
 
-function updateScoreDisplay() {
+function getHistory() {
+    return JSON.parse(localStorage.getItem("rpsHistory")) || [];
+}
+
+function saveHistory(entry) {
+    let history = getHistory();
+    history.unshift(entry);
+    if (history.length > 5) history.pop();
+    localStorage.setItem("rpsHistory", JSON.stringify(history));
+}
+
+function updateStats() {
     let score = getScore();
     let playerEl = document.getElementById("playerScore");
     let computerEl = document.getElementById("computerScore");
     let drawEl = document.getElementById("drawScore");
+    let totalEl = document.getElementById("totalGames");
+    let winRateEl = document.getElementById("winRate");
+
     if (playerEl) playerEl.textContent = score.player;
     if (computerEl) computerEl.textContent = score.computer;
     if (drawEl) drawEl.textContent = score.draw;
+
+    let total = score.player + score.computer + score.draw;
+    if (totalEl) totalEl.textContent = total;
+    if (winRateEl) {
+        let rate = total > 0 ? Math.round((score.player / total) * 100) : 0;
+        winRateEl.textContent = rate + "%";
+    }
+}
+
+function updateHistoryUI() {
+    let history = getHistory();
+    let container = document.getElementById("roundHistory");
+    if (!container) return;
+
+    container.innerHTML = "";
+    history.forEach(function(item) {
+        let div = document.createElement("span");
+        div.className = "history-item " + item.result + "-item";
+        div.textContent = item.text;
+        container.appendChild(div);
+    });
+}
+
+function showCombo() {
+    let comboDisplay = document.getElementById("comboDisplay");
+    let comboCountEl = document.getElementById("comboCount");
+    if (comboCount >= 3) {
+        comboDisplay.style.display = "inline";
+        comboCountEl.textContent = comboCount;
+    } else {
+        comboDisplay.style.display = "none";
+    }
+}
+
+function spawnConfetti() {
+    let container = document.getElementById("confettiContainer");
+    if (!container) return;
+    container.innerHTML = "";
+
+    let colors = ["#22c55e", "#38bdf8", "#f59e0b", "#ef4444", "#a855f7", "#ec4899"];
+    for (let i = 0; i < 50; i++) {
+        let piece = document.createElement("div");
+        piece.className = "confetti-piece";
+        piece.style.left = Math.random() * 100 + "%";
+        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = Math.random() * 0.5 + "s";
+        piece.style.animationDuration = (1 + Math.random() * 1.5) + "s";
+        container.appendChild(piece);
+    }
+
+    setTimeout(function() {
+        container.innerHTML = "";
+    }, 2000);
+}
+
+function playSound(type) {
+    // Web Audio API দিয়ে সাউন্ড
+    try {
+        let audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        let oscillator = audioCtx.createOscillator();
+        let gainNode = audioCtx.createGain();
+        oscillator.connect(gainNode);
+        gainNode.connect(audioCtx.destination);
+
+        if (type === "win") {
+            oscillator.frequency.value = 800;
+            oscillator.type = "triangle";
+            gainNode.gain.value = 0.3;
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.2);
+        } else if (type === "lose") {
+            oscillator.frequency.value = 200;
+            oscillator.type = "sawtooth";
+            gainNode.gain.value = 0.3;
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.3);
+        } else if (type === "draw") {
+            oscillator.frequency.value = 400;
+            oscillator.type = "square";
+            gainNode.gain.value = 0.2;
+            oscillator.start();
+            oscillator.stop(audioCtx.currentTime + 0.15);
+        }
+    } catch(e) {}
+}
+
+function countdown(callback) {
+    let countdownEl = document.getElementById("countdown");
+    let count = 3;
+    countdownEl.style.display = "block";
+    countdownEl.textContent = count;
+
+    let interval = setInterval(function() {
+        count--;
+        if (count > 0) {
+            countdownEl.textContent = count;
+        } else {
+            countdownEl.textContent = "⚡";
+            setTimeout(function() {
+                countdownEl.style.display = "none";
+                callback();
+            }, 300);
+            clearInterval(interval);
+        }
+    }, 400);
+}
+
+function playGame(playerChoice) {
+    // বাটন ডিজেবল
+    let buttons = document.querySelectorAll(".choice-btn");
+    buttons.forEach(function(btn) { btn.disabled = true; });
+
+    countdown(function() {
+        let choices = ["rock", "paper", "scissors"];
+        let computerChoice = choices[Math.floor(Math.random() * 3)];
+
+        let emojiMap = { rock: "🪨", paper: "📄", scissors: "✂️" };
+        let nameMap = { rock: "পাথর", paper: "কাগজ", scissors: "কাঁচি" };
+
+        document.getElementById("playerChoice").textContent = emojiMap[playerChoice];
+        document.getElementById("computerChoice").textContent = emojiMap[computerChoice];
+
+        let resultText = "";
+        let score = getScore();
+        let resultType = "";
+
+        if (playerChoice === computerChoice) {
+            resultText = "🤝 ড্র! দুজনেই " + nameMap[playerChoice];
+            resultType = "draw";
+            score.draw++;
+            comboCount = 0;
+            document.getElementById("resultText").style.color = "#f59e0b";
+            playSound("draw");
+        } else if (
+            (playerChoice === "rock" && computerChoice === "scissors") ||
+            (playerChoice === "paper" && computerChoice === "rock") ||
+            (playerChoice === "scissors" && computerChoice === "paper")
+        ) {
+            resultText = "🎉 তুমি জিতেছো! " + nameMap[playerChoice] + " > " + nameMap[computerChoice];
+            resultType = "win";
+            score.player++;
+            comboCount++;
+            document.getElementById("resultText").style.color = "#22c55e";
+            playSound("win");
+            if (comboCount >= 3) spawnConfetti();
+        } else {
+            resultText = "😢 তুমি হেরেছো! " + nameMap[computerChoice] + " > " + nameMap[playerChoice];
+            resultType = "lose";
+            score.computer++;
+            comboCount = 0;
+            document.getElementById("resultText").style.color = "#ef4444";
+            playSound("lose");
+        }
+
+        score.total = score.player + score.computer + score.draw;
+        document.getElementById("resultText").textContent = resultText;
+        saveScore(score);
+        saveHistory({ text: resultText, result: resultType });
+        updateStats();
+        updateHistoryUI();
+        showCombo();
+
+        // এনিমেশন
+        let playerEl = document.getElementById("playerChoice");
+        let computerEl = document.getElementById("computerChoice");
+        playerEl.className = "battle-choice " + resultType;
+        computerEl.className = "battle-choice " + (resultType === "win" ? "lose" : resultType === "lose" ? "win" : "draw");
+
+        // বাটন এনাবল
+        setTimeout(function() {
+            buttons.forEach(function(btn) { btn.disabled = false; });
+        }, 500);
+    });
 }
 
 function resetScore() {
     if (confirm("তুমি কি নিশ্চিত স্কোর রিসেট করতে চাও?")) {
         localStorage.removeItem("rpsScore");
-        updateScoreDisplay();
+        comboCount = 0;
+        updateStats();
+        showCombo();
         document.getElementById("resultText").textContent = "খেলা শুরু করো!";
         document.getElementById("playerChoice").textContent = "";
         document.getElementById("computerChoice").textContent = "";
     }
 }
 
-function playGame(playerChoice) {
-    let choices = ["rock", "paper", "scissors"];
-    let computerChoice = choices[Math.floor(Math.random() * 3)];
-
-    let emojiMap = {
-        rock: "🪨",
-        paper: "📄",
-        scissors: "✂️"
-    };
-
-    let nameMap = {
-        rock: "পাথর",
-        paper: "কাগজ",
-        scissors: "কাঁচি"
-    };
-
-    // UI আপডেট
-    document.getElementById("playerChoice").textContent = emojiMap[playerChoice];
-    document.getElementById("computerChoice").textContent = emojiMap[computerChoice];
-
-    let resultText = "";
-    let score = getScore();
-
-    if (playerChoice === computerChoice) {
-        resultText = "🤝 ড্র! দুজনেই " + nameMap[playerChoice] + " দিয়েছো!";
-        score.draw++;
-        document.getElementById("resultText").style.color = "#f59e0b";
-    } else if (
-        (playerChoice === "rock" && computerChoice === "scissors") ||
-        (playerChoice === "paper" && computerChoice === "rock") ||
-        (playerChoice === "scissors" && computerChoice === "paper")
-    ) {
-        resultText = "🎉 তুমি জিতেছো! " + nameMap[playerChoice] + " হারিয়ে দেয় " + nameMap[computerChoice] + " কে!";
-        score.player++;
-        document.getElementById("resultText").style.color = "#22c55e";
-    } else {
-        resultText = "😢 তুমি হেরেছো! " + nameMap[computerChoice] + " হারিয়ে দেয় " + nameMap[playerChoice] + " কে!";
-        score.computer++;
-        document.getElementById("resultText").style.color = "#ef4444";
-    }
-
-    document.getElementById("resultText").textContent = resultText;
-    saveScore(score);
-    updateScoreDisplay();
+function clearHistory() {
+    localStorage.removeItem("rpsHistory");
+    updateHistoryUI();
 }
 
-// পেজ লোডে স্কোর দেখানো
+// কীবোর্ড সাপোর্ট
+document.addEventListener("keydown", function(e) {
+    let key = e.key.toLowerCase();
+    if (key === "r") playGame("rock");
+    if (key === "p") playGame("paper");
+    if (key === "s") playGame("scissors");
+});
+
 document.addEventListener("DOMContentLoaded", function() {
-    updateScoreDisplay();
+    updateStats();
+    updateHistoryUI();
+    showCombo();
 });
