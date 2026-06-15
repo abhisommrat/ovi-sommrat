@@ -1,0 +1,807 @@
+/* ===== পুরো পেজের ব্যাকগ্রাউন্ড ও ফন্ট ===== */
+body {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    text-align: center;
+    padding: 40px 20px;
+    margin: 0;
+}
+
+/* ===== বড় শিরোনাম ===== */
+h1 {
+    color: #38bdf8;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+/* ===== ছোট শিরোনাম ===== */
+h2 {
+    color: #facc15;
+    font-size: 26px;
+    margin-top: 30px;
+}
+
+/* ===== সাধারণ প্যারাগ্রাফ ===== */
+p {
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 10px auto;
+}
+
+/* ===== ছবি ===== */
+img {
+    border-radius: 15px;
+    border: 4px solid #38bdf8;
+    width: 250px;
+    margin: 20px 0;
+}
+
+/* ===== তালিকা (লিস্ট) ===== */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    background-color: #1e293b;
+    margin: 8px auto;
+    padding: 10px 20px;
+    border-radius: 8px;
+    max-width: 400px;
+    font-size: 18px;
+}
+
+/* ===== লিংক (বাটনের মতো দেখাবে) ===== */
+a {
+    display: inline-block;
+    background-color: #2563eb;
+    color: white;
+    text-decoration: none;
+    padding: 12px 24px;
+    margin: 10px 6px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+a:hover {
+    background-color: #1d4ed8;
+}
+/* ===== টেবিলের ডিজাইন ===== */
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+    width: 80%;
+    max-width: 600px;
+    background-color: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th {
+    background-color: #2563eb;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #334155;
+    color: #e2e8f0;
+    font-size: 16px;
+}
+
+tr:hover {
+    background-color: #334155;
+}
+
+/* ===== কার্ড ডিজাইন (বাড়তি) ===== */
+.card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    text-align: left;
+}
+
+.card h3 {
+    color: #38bdf8;
+    margin-top: 0;
+}
+/* ===== নেভিগেশন বার ===== */
+nav {
+    background-color: #1e293b;
+    padding: 15px 0;
+    margin-bottom: 30px;
+    border-bottom: 3px solid #38bdf8;
+    text-align: center;
+}
+
+nav a {
+    display: inline-block;
+    background-color: transparent;
+    color: #e2e8f0;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin: 0 5px;
+    border-radius: 6px;
+    font-weight: bold;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+}
+
+nav a:hover {
+    background-color: #2563eb;
+    color: white;
+    border: 1px solid #38bdf8;
+}
+/* ===== স্কিল প্রোগ্রেস বার ===== */
+.skill {
+    max-width: 500px;
+    margin: 15px auto;
+    text-align: left;
+}
+
+.skill p {
+    margin: 5px 0;
+    font-weight: bold;
+    color: #e2e8f0;
+    font-size: 16px;
+}
+
+.progress-bar {
+    background-color: #334155;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 25px;
+}
+
+.progress {
+    background: linear-gradient(to right, #2563eb, #38bdf8);
+    color: white;
+    text-align: center;
+    line-height: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 20px;
+    height: 100%;
+}.timeline {
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: left;
+    list-style-type: none;
+    padding: 0;
+}
+
+.timeline li {
+    background-color: #1e293b;
+    border-left: 4px solid #38bdf8;
+    padding: 12px 20px;
+    margin: 10px 0;
+    border-radius: 0 10px 10px 0;
+    font-size: 16px;
+}
+.project-card {
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-left: 5px solid #38bdf8;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    text-align: left;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+}
+
+.project-card h3 {
+    color: #38bdf8;
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.project-card p {
+    color: #cbd5e1;
+    font-size: 15px;
+    margin-bottom: 0;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    animation: fadeIn 1s ease-out;
+}
+
+/* ২. কার্ডের জন্য হোভার ইফেক্ট (আগে থেকেই আছে, এখন আপগ্রেড করছি) */
+.project-card:hover,
+.skill:hover,
+.timeline li:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(56, 189, 248, 0.3);
+    transition: all 0.3s ease;
+}
+
+/* ৩. নেভিগেশন বার-এর জন্য গ্লো ইফেক্ট */
+nav a:hover {
+    box-shadow: 0 0 10px #38bdf8;
+}
+
+/* ৪. প্রোফাইল ছবির জন্য পলস ইফেক্ট */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(56, 189, 248, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(56, 189, 248, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(56, 189, 248, 0);
+    }
+}
+
+img {
+    animation: pulse 2s infinite;
+}
+
+/* ৫. প্রোগ্রেস বার-এর জন্য লোডিং ইফেক্ট */
+@keyframes loadProgress {
+    from {
+        width: 0%;
+    }
+    to {
+        width: var(--progress-width);
+    }
+}
+
+.progress {
+    animation: loadProgress 1.5s ease-out;
+}
+/* ===== JavaScript টেস্ট বাটন ===== */
+button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 14px 30px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin: 10px;
+}
+
+button:hover {
+    background-color: #1d4ed8;
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.5);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+/* ===== লাইট মোড ===== */
+body.light-mode {
+    background-color: #f1f5f9;
+    color: #1e293b;
+}
+
+body.light-mode nav {
+    background-color: #ffffff;
+    border-bottom: 3px solid #2563eb;
+}
+
+body.light-mode nav a {
+    color: #1e293b;
+}
+
+body.light-mode nav a:hover {
+    background-color: #79f306;
+    color: rgb(240, 9, 9);
+}
+
+body.light-mode .project-card,
+body.light-mode .skill,
+body.light-mode .timeline li,
+body.light-mode table {
+    background-color: #0d0d0e;
+    border-color: #f30404;
+}
+
+body.light-mode li {
+    color: #010713;
+}
+
+body.light-mode td {
+    color: #066ef5;
+}
+
+body.light-mode th {
+    color: rgb(247, 37, 124);
+}
+
+body.light-mode .progress-bar {
+    background-color: #866931;
+}
+
+body.light-mode h1 {
+    color: #2563eb;
+}
+
+body.light-mode h2 {
+    color: #b45309;
+}
+
+body.light-mode a {
+    background-color: #2563eb;
+}
+
+body.light-mode a:hover {
+    background-color: #1d4ed8;
+}
+
+body.light-mode .theme-toggle button {
+    background-color: #4c4794;
+    color: rgb(48, 250, 8);
+}
+/* ===== লাইট মোডে সব লিস্ট আইটেম (সব পেজের জন্য) ===== */
+body.light-mode ul li {
+    color: #1e293b !important;
+    background-color: #09b69f !important;
+}
+
+body.light-mode ul {
+    background-color: transparent !important;
+}
+/* ===== বিস্তারিত দেখানোর বাটন ===== */
+.details-btn {
+    background-color: transparent;
+    color: #38bdf8;
+    border: 1px solid #38bdf8;
+    padding: 6px 16px;
+    font-size: 14px;
+    margin-top: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s;
+}
+
+.details-btn:hover {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+body.light-mode .details-btn {
+    color: #2563eb;
+    border-color: #2563eb;
+}
+
+body.light-mode .details-btn:hover {
+    background-color: #2563eb;
+    color: rgb(240, 10, 10);
+}
+
+/* ===== বিস্তারিত কন্টেন্ট (প্রথমে লুকানো) ===== */
+.details-content {
+    display: none;
+    margin-top: 10px;
+    padding: 12px;
+    background-color: #1e293b;
+    border-radius: 8px;
+    text-align: left;
+    border-left: 3px solid #38bdf8;
+}
+
+body.light-mode .details-content {
+    background-color: #067df3;
+    border-left-color: #2563eb;
+}
+
+.details-content p {
+    margin: 0;
+    font-size: 14px;
+    color: #cbd5e1;
+}
+
+body.light-mode .details-content p {
+    color: #334155;
+}
+
+/* ===== ওয়েলকাম মেসেজ ===== */
+.welcome-message {
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    color: #38bdf8;
+    background-color: #1e293b;
+    padding: 15px;
+    margin: 0;
+    border-bottom: 2px solid #38bdf8;
+}
+
+body.light-mode .welcome-message {
+    background-color: #ffffff;
+    color: #2563eb;
+    border-bottom: 2px solid #2563eb;
+}
+
+/* ==================== ডায়েরি (প্রফেশনাল) ==================== */
+
+/* টুলবার */
+.diary-toolbar {
+    max-width: 700px;
+    margin: 20px auto 10px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    padding: 0 10px;
+}
+
+.diary-toolbar input[type="text"] {
+    flex: 1;
+    min-width: 200px;
+    padding: 10px 15px;
+    font-size: 15px;
+    border-radius: 25px;
+    border: 2px solid #334155;
+    background-color: #1e293b;
+    color: #e2e8f0;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.diary-toolbar input[type="text"]:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+body.light-mode .diary-toolbar input[type="text"] {
+    background-color: #ffffff;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+#noteCount {
+    color: #94a3b8;
+    font-weight: bold;
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.clear-all-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    font-size: 14px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.clear-all-btn:hover {
+    background-color: #dc2626;
+    transform: scale(1.05);
+}
+
+/* ইনপুট এরিয়া */
+.diary-input {
+    max-width: 700px;
+    margin: 10px auto;
+    padding: 0 10px;
+}
+
+.diary-input textarea {
+    width: 100%;
+    height: 110px;
+    padding: 15px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: 2px solid #334155;
+    background-color: #1e293b;
+    color: #e2e8f0;
+    resize: vertical;
+    font-family: inherit;
+    outline: none;
+    transition: all 0.3s;
+    box-sizing: border-box;
+}
+
+.diary-input textarea:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.15);
+}
+
+body.light-mode .diary-input textarea {
+    background-color: #ffffff;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+.input-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 8px;
+}
+
+#charCount {
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.diary-input button {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    font-size: 15px;
+    font-weight: bold;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.diary-input button:hover {
+    background-color: #1d4ed8;
+    transform: scale(1.03);
+}
+
+/* নোট কার্ড */
+.note-card {
+    background-color: #1e293b;
+    border-left: 5px solid #38bdf8;
+    border-radius: 12px;
+    padding: 18px;
+    margin: 15px auto;
+    max-width: 700px;
+    text-align: left;
+    position: relative;
+    transition: all 0.3s;
+    animation: fadeIn 0.3s ease;
+}
+
+.note-card:hover {
+    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+}
+
+body.light-mode .note-card {
+    background-color: #ffffff;
+    border-left-color: #2563eb;
+}
+
+.note-card.pinned {
+    border-left-color: #f59e0b;
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.2);
+}
+
+.note-card p {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    color: #e2e8f0;
+    white-space: pre-wrap;
+}
+
+body.light-mode .note-card p {
+    color: #1e293b;
+}
+
+.note-card small {
+    color: #94a3b8;
+    font-size: 12px;
+}
+
+.note-buttons {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+    flex-wrap: wrap;
+}
+
+.edit-btn, .pin-btn {
+    background-color: #f59e0b;
+    color: #0f172a;
+    border: none;
+    padding: 7px 14px;
+    font-size: 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.edit-btn:hover, .pin-btn:hover {
+    background-color: #d97706;
+    transform: scale(1.05);
+}
+
+.pin-btn.pinned-active {
+    background-color: #f59e0b;
+    border: 2px solid #fbbf24;
+}
+
+.delete-btn {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 7px 14px;
+    font-size: 13px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.delete-btn:hover {
+    background-color: #dc2626;
+    transform: scale(1.05);
+}
+
+#notesContainer {
+    max-width: 700px;
+    margin: 10px auto 40px;
+}
+
+/* এম্পটি স্টেট */
+.empty-state {
+    text-align: center;
+    padding: 40px;
+    color: #64748b;
+    font-size: 18px;
+}
+
+/* ==================== মোবাইল রেসপনসিভ ==================== */
+
+/* ট্যাবলেট (৭৬৮px-এর নিচে) */
+@media screen and (max-width: 768px) {
+
+    /* নেভিগেশন বার */
+    nav {
+        padding: 10px 5px;
+    }
+
+    nav a {
+        padding: 8px 12px;
+        font-size: 13px;
+        margin: 3px 2px;
+    }
+
+    /* হেডিং */
+    h1 {
+        font-size: 26px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    /* ছবি */
+    img {
+        width: 180px;
+    }
+
+    /* টেবিল */
+    table {
+        width: 95%;
+        font-size: 13px;
+    }
+
+    th, td {
+        padding: 8px 6px;
+    }
+
+    /* প্রজেক্ট কার্ড, স্কিল, টাইমলাইন */
+    .project-card,
+    .skill,
+    .timeline li {
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    /* ডায়েরি টুলবার */
+    .diary-toolbar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .diary-toolbar input[type="text"] {
+        width: 100%;
+    }
+
+    .clear-all-btn {
+        width: 100%;
+    }
+
+    /* নোট কার্ড */
+    .note-card {
+        max-width: 90%;
+    }
+
+    /* নোট বাটন */
+    .note-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .edit-btn, .pin-btn, .delete-btn {
+        width: 100%;
+        text-align: center;
+    }
+
+    /* বাটন */
+    button {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+}
+
+/* মোবাইল (৪৮০px-এর নিচে) */
+@media screen and (max-width: 480px) {
+
+    nav a {
+        padding: 6px 8px;
+        font-size: 11px;
+        margin: 2px 1px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    img {
+        width: 140px;
+    }
+
+    table {
+        font-size: 11px;
+    }
+
+    th, td {
+        padding: 6px 4px;
+    }
+
+    .note-card {
+        padding: 12px;
+    }
+
+    .note-card p {
+        font-size: 14px;
+    }
+
+    body {
+        padding: 20px 10px;
+    }
+
+    .theme-toggle button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
