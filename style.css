@@ -1329,37 +1329,84 @@ body.light-mode .footer {
     text-decoration: none;
 }
 
-/* ===== গুগল ট্রান্সলেট ===== */
-#google_translate_element {
-    margin: 0 auto;
-    max-width: 300px;
+/* ==================== কাস্টম ল্যাঙ্গুয়েজ সিলেক্টর ==================== */
+
+/* গুগলের ডিফল্ট সবকিছু লুকানো */
+.goog-te-banner-frame,
+.goog-te-gadget,
+.goog-te-gadget img,
+.goog-te-gadget-simple,
+.goog-te-balloon-frame,
+#goog-gt-tt,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-text-highlight {
+    display: none !important;
 }
 
-#google_translate_element select {
+body {
+    top: 0 !important;
+}
+
+/* কাস্টম ল্যাঙ্গুয়েজ সিলেক্টর */
+.language-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    flex-wrap: wrap;
+}
+
+.language-selector label {
+    color: #94a3b8;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.custom-lang-select {
     background-color: #1e293b;
     color: #e2e8f0;
-    border: 1px solid #334155;
-    padding: 8px 12px;
-    border-radius: 8px;
-    font-size: 14px;
+    border: 2px solid #334155;
+    padding: 10px 35px 10px 15px;
+    border-radius: 25px;
+    font-size: 15px;
+    font-weight: bold;
     cursor: pointer;
+    outline: none;
+    transition: all 0.3s;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2338bdf8' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    min-width: 160px;
 }
 
-body.light-mode #google_translate_element select {
+.custom-lang-select:hover {
+    border-color: #38bdf8;
+}
+
+.custom-lang-select:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+}
+
+body.light-mode .custom-lang-select {
     background-color: #ffffff;
     color: #1e293b;
     border-color: #cbd5e1;
 }
 
-/* গুগল ট্রান্সলেটের টপ বার লুকানো */
-.goog-te-banner-frame {
-    display: none !important;
+.language-badge {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 14px;
+    color: #94a3b8;
 }
 
-.goog-te-gadget {
-    color: transparent !important;
-}
-
-.goog-te-gadget .goog-te-combo {
-    outline: none;
+.language-badge .current-lang {
+    color: #38bdf8;
+    font-weight: bold;
 }

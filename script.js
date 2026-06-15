@@ -439,3 +439,64 @@ document.addEventListener("DOMContentLoaded", function() {
     updateHistoryUI();
     showCombo();
 });
+
+// ===== ৮. কাস্টম ল্যাঙ্গুয়েজ চেঞ্জ =====
+function changeLanguage(lang) {
+    // গুগল ট্রান্সলেটের সিলেক্ট বক্স খুঁজে বের করে চেঞ্জ করা
+    let googleSelect = document.querySelector(".goog-te-combo");
+    if (googleSelect) {
+        googleSelect.value = lang;
+        googleSelect.dispatchEvent(new Event("change"));
+    }
+
+    // কারেন্ট ল্যাঙ্গুয়েজ আপডেট
+    let langNames = {
+        bn: "বাংলা",
+        en: "English",
+        hi: "हिन्दी",
+        ar: "العربية",
+        ur: "اردو",
+        es: "Español",
+        fr: "Français",
+        de: "Deutsch",
+        ja: "日本語",
+        ko: "한국어",
+        "zh-CN": "中文"
+    };
+
+    let currentLangEl = document.querySelector(".current-lang");
+    if (currentLangEl && langNames[lang]) {
+        currentLangEl.textContent = langNames[lang];
+    }
+
+    // localStorage-এ সেইভ
+    localStorage.setItem("selectedLanguage", lang);
+}
+
+// পেজ লোডে আগের ভাষা রিস্টোর
+function restoreLanguage() {
+    let savedLang = localStorage.getItem("selectedLanguage");
+    if (savedLang && savedLang !== "bn") {
+        setTimeout(function() {
+            let googleSelect = document.querySelector(".goog-te-combo");
+            if (googleSelect) {
+                googleSelect.value = savedLang;
+                googleSelect.dispatchEvent(new Event("change"));
+
+                let langNames = {
+                    bn: "বাংলা", en: "English", hi: "हिन्दी", ar: "العربية",
+                    ur: "اردو", es: "Español", fr: "Français", de: "Deutsch",
+                    ja: "日本語", ko: "한국어", "zh-CN": "中文"
+                };
+                let currentLangEl = document.querySelector(".current-lang");
+                if (currentLangEl && langNames[savedLang]) {
+                    currentLangEl.textContent = langNames[savedLang];
+                }
+            }
+        }, 1000);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    restoreLanguage();
+});

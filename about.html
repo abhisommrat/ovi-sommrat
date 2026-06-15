@@ -6,8 +6,23 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Google Translate Widget -->
-<div id="google_translate_element" style="text-align: center; padding: 10px 0;"></div>
+    <!-- কাস্টম ল্যাঙ্গুয়েজ সিলেক্টর -->
+<div class="language-selector">
+    <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
+    <select class="custom-lang-select" onchange="changeLanguage(this.value)">
+        <option value="bn">🇧🇩 বাংলা</option>
+        <option value="en">🇬🇧 English</option>
+        <option value="hi">🇮🇳 हिन्दी</option>
+        <option value="ar">🇸🇦 العربية</option>
+        <option value="ur">🇵🇰 اردو</option>
+        <option value="es">🇪🇸 Español</option>
+        <option value="fr">🇫🇷 Français</option>
+        <option value="de">🇩🇪 Deutsch</option>
+        <option value="ja">🇯🇵 日本語</option>
+        <option value="ko">🇰🇷 한국어</option>
+        <option value="zh-CN">🇨🇳 中文</option>
+    </select>
+</div>
 
     <div id="welcomeMessage" class="welcome-message"></div>
 
