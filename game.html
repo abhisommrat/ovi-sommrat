@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>পাথর কাগজ কাঁচি - অভি</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcomeMessage" class="welcome-message"></div>
+
+    <div class="theme-toggle">
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+        <a href="game.html">🎮 গেম</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+    </nav>
+
+    <h1>🪨 📄 ✂️ পাথর কাগজ কাঁচি</h1>
+    <p>তোমার পছন্দ বেছে নাও, দেখো কম্পিউটারের সাথে কে জেতে!</p>
+
+    <!-- স্কোরবোর্ড -->
+    <div class="scoreboard">
+        <div class="score-box">
+            <span class="score-label">তুমি</span>
+            <span id="playerScore" class="score-number">0</span>
+        </div>
+        <div class="score-box">
+            <span class="score-label">ড্র</span>
+            <span id="drawScore" class="score-number">0</span>
+        </div>
+        <div class="score-box">
+            <span class="score-label">কম্পিউটার</span>
+            <span id="computerScore" class="score-number">0</span>
+        </div>
+    </div>
+
+    <!-- গেম এরিয়া -->
+    <div class="game-area">
+        <div class="choices">
+            <button class="choice-btn" onclick="playGame('rock')">
+                <span class="choice-emoji">🪨</span>
+                <span class="choice-text">পাথর</span>
+            </button>
+            <button class="choice-btn" onclick="playGame('paper')">
+                <span class="choice-emoji">📄</span>
+                <span class="choice-text">কাগজ</span>
+            </button>
+            <button class="choice-btn" onclick="playGame('scissors')">
+                <span class="choice-emoji">✂️</span>
+                <span class="choice-text">কাঁচি</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- ফলাফল -->
+    <div id="resultArea" class="result-area">
+        <h2 id="resultText">খেলা শুরু করো!</h2>
+        <div id="battleArea" class="battle-area">
+            <span id="playerChoice" class="battle-choice"></span>
+            <span class="vs-text">VS</span>
+            <span id="computerChoice" class="battle-choice"></span>
+        </div>
+    </div>
+
+    <!-- রিসেট -->
+    <div style="text-align: center; margin: 20px;">
+        <button onclick="resetScore()" style="background-color: #ef4444;">🔄 স্কোর রিসেট</button>
+    </div>
+
+    <hr>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+
+    <script src="script.js"></script>
+</body>
+</html>

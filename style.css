@@ -805,3 +805,165 @@ body.light-mode .note-card p {
         font-size: 14px;
     }
 }
+
+/* ==================== পাথর কাগজ কাঁচি গেম ==================== */
+
+/* স্কোরবোর্ড */
+.scoreboard {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 30px auto;
+    max-width: 500px;
+    flex-wrap: wrap;
+}
+
+.score-box {
+    background-color: #1e293b;
+    border: 2px solid #334155;
+    border-radius: 15px;
+    padding: 15px 25px;
+    text-align: center;
+    min-width: 100px;
+    transition: all 0.3s;
+}
+
+body.light-mode .score-box {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+}
+
+.score-label {
+    display: block;
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 8px;
+}
+
+.score-number {
+    font-size: 32px;
+    font-weight: bold;
+    color: #38bdf8;
+}
+
+/* চয়েস বাটন */
+.choices {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px auto;
+    max-width: 500px;
+}
+
+.choice-btn {
+    background-color: #1e293b;
+    border: 3px solid #334155;
+    border-radius: 20px;
+    padding: 20px;
+    cursor: pointer;
+    transition: all 0.3s;
+    min-width: 110px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.choice-btn:hover {
+    border-color: #38bdf8;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+}
+
+.choice-btn:active {
+    transform: scale(0.95);
+}
+
+body.light-mode .choice-btn {
+    background-color: #ffffff;
+    border-color: #cbd5e1;
+}
+
+.choice-emoji {
+    font-size: 50px;
+}
+
+.choice-text {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e2e8f0;
+}
+
+body.light-mode .choice-text {
+    color: #1e293b;
+}
+
+/* ফলাফল এরিয়া */
+.result-area {
+    text-align: center;
+    margin: 30px auto;
+    max-width: 500px;
+}
+
+.result-area h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    min-height: 36px;
+}
+
+.battle-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    font-size: 24px;
+}
+
+.battle-choice {
+    font-size: 60px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: #1e293b;
+    min-width: 90px;
+    transition: all 0.3s;
+}
+
+body.light-mode .battle-choice {
+    background-color: #f1f5f9;
+}
+
+.vs-text {
+    font-size: 28px;
+    font-weight: bold;
+    color: #ef4444;
+}
+
+/* জয়/পরাজয়ের অ্যানিমেশন */
+.win {
+    animation: winPulse 0.6s ease;
+    border-color: #22c55e !important;
+    box-shadow: 0 0 20px rgba(34, 197, 94, 0.5) !important;
+}
+
+.lose {
+    animation: loseShake 0.6s ease;
+    border-color: #ef4444 !important;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5) !important;
+}
+
+.draw {
+    border-color: #f59e0b !important;
+    box-shadow: 0 0 20px rgba(245, 158, 11, 0.5) !important;
+}
+
+@keyframes winPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+@keyframes loseShake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-8px); }
+    75% { transform: translateX(8px); }
+}
