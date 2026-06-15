@@ -1,14 +1,17 @@
 // ===== ০. ইউজারের নাম জিজ্ঞেস করে ওয়েলকাম মেসেজ =====
 function greetUser() {
-    let userName = sessionStorage.getItem("userName");
+    let userName = localStorage.getItem("oviUserName");
+
+    // যদি নাম না থাকে, শুধু প্রথমবার জিজ্ঞেস করবে
     if (!userName) {
-        userName = prompt("তোমার নাম কী?");
-        if (userName) {
-            sessionStorage.setItem("userName", userName);
+        userName = prompt("স্বাগতম! তোমার নাম কী?");
+        if (userName && userName.trim() !== "") {
+            localStorage.setItem("oviUserName", userName);
         } else {
             userName = "অতিথি";
         }
     }
+
     let messageDiv = document.getElementById("welcomeMessage");
     if (messageDiv) {
         messageDiv.innerHTML = "👋 স্বাগতম, " + userName + "! তোমাকে আবার দেখে ভালো লাগছে!";
