@@ -1552,3 +1552,139 @@ body.light-mode .grid-demo {
         grid-column: span 1;
     }
 }
+
+/* ==================== ক্যালকুলেটর ==================== */
+
+.calc-container {
+    max-width: 360px;
+    margin: 20px auto;
+    background-color: #1e293b;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    border: 1px solid #334155;
+}
+
+body.light-mode .calc-container {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.calc-history {
+    text-align: right;
+    color: #64748b;
+    font-size: 14px;
+    min-height: 20px;
+    margin-bottom: 5px;
+    word-break: break-all;
+}
+
+.calc-display {
+    background-color: #0f172a;
+    color: #e2e8f0;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: right;
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    min-height: 50px;
+    word-break: break-all;
+    border: 1px solid #334155;
+}
+
+body.light-mode .calc-display {
+    background-color: #f8fafc;
+    color: #1e293b;
+    border-color: #e2e8f0;
+}
+
+.calc-buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+.calc-btn {
+    padding: 16px;
+    font-size: 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.calc-btn:active {
+    transform: scale(0.95);
+}
+
+.btn-number {
+    background-color: #334155;
+    color: #e2e8f0;
+}
+
+.btn-number:hover {
+    background-color: #475569;
+}
+
+body.light-mode .btn-number {
+    background-color: #e2e8f0;
+    color: #1e293b;
+}
+
+body.light-mode .btn-number:hover {
+    background-color: #cbd5e1;
+}
+
+.btn-operator {
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    color: white;
+}
+
+.btn-operator:hover {
+    background: linear-gradient(135deg, #1d4ed8, #0ea5e9);
+}
+
+.btn-equals {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+    color: white;
+    font-size: 24px;
+}
+
+.btn-equals:hover {
+    background: linear-gradient(135deg, #16a34a, #15803d);
+}
+
+.btn-clear {
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+}
+
+.btn-clear:hover {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+.btn-special {
+    background-color: #1e293b;
+    color: #38bdf8;
+    border: 1px solid #334155;
+}
+
+.btn-special:hover {
+    background-color: #334155;
+}
+
+body.light-mode .btn-special {
+    background-color: #f1f5f9;
+    color: #2563eb;
+    border-color: #cbd5e1;
+}
+
+body.light-mode .btn-special:hover {
+    background-color: #e2e8f0;
+}

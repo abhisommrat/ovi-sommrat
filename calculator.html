@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ক্যালকুলেটর - অভি</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcomeMessage" class="welcome-message"></div>
+
+    <div class="theme-toggle">
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+
+    <div class="language-selector">
+        <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
+        <select class="custom-lang-select" onchange="changeLanguage(this.value)">
+            <option value="bn">🇧🇩 বাংলা</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+        </select>
+    </div>
+
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+        <a href="game.html">🎮 গেম</a>
+        <a href="flexbox-grid.html">📐 লেআউট</a>
+        <a href="calculator.html">🧮 ক্যালকুলেটর</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+    </nav>
+
+    <h1>🧮 ক্যালকুলেটর</h1>
+    <p>হিসাব করো সহজেই! কীবোর্ড দিয়েও টাইপ করতে পারো।</p>
+
+    <!-- ক্যালকুলেটর কন্টেইনার -->
+    <div class="calc-container">
+        <!-- হিস্টোরি -->
+        <div id="calcHistory" class="calc-history"></div>
+
+        <!-- ডিসপ্লে -->
+        <div id="calcDisplay" class="calc-display">0</div>
+
+        <!-- বাটন গ্রিড -->
+        <div class="calc-buttons">
+            <button class="calc-btn btn-clear" onclick="clearCalc()">C</button>
+            <button class="calc-btn btn-special" onclick="deleteLast()">⌫</button>
+            <button class="calc-btn btn-special" onclick="appendOperator('%')">%</button>
+            <button class="calc-btn btn-operator" onclick="appendOperator('/')">➗</button>
+
+            <button class="calc-btn btn-number" onclick="appendNumber('7')">7</button>
+            <button class="calc-btn btn-number" onclick="appendNumber('8')">8</button>
+            <button class="calc-btn btn-number" onclick="appendNumber('9')">9</button>
+            <button class="calc-btn btn-operator" onclick="appendOperator('*')">✖️</button>
+
+            <button class="calc-btn btn-number" onclick="appendNumber('4')">4</button>
+            <button class="calc-btn btn-number" onclick="appendNumber('5')">5</button>
+            <button class="calc-btn btn-number" onclick="appendNumber('6')">6</button>
+            <button class="calc-btn btn-operator" onclick="appendOperator('-')">➖</button>
+
+            <button class="calc-btn btn-number" onclick="appendNumber('1')">1</button>
+            <button class="calc-btn btn-number" onclick="appendNumber('2')">2</button>
+            <button class="calc-btn btn-number" onclick="appendNumber('3')">3</button>
+            <button class="calc-btn btn-operator" onclick="appendOperator('+')">➕</button>
+
+            <button class="calc-btn btn-special" onclick="appendNumber('00')">00</button>
+            <button class="calc-btn btn-number" onclick="appendNumber('0')">0</button>
+            <button class="calc-btn btn-number" onclick="appendDot()">.</button>
+            <button class="calc-btn btn-equals" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <hr>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+
+    <script src="script.js"></script>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'bn',
+            includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
