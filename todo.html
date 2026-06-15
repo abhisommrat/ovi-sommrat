@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>টু-ডু লিস্ট - অভি</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcomeMessage" class="welcome-message"></div>
+
+    <div class="theme-toggle">
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+
+    <div class="language-selector">
+        <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
+        <select class="custom-lang-select" onchange="changeLanguage(this.value)">
+            <option value="bn">🇧🇩 বাংলা</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+        </select>
+    </div>
+
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+        <a href="game.html">🎮 গেম</a>
+        <a href="flexbox-grid.html">📐 লেআউট</a>
+        <a href="calculator.html">🧮 ক্যালকুলেটর</a>
+        <a href="todo.html">✅ টু-ডু</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+    </nav>
+
+    <h1>✅ টু-ডু লিস্ট</h1>
+    <p>তোমার কাজের তালিকা গুছিয়ে রাখো!</p>
+
+    <!-- টু-ডু কন্টেইনার -->
+    <div class="todo-container">
+        <!-- প্রোগ্রেস বার -->
+        <div class="todo-progress">
+            <div class="todo-progress-bar" id="todoProgressBar" style="width: 0%;"></div>
+        </div>
+        <div class="todo-stats">
+            <span id="todoStats">0/0 সম্পন্ন</span>
+        </div>
+
+        <!-- ইনপুট -->
+        <div class="todo-input-area">
+            <input type="text" id="todoInput" placeholder="নতুন টাস্ক লিখো... (এন্টার চাপো)" onkeydown="if(event.key==='Enter')addTodo()">
+            <button onclick="addTodo()" class="btn-primary">➕ যোগ</button>
+        </div>
+
+        <!-- ফিল্টার বাটন -->
+        <div class="todo-filters">
+            <button class="filter-btn active" onclick="filterTodos('all')">সব</button>
+            <button class="filter-btn" onclick="filterTodos('active')">বাকি</button>
+            <button class="filter-btn" onclick="filterTodos('completed')">সম্পন্ন</button>
+            <button class="filter-btn btn-clear-all" onclick="clearAllTodos()">🗑️ সব মুছো</button>
+        </div>
+
+        <!-- টাস্ক লিস্ট -->
+        <ul id="todoList" class="todo-list"></ul>
+    </div>
+
+    <hr>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+
+    <script src="script.js"></script>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'bn',
+            includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

@@ -582,3 +582,148 @@ document.addEventListener("keydown", function(e) {
         clearCalc();
     }
 });
+
+// ==================== ১০. টু-ডু লিস্ট ====================
+
+let currentFilter = "all";
+let draggedItem = null;
+
+function getTodos() {
+    return JSON.parse(localStorage.getItem("oviTodos")) || [];
+}
+
+function saveTodos(todos) {
+    localStorage.setItem("oviTodos", JSON.stringify(todos));
+}
+
+function addTodo() {
+    let input = document.getElementById("todoInput");
+    if (!input) return;
+    let text = input.value.trim();
+    if (text === "") return;
+
+    let todos = getTodos();
+    todos.push({ id: Date.now(), text: text, completed: false });
+    saveTodos(todos);
+    input.value = "";
+    renderTodos();
+}
+
+function toggleTodo(id) {
+    let todos = getTodos();
+    let todo = todos.find(t => t.id === id);
+    if (todo) {
+        todo.completed = !todo.completed;
+        saveTodos(todos);
+        renderTodos();
+    }
+}
+
+function deleteTodo(id) {
+    let todos = getTodos();
+    todos = todos.filter(t => t.id !== id);
+    saveTodos(todos);
+    renderTodos();
+}
+
+function editTodo(id) {
+    let todos = getTodos();
+    let todo = todos.find(t => t.id === id);
+    if (!todo) return;
+
+    let newText = prompt("টাস্ক এডিট করো:", todo.text);
+    if (newText !== null && newText.trim() !== "") {
+        todo.text = newText.trim();
+        saveTodos(todos);
+        renderTodos();
+    }
+}
+
+function clearAllTodos() {
+    if (confirm("তুমি কি নিশ্চিত সব টাস্ক মুছে ফেলতে চাও?")) {
+        localStorage.removeItem("oviTodos");
+        renderTodos();
+    }
+}
+
+function filterTodos(filter) {
+    currentFilter = filter;
+    document.querySelectorAll(".filter-btn").forEach(btn => btn.classList.remove("active"));
+    event.target.classList.add("active");
+    renderTodos();
+}
+
+function renderTodos() {
+    let todos = getTodos();
+    let list = document.getElementById("todoList");
+    if (!list) return;
+
+    // ফিল্টার
+    let filteredTodos = todos;
+    if (currentFilter === "active") filteredTodos = todos.filter(t => !t.completed);
+    if (currentFilter === "completed") filteredTodos = todos.filter(t => t.completed);
+
+    // প্রোগ্রেস
+    let completedCount = todos.filter(t => t.completed).length;
+    let totalCount = todos.length;
+    let progress = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
+
+    let progressBar = document.getElementById("todoProgressBar");
+    let stats = document.getElementById("todoStats");
+    if (progressBar) progressBar.style.width = progress + "%";
+    if (stats) stats.textContent = completedCount + "/" + totalCount + " সম্পন্ন";
+
+    // রেন্ডার
+    list.innerHTML = "";
+    if (filteredTodos.length === 0) {
+        list.innerHTML = '<div class="empty-todo">📭 কোনও টাস্ক নেই!</div>';
+        return;
+    }
+
+    filteredTodos.forEach(todo => {
+        let li = document.createElement("li");
+        li.className = "todo-item" + (todo.completed ? " completed" : "");
+        li.draggable = true;
+        li.setAttribute("data-id", todo.id);
+
+        li.innerHTML = `
+            <input type="checkbox" class="todo-checkbox" ${todo.completed ? "checked" : ""} onchange="toggleTodo(${todo.id})">
+            <span class="todo-text">${todo.text}</span>
+            <div class="todo-actions">
+                <button class="todo-edit-btn" onclick="editTodo(${todo.id})">✏️</button>
+                <button class="todo-delete-btn" onclick="deleteTodo(${todo.id})">❌</button>
+            </div>
+        `;
+
+        // ড্র্যাগ ইভেন্ট
+        li.addEventListener("dragstart", function() {
+            draggedItem = this;
+            this.classList.add("dragging");
+        });
+        li.addEventListener("dragend", function() {
+            this.classList.remove("dragging");
+            draggedItem = null;
+        });
+        li.addEventListener("dragover", function(e) {
+            e.preventDefault();
+        });
+        li.addEventListener("drop", function() {
+            if (draggedItem && draggedItem !== this) {
+                let allItems = [...list.children];
+                let fromIndex = allItems.indexOf(draggedItem);
+                let toIndex = allItems.indexOf(this);
+                let todos = getTodos();
+                let [moved] = todos.splice(fromIndex, 1);
+                todos.splice(toIndex, 0, moved);
+                saveTodos(todos);
+                renderTodos();
+            }
+        });
+
+        list.appendChild(li);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    renderTodos();
+});
