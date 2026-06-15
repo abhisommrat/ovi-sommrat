@@ -1121,3 +1121,210 @@ body.light-mode .history-item {
 .history-item.draw-item {
     border-left: 3px solid #f59e0b;
 }
+
+/* ==================== পোর্টফোলিও প্রো ==================== */
+
+/* ফিক্সড নেভিগেশন */
+nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+}
+
+/* হিরো সেকশন */
+.hero {
+    text-align: center;
+    padding: 80px 20px 60px;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    border-bottom: 3px solid #38bdf8;
+}
+
+body.light-mode .hero {
+    background: linear-gradient(135deg, #f1f5f9 0%, #ffffff 50%, #f1f5f9 100%);
+    border-bottom: 3px solid #2563eb;
+}
+
+.hero h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+    background: linear-gradient(to right, #38bdf8, #a855f7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero .subtitle {
+    font-size: 20px;
+    color: #94a3b8;
+    margin-bottom: 25px;
+}
+
+.hero .tagline {
+    font-size: 16px;
+    color: #64748b;
+    max-width: 500px;
+    margin: 0 auto 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #2563eb, #38bdf8);
+    color: white;
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    transition: all 0.3s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.4);
+}
+
+.btn-outline {
+    background: transparent;
+    color: #38bdf8;
+    padding: 14px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+    border: 2px solid #38bdf8;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+/* সেকশন */
+.section {
+    padding: 60px 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 40px;
+    font-size: 16px;
+}
+
+/* অ্যাবাউট */
+.about-grid {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.about-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 4px solid #38bdf8;
+    object-fit: cover;
+}
+
+.about-text {
+    max-width: 400px;
+    text-align: left;
+}
+
+.about-text p {
+    color: #cbd5e1;
+    margin-bottom: 10px;
+}
+
+body.light-mode .about-text p {
+    color: #475569;
+}
+
+/* প্রজেক্ট গ্রিড */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.project-card {
+    margin: 0;
+    transition: all 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+/* কন্টাক্ট */
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #1e293b;
+    padding: 12px 24px;
+    border-radius: 30px;
+    color: #e2e8f0;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+body.light-mode .contact-link {
+    background-color: #f1f5f9;
+    color: #1e293b;
+}
+
+.contact-link:hover {
+    background-color: #2563eb;
+    color: white;
+    transform: translateY(-3px);
+}
+
+/* ফুটার */
+.footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #0f172a;
+    border-top: 1px solid #334155;
+    color: #64748b;
+    font-size: 14px;
+}
+
+body.light-mode .footer {
+    background-color: #f1f5f9;
+    border-top: 1px solid #e2e8f0;
+}
+
+.footer a {
+    color: #38bdf8;
+    text-decoration: none;
+}
