@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox & Grid - অভি</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcomeMessage" class="welcome-message"></div>
+
+    <div class="theme-toggle">
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+
+    <!-- কাস্টম ল্যাঙ্গুয়েজ সিলেক্টর -->
+    <div class="language-selector">
+        <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
+        <select class="custom-lang-select" onchange="changeLanguage(this.value)">
+            <option value="bn">🇧🇩 বাংলা</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+        </select>
+    </div>
+
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+        <a href="game.html">🎮 গেম</a>
+        <a href="flexbox-grid.html">📐 লেআউট</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+    </nav>
+
+    <h1>📐 CSS Flexbox & Grid</h1>
+    <p>নিচে Flexbox আর Grid-এর লাইভ উদাহরণ দেখো!</p>
+
+    <!-- ==================== FLEXBOX সেকশন ==================== -->
+    <h2>🔹 Flexbox উদাহরণ</h2>
+
+    <!-- Flex Row -->
+    <h3>👉 Flex Row (পাশাপাশি)</h3>
+    <div class="flex-demo flex-row-demo">
+        <div class="flex-item">১</div>
+        <div class="flex-item">২</div>
+        <div class="flex-item">৩</div>
+        <div class="flex-item">৪</div>
+    </div>
+
+    <!-- Flex Center -->
+    <h3>👉 Flex Center (মাঝখানে)</h3>
+    <div class="flex-demo flex-center-demo">
+        <div class="flex-item">মাঝখানে</div>
+    </div>
+
+    <!-- Flex Space Between -->
+    <h3>👉 Flex Space Between (দুই পাশে ফাঁকা)</h3>
+    <div class="flex-demo flex-between-demo">
+        <div class="flex-item">বাম</div>
+        <div class="flex-item">মাঝ</div>
+        <div class="flex-item">ডান</div>
+    </div>
+
+    <!-- Flex Wrap -->
+    <h3>👉 Flex Wrap (ছোট স্ক্রিনে নিচে নামবে)</h3>
+    <div class="flex-demo flex-wrap-demo">
+        <div class="flex-item">A</div>
+        <div class="flex-item">B</div>
+        <div class="flex-item">C</div>
+        <div class="flex-item">D</div>
+        <div class="flex-item">E</div>
+        <div class="flex-item">F</div>
+        <div class="flex-item">G</div>
+        <div class="flex-item">H</div>
+    </div>
+
+    <!-- Flex Grow -->
+    <h3>👉 Flex Grow (সমান জায়গা নেবে)</h3>
+    <div class="flex-demo flex-grow-demo">
+        <div class="flex-item flex-grow-1">সমান</div>
+        <div class="flex-item flex-grow-2">দ্বিগুণ</div>
+        <div class="flex-item flex-grow-1">সমান</div>
+    </div>
+
+    <!-- ==================== GRID সেকশন ==================== -->
+    <h2>🔹 CSS Grid উদাহরণ</h2>
+
+    <!-- Grid 3 Columns -->
+    <h3>👉 Grid 3 Columns (তিন কলাম)</h3>
+    <div class="grid-demo grid-3-col">
+        <div class="grid-item">১</div>
+        <div class="grid-item">২</div>
+        <div class="grid-item">৩</div>
+        <div class="grid-item">৪</div>
+        <div class="grid-item">৫</div>
+        <div class="grid-item">৬</div>
+    </div>
+
+    <!-- Grid Span -->
+    <h3>👉 Grid Span (বড় আইটেম)</h3>
+    <div class="grid-demo grid-span-demo">
+        <div class="grid-item grid-span-2">আমি বড় (2 কলাম)</div>
+        <div class="grid-item">ছোট</div>
+        <div class="grid-item">ছোট</div>
+        <div class="grid-item grid-span-2">আমিও বড়</div>
+    </div>
+
+    <!-- Grid Auto Fit (প্রজেক্ট কার্ডের মতো) -->
+    <h3>👉 Grid Auto Fit (প্রজেক্ট কার্ড লেআউট)</h3>
+    <div class="grid-demo grid-auto-demo">
+        <div class="grid-item">কার্ড ১</div>
+        <div class="grid-item">কার্ড ২</div>
+        <div class="grid-item">কার্ড ৩</div>
+        <div class="grid-item">কার্ড ৪</div>
+        <div class="grid-item">কার্ড ৫</div>
+    </div>
+
+    <!-- ==================== রিয়েল ওয়ার্ল্ড উদাহরণ ==================== -->
+    <h2>🔹 রিয়েল ওয়ার্ল্ড উদাহরণ</h2>
+
+    <!-- প্রজেক্ট কার্ড গ্রিড -->
+    <div class="project-grid">
+        <div class="project-card">
+            <h3>🌐 ওয়েবসাইট</h3>
+            <p>HTML, CSS, JS দিয়ে তৈরি ফুল ওয়েবসাইট।</p>
+        </div>
+        <div class="project-card">
+            <h3>📓 ডায়েরি অ্যাপ</h3>
+            <p>নোট রাখা, এডিট, ডিলিট, সার্চ, পিন।</p>
+        </div>
+        <div class="project-card">
+            <h3>🎮 গেম</h3>
+            <p>পাথর-কাগজ-কাঁচি প্রো ভার্সন।</p>
+        </div>
+        <div class="project-card">
+            <h3>🌍 মাল্টি-ল্যাঙ্গুয়েজ</h3>
+            <p>১১টি ভাষায় অনুবাদ সুবিধা।</p>
+        </div>
+        <div class="project-card">
+            <h3>📱 রেসপনসিভ</h3>
+            <p>মোবাইল, ট্যাব, পিসি সবখানে ফিট।</p>
+        </div>
+        <div class="project-card">
+            <h3>🌗 ডার্ক মোড</h3>
+            <p>লোকাল স্টোরেজসহ থিম সুবিধা।</p>
+        </div>
+    </div>
+
+    <hr>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+
+    <script src="script.js"></script>
+    <!-- Google Translate Script -->
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'bn',
+            includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
