@@ -550,7 +550,6 @@ function clearCalc() {
 
 function calculate() {
     if (calcExpression === "") return;
-
     let historyEl = document.getElementById("calcHistory");
     try {
         let result = eval(calcExpression);
@@ -565,22 +564,14 @@ function calculate() {
 
 // কীবোর্ড সাপোর্ট
 document.addEventListener("keydown", function(e) {
+    if (!document.getElementById("calcDisplay")) return;
     let key = e.key;
-
-    if (key >= "0" && key <= "9") {
-        appendNumber(key);
-    } else if (key === "+" || key === "-" || key === "*" || key === "/" || key === "%") {
-        appendOperator(key);
-    } else if (key === ".") {
-        appendDot();
-    } else if (key === "Enter" || key === "=") {
-        e.preventDefault();
-        calculate();
-    } else if (key === "Backspace") {
-        deleteLast();
-    } else if (key === "Escape" || key === "c" || key === "C") {
-        clearCalc();
-    }
+    if (key >= "0" && key <= "9") appendNumber(key);
+    else if (key === "+" || key === "-" || key === "*" || key === "/" || key === "%") appendOperator(key);
+    else if (key === ".") appendDot();
+    else if (key === "Enter" || key === "=") { e.preventDefault(); calculate(); }
+    else if (key === "Backspace") deleteLast();
+    else if (key === "Escape" || key === "c" || key === "C") clearCalc();
 });
 
 // ==================== ১০. টু-ডু লিস্ট ====================
