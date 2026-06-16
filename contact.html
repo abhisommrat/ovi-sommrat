@@ -6,28 +6,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- কাস্টম ল্যাঙ্গুয়েজ সিলেক্টর -->
-<div class="language-selector">
-    <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
-    <select class="custom-lang-select" onchange="changeLanguage(this.value)">
-        <option value="bn">🇧🇩 বাংলা</option>
-        <option value="en">🇬🇧 English</option>
-        <option value="hi">🇮🇳 हिन्दी</option>
-        <option value="ar">🇸🇦 العربية</option>
-        <option value="ur">🇵🇰 اردو</option>
-        <option value="es">🇪🇸 Español</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="de">🇩🇪 Deutsch</option>
-        <option value="ja">🇯🇵 日本語</option>
-        <option value="ko">🇰🇷 한국어</option>
-        <option value="zh-CN">🇨🇳 中文</option>
-    </select>
-</div>
-
     <div id="welcomeMessage" class="welcome-message"></div>
 
     <div class="theme-toggle">
         <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+
+    <div class="language-selector">
+        <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
+        <select class="custom-lang-select" onchange="changeLanguage(this.value)">
+            <option value="bn">🇧🇩 বাংলা</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+        </select>
     </div>
 
     <nav>
@@ -36,40 +27,70 @@
         <a href="profile.html">📷 প্রোফাইল</a>
         <a href="projects.html">📁 প্রজেক্ট</a>
         <a href="hobbies.html">🎮 শখ</a>
-        <a href="contact.html">📞 যোগাযোগ</a>
         <a href="diary.html">📓 ডায়েরি</a>
         <a href="game.html">🎮 গেম</a>
         <a href="flexbox-grid.html">📐 লেআউট</a>
         <a href="calculator.html">🧮 ক্যালকুলেটর</a>
         <a href="todo.html">✅ টু-ডু</a>
         <a href="weather.html">🌤️ ওয়েদার</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
     </nav>
 
     <h1>📞 যোগাযোগ</h1>
-    <p>আমার সাথে যোগাযোগ করতে নিচের তথ্য ব্যবহার করো।</p>
+    <p>নিচের ফর্মটি পূরণ করে আমাকে মেসেজ পাঠাও! সরাসরি আমার ইমেইলে যাবে।</p>
 
-    <h2>যোগাযোগের মাধ্যম</h2>
-    <ul>
-        <li>📧 ইমেইল: abhisw75@gmail.com</li>
-        <li>📱 ফোন: ০১৮৭৬-০৯৩৭৬৫</li>
-        <li>📍 ঠিকানা: ঢাকা, বাংলাদেশ</li>
-    </ul>
+    <!-- কন্টাক্ট ফর্ম -->
+    <div class="contact-form-container">
+        <form id="contactForm" onsubmit="handleFormSubmit(event)">
+            <div class="form-group">
+                <label for="name">👤 তোমার নাম</label>
+                <input type="text" id="name" name="name" placeholder="তোমার নাম লিখো..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">📧 তোমার ইমেইল</label>
+                <input type="email" id="email" name="email" placeholder="তোমার ইমেইল লিখো..." required>
+            </div>
+
+            <div class="form-group">
+                <label for="message">💬 তোমার মেসেজ</label>
+                <textarea id="message" name="message" rows="5" placeholder="তোমার মেসেজ লিখো..." required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">📨 মেসেজ পাঠাও</button>
+        </form>
+
+        <!-- সাকসেস মেসেজ -->
+        <div id="formSuccess" class="form-success" style="display: none;">
+            <h2>✅ মেসেজ পাঠানো হয়েছে!</h2>
+            <p>তোমার মেসেজ পেয়েছি। খুব শীঘ্রই উত্তর দেবো!</p>
+        </div>
+    </div>
+
+    <!-- যোগাযোগের মাধ্যম -->
+    <div class="contact-info-section">
+        <h2>📋 সরাসরি যোগাযোগ</h2>
+        <div class="contact-links">
+            <a href="mailto:abhisw75@gmail.com" class="contact-link">📧 ইমেইল</a>
+            <a href="tel:01876093765" class="contact-link">📱 ফোন</a>
+            <a href="https://github.com" target="_blank" class="contact-link">💻 GitHub</a>
+        </div>
+    </div>
 
     <hr>
     <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
 
     <script src="script.js"></script>
-    <!-- Google Translate Script -->
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'bn',
-        includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'bn',
+            includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
