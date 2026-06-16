@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ওয়েদার অ্যাপ - অভি</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcomeMessage" class="welcome-message"></div>
+    <div class="theme-toggle">
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+    <div class="language-selector">
+        <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
+        <select class="custom-lang-select" onchange="changeLanguage(this.value)">
+            <option value="bn">🇧🇩 বাংলা</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+        </select>
+    </div>
+
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+        <a href="game.html">🎮 গেম</a>
+        <a href="flexbox-grid.html">📐 লেআউট</a>
+        <a href="calculator.html">🧮 ক্যালকুলেটর</a>
+        <a href="todo.html">✅ টু-ডু</a>
+        <a href="weather.html">🌤️ ওয়েদার</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+    </nav>
+
+    <h1>🌤️ ওয়েদার অ্যাপ</h1>
+    <p>যেকোনো শহরের আবহাওয়া দেখো!</p>
+
+    <div class="weather-container" id="weatherContainer">
+        <div class="weather-search">
+            <input type="text" id="cityInput" placeholder="শহরের নাম লিখো... (ঢাকা, London, Tokyo)" onkeydown="if(event.key==='Enter')getWeather()">
+            <button onclick="getWeather()" class="btn-primary">🔍 সার্চ</button>
+        </div>
+        <div id="weatherResult" class="weather-result">
+            <div class="weather-icon" id="weatherIcon">🌍</div>
+            <div class="weather-temp" id="weatherTemp">--°C</div>
+            <div class="weather-city" id="weatherCity">শহর নির্বাচন করো</div>
+            <div class="weather-desc" id="weatherDesc"></div>
+            <div class="weather-details" id="weatherDetails"></div>
+        </div>
+    </div>
+
+    <hr>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+
+    <script src="script.js"></script>
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'bn',
+            includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>

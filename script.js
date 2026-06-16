@@ -727,3 +727,76 @@ function renderTodos() {
 document.addEventListener("DOMContentLoaded", function() {
     renderTodos();
 });
+
+// ==================== ১১. ওয়েদার অ্যাপ ====================
+
+const API_KEY = "ffee96682d5d962e0b589b81d17c3367"; // এখানে তোর API Key বসাবি
+
+async function getWeather() {
+    let city = document.getElementById("cityInput").value.trim();
+    if (!city) {
+        alert("শহরের নাম লিখো!");
+        return;
+    }
+
+    let url = https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}&units=metric&lang=bn;
+
+    try {
+        let response = await fetch(url);
+        let data = await response.json();
+
+        if (data.cod !== 200) {
+            alert("শহর খুঁজে পাওয়া যায়নি!");
+            return;
+        }
+
+        // UI আপডেট
+        document.getElementById("weatherTemp").textContent = Math.round(data.main.temp) + "°C";
+        document.getElementById("weatherCity").textContent = data.name + ", " + data.sys.country;
+        document.getElementById("weatherDesc").textContent = data.weather[0].description;
+
+        // আইকন
+        let iconMap = {
+            "Clear": "☀️", "Clouds": "☁️", "Rain": "🌧️",
+            "Drizzle": "🌦️", "Thunderstorm": "⛈️", "Snow": "❄️",
+            "Mist": "🌫️", "Haze": "🌫️", "Fog": "🌫️"
+        };
+        let weatherMain = data.weather[0].main;
+        document.getElementById("weatherIcon").textContent = iconMap[weatherMain] || "🌍";
+
+        // বিস্তারিত
+        document.getElementById("weatherDetails").innerHTML = `
+            <div class="weather-detail-item">💧 আর্দ্রতা<br><strong>${data.main.humidity}%</strong></div>
+            <div class="weather-detail-item">💨 বাতাস<br><strong>${data.wind.speed} m/s</strong></div>
+            <div class="weather-detail-item">🌡️ অনুভূত<br><strong>${Math.round(data.main.feels_like)}°C</strong></div>
+        `;
+
+        // ব্যাকগ্রাউন্ড থিম
+        let container = document.getElementById("weatherContainer");
+        if (weatherMain === "Clear") container.style.background = "linear-gradient(135deg, #f59e0b, #ef4444)";
+        else if (weatherMain === "Clouds") container.style.background = "linear-gradient(135deg, #64748b, #334155)";
+        else if (weatherMain === "Rain" || weatherMain === "Drizzle") container.style.background = "linear-gradient(135deg, #2563eb, #1e3a5f)";
+        else container.style.background = "linear-gradient(135deg, #1e293b, #0f172a)";
+
+        // localStorage-এ সেইভ
+        localStorage.setItem("lastCity", city);
+
+    } catch (error) {
+        alert("নেটওয়ার্ক সমস্যা! আবার চেষ্টা করো।");
+    }
+}
+
+// শেষ শহর লোড
+function loadLastCity() {
+    let lastCity = localStorage.getItem("lastCity");
+    if (lastCity) {
+        document.getElementById("cityInput").value = lastCity;
+        getWeather();
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (document.getElementById("weatherContainer")) {
+        loadLastCity();
+    }
+});

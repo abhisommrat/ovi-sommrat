@@ -1890,3 +1890,105 @@ body.light-mode .todo-text {
     color: #64748b;
     font-size: 16px;
 }
+
+/* ==================== ওয়েদার অ্যাপ ==================== */
+
+.weather-container {
+    max-width: 420px;
+    margin: 20px auto;
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    text-align: center;
+    transition: all 0.5s;
+}
+
+body.light-mode .weather-container {
+    background: linear-gradient(135deg, #ffffff, #f1f5f9);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.weather-search {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.weather-search input {
+    flex: 1;
+    padding: 12px 18px;
+    border-radius: 25px;
+    border: 2px solid #334155;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    font-size: 15px;
+    outline: none;
+}
+
+body.light-mode .weather-search input {
+    background-color: #f8fafc;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+.weather-result {
+    padding: 10px;
+}
+
+.weather-icon {
+    font-size: 70px;
+    margin-bottom: 10px;
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.weather-temp {
+    font-size: 52px;
+    font-weight: bold;
+    color: #e2e8f0;
+}
+
+body.light-mode .weather-temp {
+    color: #1e293b;
+}
+
+.weather-city {
+    font-size: 22px;
+    color: #94a3b8;
+    margin: 5px 0;
+}
+
+.weather-desc {
+    font-size: 16px;
+    color: #38bdf8;
+    text-transform: capitalize;
+    margin-bottom: 15px;
+}
+
+.weather-details {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.weather-detail-item {
+    text-align: center;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.weather-detail-item strong {
+    display: block;
+    color: #e2e8f0;
+    font-size: 18px;
+}
+
+body.light-mode .weather-detail-item strong {
+    color: #1e293b;
+}
