@@ -713,27 +713,103 @@ function handleFormSubmit(event) {
     });
 }
 
-// ==================== ১৩. কপি টু ক্লিপবোর্ড ====================
+/* ==================== কন্টাক্ট লিংক কার্ড ==================== */
 
-function copyInfo(elementId, infoName) {
-    let element = document.getElementById(elementId);
-    if (!element) return;
+.contact-cards-container {
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
 
-    let text = element.textContent;
+.contact-link-card {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 15px;
+    padding: 15px 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+}
 
-    // ক্লিপবোর্ডে কপি
-    navigator.clipboard.writeText(text).then(function() {
-        // কপি সাকসেস দেখানো
-        let btn = event.target;
-        let originalText = btn.textContent;
-        btn.textContent = "✅ কপি হয়েছে!";
-        btn.classList.add("copy-success");
+body.light-mode .contact-link-card {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
 
-        setTimeout(function() {
-            btn.textContent = originalText;
-            btn.classList.remove("copy-success");
-        }, 2000);
-    }).catch(function() {
-        alert("কপি করা যায়নি! ম্যানুয়ালি কপি করো।");
-    });
+.contact-link-card:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 8px 25px rgba(56, 189, 248, 0.2);
+    transform: translateY(-3px);
+}
+
+.contact-icon {
+    font-size: 30px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.contact-detail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.contact-label {
+    font-size: 12px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e2e8f0;
+    word-break: break-all;
+}
+
+body.light-mode .contact-value {
+    color: #1e293b;
+}
+
+.copy-btn {
+    background-color: #334155;
+    color: #38bdf8;
+    border: 1px solid #38bdf8;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: all 0.3s;
+    white-space: nowrap;
+    z-index: 2;
+}
+
+.copy-btn:hover {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+body.light-mode .copy-btn {
+    background-color: #f1f5f9;
+    border-color: #2563eb;
+    color: #2563eb;
+}
+
+body.light-mode .copy-btn:hover {
+    background-color: #2563eb;
+    color: white;
+}
+
+.copy-success {
+    background-color: #22c55e !important;
+    color: white !important;
+    border-color: #22c55e !important;
 }

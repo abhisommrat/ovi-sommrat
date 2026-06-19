@@ -45,95 +45,71 @@
     </nav>
 
     <h1>📞 যোগাযোগ</h1>
-    <p>আমার সাথে যোগাযোগ করতে নিচের যেকোনো মাধ্যম ব্যবহার করো। 📋 কপি বাটনে ক্লিক করে সহজেই কপি করতে পারো!</p>
+    <p>নিচের যেকোনো মাধ্যমে ক্লিক করলেই সরাসরি আমার সাথে যোগাযোগ করতে পারবে! 📋 কপি বাটনেও তথ্য কপি করতে পারো।</p>
 
-    <!-- যোগাযোগ তথ্য কার্ড -->
+    <!-- যোগাযোগ কার্ড -->
     <div class="contact-cards-container">
 
         <!-- ইমেইল -->
-        <div class="contact-info-card">
+        <a href="mailto:abhisw75@gmail.com" class="contact-info-card contact-link-card">
             <div class="contact-icon">📧</div>
             <div class="contact-detail">
                 <span class="contact-label">ইমেইল</span>
                 <span class="contact-value" id="infoEmail">abhisw75@gmail.com</span>
             </div>
-            <button class="copy-btn" onclick="copyInfo('infoEmail', 'ইমেইল')">📋 কপি</button>
-        </div>
+            <button class="copy-btn" onclick="copyInfo(event, 'infoEmail')">📋 কপি</button>
+        </a>
 
         <!-- ফোন -->
-        <div class="contact-info-card">
+        <a href="tel:01876093765" class="contact-info-card contact-link-card">
             <div class="contact-icon">📱</div>
             <div class="contact-detail">
                 <span class="contact-label">ফোন</span>
                 <span class="contact-value" id="infoPhone">০১৮৭৬-০৯৩৭৬৫</span>
             </div>
-            <button class="copy-btn" onclick="copyInfo('infoPhone', 'ফোন')">📋 কপি</button>
-        </div>
+            <button class="copy-btn" onclick="copyInfo(event, 'infoPhone')">📋 কপি</button>
+        </a>
 
         <!-- ঠিকানা -->
-        <div class="contact-info-card">
+        <a href="https://maps.google.com/?q=Dhaka,Bangladesh" target="_blank" class="contact-info-card contact-link-card">
             <div class="contact-icon">📍</div>
             <div class="contact-detail">
                 <span class="contact-label">ঠিকানা</span>
                 <span class="contact-value" id="infoAddress">ঢাকা, বাংলাদেশ</span>
             </div>
-            <button class="copy-btn" onclick="copyInfo('infoAddress', 'ঠিকানা')">📋 কপি</button>
-        </div>
+            <button class="copy-btn" onclick="copyInfo(event, 'infoAddress')">📋 কপি</button>
+        </a>
 
         <!-- ফেসবুক -->
-        <div class="contact-info-card">
+        <a href="https://fb.com/ovi.profile" target="_blank" class="contact-info-card contact-link-card">
             <div class="contact-icon">👤</div>
             <div class="contact-detail">
                 <span class="contact-label">ফেসবুক</span>
                 <span class="contact-value" id="infoFacebook">fb.com/ovi.profile</span>
             </div>
-            <button class="copy-btn" onclick="copyInfo('infoFacebook', 'ফেসবুক লিংক')">📋 কপি</button>
-        </div>
+            <button class="copy-btn" onclick="copyInfo(event, 'infoFacebook')">📋 কপি</button>
+        </a>
 
         <!-- GitHub -->
-        <div class="contact-info-card">
+        <a href="https://github.com/ovicoder" target="_blank" class="contact-info-card contact-link-card">
             <div class="contact-icon">💻</div>
             <div class="contact-detail">
                 <span class="contact-label">GitHub</span>
                 <span class="contact-value" id="infoGithub">github.com/ovicoder</span>
             </div>
-            <button class="copy-btn" onclick="copyInfo('infoGithub', 'GitHub লিংক')">📋 কপি</button>
-        </div>
+            <button class="copy-btn" onclick="copyInfo(event, 'infoGithub')">📋 কপি</button>
+        </a>
 
         <!-- LinkedIn -->
-        <div class="contact-info-card">
+        <a href="https://linkedin.com/in/ovi" target="_blank" class="contact-info-card contact-link-card">
             <div class="contact-icon">🔗</div>
             <div class="contact-detail">
                 <span class="contact-label">LinkedIn</span>
                 <span class="contact-value" id="infoLinkedin">linkedin.com/in/ovi</span>
             </div>
-            <button class="copy-btn" onclick="copyInfo('infoLinkedin', 'LinkedIn লিংক')">📋 কপি</button>
-        </div>
+            <button class="copy-btn" onclick="copyInfo(event, 'infoLinkedin')">📋 কপি</button>
+        </a>
 
-    </div>
-
-    <!-- মেসেজ ফর্ম -->
-    <div class="contact-form-container">
-        <h2 style="text-align: center; margin-bottom: 20px;">💬 আমাকে মেসেজ পাঠাও</h2>
-        <form id="contactForm" onsubmit="handleFormSubmit(event)">
-            <div class="form-group">
-                <label for="name">👤 তোমার নাম</label>
-                <input type="text" id="name" name="name" placeholder="তোমার নাম লিখো..." required>
-            </div>
-            <div class="form-group">
-                <label for="email">📧 তোমার ইমেইল</label>
-                <input type="email" id="email" name="email" placeholder="তোমার ইমেইল লিখো..." required>
-            </div>
-            <div class="form-group">
-                <label for="message">💬 তোমার মেসেজ</label>
-                <textarea id="message" name="message" rows="5" placeholder="তোমার মেসেজ লিখো..." required></textarea>
-            </div>
-            <button type="submit" class="submit-btn">📨 মেসেজ পাঠাও</button>
-        </form>
-        <div id="formSuccess" class="form-success" style="display: none;">
-            <h2>✅ মেসেজ পাঠানো হয়েছে!</h2>
-            <p>তোমার মেসেজ পেয়েছি। খুব শীঘ্রই উত্তর দেবো!</p>
-        </div>
     </div>
 
     <hr>
