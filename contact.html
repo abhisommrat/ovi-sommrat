@@ -18,6 +18,14 @@
             <option value="bn">🇧🇩 বাংলা</option>
             <option value="en">🇬🇧 English</option>
             <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="ur">🇵🇰 اردو</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="zh-CN">🇨🇳 中文</option>
         </select>
     </div>
 
@@ -37,45 +45,95 @@
     </nav>
 
     <h1>📞 যোগাযোগ</h1>
-    <p>নিচের ফর্মটি পূরণ করে আমাকে মেসেজ পাঠাও! সরাসরি আমার ইমেইলে যাবে।</p>
+    <p>আমার সাথে যোগাযোগ করতে নিচের যেকোনো মাধ্যম ব্যবহার করো। 📋 কপি বাটনে ক্লিক করে সহজেই কপি করতে পারো!</p>
 
-    <!-- কন্টাক্ট ফর্ম -->
+    <!-- যোগাযোগ তথ্য কার্ড -->
+    <div class="contact-cards-container">
+
+        <!-- ইমেইল -->
+        <div class="contact-info-card">
+            <div class="contact-icon">📧</div>
+            <div class="contact-detail">
+                <span class="contact-label">ইমেইল</span>
+                <span class="contact-value" id="infoEmail">abhisw75@gmail.com</span>
+            </div>
+            <button class="copy-btn" onclick="copyInfo('infoEmail', 'ইমেইল')">📋 কপি</button>
+        </div>
+
+        <!-- ফোন -->
+        <div class="contact-info-card">
+            <div class="contact-icon">📱</div>
+            <div class="contact-detail">
+                <span class="contact-label">ফোন</span>
+                <span class="contact-value" id="infoPhone">০১৮৭৬-০৯৩৭৬৫</span>
+            </div>
+            <button class="copy-btn" onclick="copyInfo('infoPhone', 'ফোন')">📋 কপি</button>
+        </div>
+
+        <!-- ঠিকানা -->
+        <div class="contact-info-card">
+            <div class="contact-icon">📍</div>
+            <div class="contact-detail">
+                <span class="contact-label">ঠিকানা</span>
+                <span class="contact-value" id="infoAddress">ঢাকা, বাংলাদেশ</span>
+            </div>
+            <button class="copy-btn" onclick="copyInfo('infoAddress', 'ঠিকানা')">📋 কপি</button>
+        </div>
+
+        <!-- ফেসবুক -->
+        <div class="contact-info-card">
+            <div class="contact-icon">👤</div>
+            <div class="contact-detail">
+                <span class="contact-label">ফেসবুক</span>
+                <span class="contact-value" id="infoFacebook">fb.com/ovi.profile</span>
+            </div>
+            <button class="copy-btn" onclick="copyInfo('infoFacebook', 'ফেসবুক লিংক')">📋 কপি</button>
+        </div>
+
+        <!-- GitHub -->
+        <div class="contact-info-card">
+            <div class="contact-icon">💻</div>
+            <div class="contact-detail">
+                <span class="contact-label">GitHub</span>
+                <span class="contact-value" id="infoGithub">github.com/ovicoder</span>
+            </div>
+            <button class="copy-btn" onclick="copyInfo('infoGithub', 'GitHub লিংক')">📋 কপি</button>
+        </div>
+
+        <!-- LinkedIn -->
+        <div class="contact-info-card">
+            <div class="contact-icon">🔗</div>
+            <div class="contact-detail">
+                <span class="contact-label">LinkedIn</span>
+                <span class="contact-value" id="infoLinkedin">linkedin.com/in/ovi</span>
+            </div>
+            <button class="copy-btn" onclick="copyInfo('infoLinkedin', 'LinkedIn লিংক')">📋 কপি</button>
+        </div>
+
+    </div>
+
+    <!-- মেসেজ ফর্ম -->
     <div class="contact-form-container">
+        <h2 style="text-align: center; margin-bottom: 20px;">💬 আমাকে মেসেজ পাঠাও</h2>
         <form id="contactForm" onsubmit="handleFormSubmit(event)">
             <div class="form-group">
                 <label for="name">👤 তোমার নাম</label>
                 <input type="text" id="name" name="name" placeholder="তোমার নাম লিখো..." required>
             </div>
-
             <div class="form-group">
                 <label for="email">📧 তোমার ইমেইল</label>
                 <input type="email" id="email" name="email" placeholder="তোমার ইমেইল লিখো..." required>
             </div>
-
             <div class="form-group">
                 <label for="message">💬 তোমার মেসেজ</label>
                 <textarea id="message" name="message" rows="5" placeholder="তোমার মেসেজ লিখো..." required></textarea>
             </div>
-
             <button type="submit" class="submit-btn">📨 মেসেজ পাঠাও</button>
         </form>
-
-        <!-- সাকসেস মেসেজ -->
         <div id="formSuccess" class="form-success" style="display: none;">
             <h2>✅ মেসেজ পাঠানো হয়েছে!</h2>
             <p>তোমার মেসেজ পেয়েছি। খুব শীঘ্রই উত্তর দেবো!</p>
         </div>
-    </div>
-
-    <!-- যোগাযোগের মাধ্যম -->
-    <div class="contact-info-section">
-        <h2>📋 সরাসরি যোগাযোগ</h2>
-        <div class="contact-links">
-            <a href="mailto:abhisw75@gmail.com" class="contact-link">📧 ইমেইল</a>
-            <a href="tel:01876093765" class="contact-link">📱 ফোন</a>
-            <a href="https://github.com" target="_blank" class="contact-link">💻 GitHub</a>
-        </div>
-        <p style="margin-top:15px;"> ঠিকানাঃ ঢাকা, বাংলাদেশ</p>
     </div>
 
     <hr>

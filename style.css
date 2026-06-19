@@ -2089,3 +2089,105 @@ body.light-mode .form-group textarea {
     margin: 30px auto;
     text-align: center;
 }
+
+/* ==================== কন্টাক্ট ইনফো কার্ড ও কপি বাটন ==================== */
+
+.contact-cards-container {
+    max-width: 600px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.contact-info-card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: #1e293b;
+    border: 1px solid #334155;
+    border-radius: 15px;
+    padding: 15px 20px;
+    transition: all 0.3s;
+}
+
+body.light-mode .contact-info-card {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+}
+
+.contact-info-card:hover {
+    border-color: #38bdf8;
+    box-shadow: 0 5px 20px rgba(56, 189, 248, 0.1);
+}
+
+.contact-icon {
+    font-size: 30px;
+    min-width: 40px;
+    text-align: center;
+}
+
+.contact-detail {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.contact-label {
+    font-size: 12px;
+    color: #94a3b8;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.contact-value {
+    font-size: 16px;
+    font-weight: bold;
+    color: #e2e8f0;
+    word-break: break-all;
+}
+
+body.light-mode .contact-value {
+    color: #1e293b;
+}
+
+.copy-btn {
+    background-color: #334155;
+    color: #38bdf8;
+    border: 1px solid #38bdf8;
+    padding: 8px 14px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: bold;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.copy-btn:hover {
+    background-color: #38bdf8;
+    color: #0f172a;
+}
+
+.copy-btn:active {
+    transform: scale(0.95);
+}
+
+body.light-mode .copy-btn {
+    background-color: #f1f5f9;
+    border-color: #2563eb;
+    color: #2563eb;
+}
+
+body.light-mode .copy-btn:hover {
+    background-color: #2563eb;
+    color: white;
+}
+
+/* কপি সাকসেস */
+.copy-success {
+    background-color: #22c55e !important;
+    color: white !important;
+    border-color: #22c55e !important;
+}
