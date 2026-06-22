@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>টিক ট্যাক টো - অভি</title>
+    <title>টিক ট্যাক টো PRO - অভি</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -28,22 +27,35 @@
         <a href="contact.html">📞 যোগাযোগ</a>
     </nav>
 
-    <h1>❌⭕ টিক ট্যাক টো</h1>
-    <p>দুইজন খেলোয়াড়ের ক্লাসিক গেম! পালাক্রমে খেলো।</p>
+    <h1>❌⭕ টিক ট্যাক টো <span class="pro-badge">PRO</span></h1>
+    <p>নাম এডিট করো, খেলো আর স্কোর জমা রাখো!</p>
 
     <div class="ttt-container">
+        <!-- প্লেয়ার নাম এডিট -->
+        <div class="ttt-players">
+            <div class="ttt-player-edit">
+                <input type="text" id="playerXName" value="Player X" class="player-name-input" onchange="updatePlayerNames()">
+                <span class="player-symbol-x">❌</span>
+            </div>
+            <span class="ttt-vs">VS</span>
+            <div class="ttt-player-edit">
+                <span class="player-symbol-o">⭕</span>
+                <input type="text" id="playerOName" value="Player O" class="player-name-input" onchange="updatePlayerNames()">
+            </div>
+        </div>
+
         <!-- স্কোর -->
         <div class="ttt-scoreboard">
-            <div class="ttt-score">
-                <span>❌ Player X</span>
+            <div class="ttt-score" id="scoreXBox">
+                <span id="displayNameX">Player X</span>
                 <span id="scoreX">0</span>
             </div>
             <div class="ttt-score">
                 <span>ড্র</span>
                 <span id="scoreDraw">0</span>
             </div>
-            <div class="ttt-score">
-                <span>⭕ Player O</span>
+            <div class="ttt-score" id="scoreOBox">
+                <span id="displayNameO">Player O</span>
                 <span id="scoreO">0</span>
             </div>
         </div>
@@ -51,7 +63,7 @@
         <!-- স্ট্যাটাস -->
         <div id="tttStatus" class="ttt-status">❌ Player X-এর পালা</div>
 
-        <!-- গেম বোর্ড -->
+        <!-- বোর্ড -->
         <div class="ttt-board" id="tttBoard">
             <div class="ttt-cell" onclick="makeMove(0)"></div>
             <div class="ttt-cell" onclick="makeMove(1)"></div>
@@ -64,9 +76,15 @@
             <div class="ttt-cell" onclick="makeMove(8)"></div>
         </div>
 
-        <!-- রিস্টার্ট -->
-        <button onclick="resetTTT()" class="btn-primary" style="margin-top: 15px;">🔄 নতুন খেলা</button>
+        <!-- বাটন -->
+        <div style="display:flex;gap:10px;justify-content:center;margin-top:15px;flex-wrap:wrap;">
+            <button onclick="resetTTT()" class="btn-primary">🔄 নতুন খেলা</button>
+            <button onclick="resetAllScores()" class="btn-outline" style="border-color:#ef4444;color:#ef4444;">🗑️ স্কোর রিসেট</button>
+        </div>
     </div>
+
+    <!-- কনফেট্টি -->
+    <div id="confettiContainer" class="confetti-container"></div>
 
     <hr>
     <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
