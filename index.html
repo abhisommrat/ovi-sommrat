@@ -12,7 +12,6 @@
         <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
     </div>
 
-    <!-- ভাষা সিলেক্টর -->
     <div class="language-selector">
         <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
         <select class="custom-lang-select" onchange="changeLanguage(this.value)">
@@ -30,7 +29,6 @@
         </select>
     </div>
 
-    <!-- গুগল ট্রান্সলেট এলিমেন্ট -->
     <div id="google_translate_element"></div>
 
     <nav>
@@ -41,13 +39,14 @@
         <a href="hobbies.html">🎮 শখ</a>
         <a href="diary.html">📓 ডায়েরি</a>
         <a href="game.html">🎮 গেম</a>
-        <a href="flexbox-grid.html">📐 লেআউট</a>
+        <a href="number-game.html">🔢 নাম্বার</a>
+        <a href="tictactoe.html">❌⭕ টিক ট্যাক টো</a>
+        <a href="quiz.html">🧠 কুইজ</a>
+        <a href="stopwatch.html">⏱️ স্টপওয়াচ</a>
         <a href="calculator.html">🧮 ক্যালকুলেটর</a>
         <a href="todo.html">✅ টু-ডু</a>
         <a href="weather.html">🌤️ ওয়েদার</a>
         <a href="contact.html">📞 যোগাযোগ</a>
-        <a href="tictactoe.html">❌⭕ টিক ট্যাক টো</a>
-        <a href="quiz.html">🧠 কুইজ</a>
     </nav>
 
     <!-- ==================== হিরো সেকশন ==================== -->
@@ -63,6 +62,25 @@
         </div>
     </div>
 
+    <!-- ==================== থিম কাস্টমাইজার ==================== -->
+    <div class="theme-customizer">
+        <button onclick="toggleThemePanel()" class="theme-gear-btn">⚙️ থিম সেটিংস</button>
+        <div id="themePanel" class="theme-panel" style="display:none;">
+            <h4>🎨 তোমার পছন্দের রং বাছাই করো</h4>
+            <div class="color-options">
+                <button class="color-pick" style="background:#3b82f6;" onclick="setThemeColor('#3b82f6')"></button>
+                <button class="color-pick" style="background:#8b5cf6;" onclick="setThemeColor('#8b5cf6')"></button>
+                <button class="color-pick" style="background:#22c55e;" onclick="setThemeColor('#22c55e')"></button>
+                <button class="color-pick" style="background:#ef4444;" onclick="setThemeColor('#ef4444')"></button>
+                <button class="color-pick" style="background:#f59e0b;" onclick="setThemeColor('#f59e0b')"></button>
+                <button class="color-pick" style="background:#ec4899;" onclick="setThemeColor('#ec4899')"></button>
+                <button class="color-pick" style="background:#06b6d4;" onclick="setThemeColor('#06b6d4')"></button>
+                <button class="color-pick" style="background:#f97316;" onclick="setThemeColor('#f97316')"></button>
+            </div>
+            <button onclick="resetThemeColor()" style="margin-top:10px;background:#64748b;color:white;border:none;padding:8px 16px;border-radius:20px;cursor:pointer;">🔄 ডিফল্ট</button>
+        </div>
+    </div>
+
     <!-- ==================== অ্যাবাউট সেকশন ==================== -->
     <div class="section scroll-animate">
         <h2 class="section-title">👤 আমার সম্পর্কে</h2>
@@ -71,7 +89,7 @@
             <img src="images/profile-pic.jpg" alt="অভি" class="about-image" onerror="this.src='https://via.placeholder.com/200'">
             <div class="about-text">
                 <p>আমি একজন প্যাশনেট ওয়েব ডেভেলপার। HTML, CSS, JavaScript শিখে নিজের ওয়েবসাইট নিজেই বানিয়েছি।</p>
-                <p>এখন পর্যন্ত ১০+ প্রজেক্ট তৈরি করেছি—ডায়েরি অ্যাপ, গেম, ক্যালকুলেটর, টু-ডু লিস্ট সহ আরও অনেক কিছু।</p>
+                <p>এখন পর্যন্ত ১৫+ প্রজেক্ট তৈরি করেছি—ডায়েরি অ্যাপ, গেম, ক্যালকুলেটর, টু-ডু লিস্ট, স্টপওয়াচ, কুইজ সহ আরও অনেক কিছু।</p>
                 <p>আমার লক্ষ্য একজন ফুল-স্ট্যাক ডেভেলপার হওয়া এবং পরিবারের পাশে দাঁড়ানো।</p>
             </div>
         </div>
@@ -150,12 +168,12 @@
                 <p>টাস্ক যোগ, এডিট, ডিলিট, ফিল্টার, প্রোগ্রেস বার, ড্র্যাগ & ড্রপ।</p>
             </div>
             <div class="project-card scroll-animate">
-                <h3>🌐 পোর্টফোলিও</h3>
-                <p>নিজের ওয়েবসাইট—১২+ পেজ, ডার্ক/লাইট মোড, মাল্টি-ল্যাঙ্গুয়েজ।</p>
+                <h3>⏱️ স্টপওয়াচ PRO</h3>
+                <p>ল্যাপ টাইম, সাউন্ড, স্ট্যাটিস্টিকস, কীবোর্ড শর্টকাট।</p>
             </div>
             <div class="project-card scroll-animate">
-                <h3>🌍 মাল্টি-ল্যাঙ্গুয়েজ</h3>
-                <p>১১টি ভাষায় অনুবাদ, কাস্টম ল্যাঙ্গুয়েজ সিলেক্টর।</p>
+                <h3>🌐 পোর্টফোলিও</h3>
+                <p>নিজের ওয়েবসাইট—১৫+ পেজ, ডার্ক/লাইট মোড, মাল্টি-ল্যাঙ্গুয়েজ।</p>
             </div>
         </div>
     </div>
@@ -164,8 +182,6 @@
     <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
 
     <script src="script.js"></script>
-
-    <!-- গুগল ট্রান্সলেট স্ক্রিপ্ট -->
     <script type="text/javascript">
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({

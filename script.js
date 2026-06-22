@@ -895,3 +895,42 @@ document.addEventListener("DOMContentLoaded", function() {
         toggleTTTMusic();
     }
 });
+
+// ==================== থিম কাস্টমাইজার ====================
+function toggleThemePanel() {
+    let panel = document.getElementById("themePanel");
+    panel.style.display = panel.style.display === "none" ? "block" : "none";
+}
+
+function setThemeColor(color) {
+    document.documentElement.style.setProperty("--accent-color", color);
+    localStorage.setItem("accentColor", color);
+    applyAccentColor(color);
+}
+
+function resetThemeColor() {
+    localStorage.removeItem("accentColor");
+    document.documentElement.style.removeProperty("--accent-color");
+    applyAccentColor("#3b82f6");
+}
+
+function applyAccentColor(color) {
+    // যেসব জায়গায় অ্যাকসেন্ট কালার চেঞ্জ হবে
+    let elements = document.querySelectorAll("h1, .btn-primary, .progress, .quiz-opt-btn.correct, .sw-display, nav a:hover, .project-card h3, .contact-info-card:hover");
+    elements.forEach(el => {
+        // শুধু border-color আর color চেঞ্জ করো, background না
+        el.style.borderColor = color;
+    });
+}
+
+// পেজ লোডে অ্যাকসেন্ট লোড
+function loadAccent() {
+    let saved = localStorage.getItem("accentColor");
+    if (saved) {
+        document.documentElement.style.setProperty("--accent-color", saved);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    loadAccent();
+});
