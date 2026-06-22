@@ -2471,13 +2471,21 @@ body.light-mode .quiz-opt-btn { background-color: #f8fafc; color: #1e293b; borde
 .quiz-result p { color: #e2e8f0; font-size: 18px; }
 body.light-mode .quiz-result p { color: #1e293b; }
 
-/* ==================== স্টপওয়াচ ==================== */
-.stopwatch-container { max-width: 450px; margin: 20px auto; background-color: #1e293b; border-radius: 20px; padding: 30px; text-align: center; border: 1px solid #334155; }
-body.light-mode .stopwatch-container { background-color: #ffffff; border-color: #e2e8f0; }
-.stopwatch-display { font-size: 56px; font-weight: bold; color: #38bdf8; font-family: monospace; margin-bottom: 25px; letter-spacing: 2px; }
-body.light-mode .stopwatch-display { color: #2563eb; }
-.stopwatch-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; }
-.lap-list { text-align: left; }
-.lap-list h3 { color: #94a3b8; margin-bottom: 10px; font-size: 16px; }
-.lap-item { display: flex; justify-content: space-between; padding: 10px 15px; background-color: #0f172a; border-radius: 10px; margin-bottom: 6px; color: #e2e8f0; font-family: monospace; font-size: 16px; }
-body.light-mode .lap-item { background-color: #f8fafc; color: #1e293b; }
+/* ==================== স্টপওয়াচ PRO ==================== */
+.sw-container { max-width: 480px; margin: 20px auto; background-color: #1e293b; border-radius: 24px; padding: 30px; text-align: center; border: 1px solid #334155; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
+body.light-mode .sw-container { background-color: #ffffff; border-color: #e2e8f0; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
+.sw-display { font-size: 60px; font-weight: bold; background: linear-gradient(135deg, #0f172a, #1e293b); color: #38bdf8; padding: 20px; border-radius: 20px; font-family: 'Courier New', monospace; letter-spacing: 3px; text-shadow: 0 0 20px rgba(56,189,248,0.5); margin-bottom: 15px; }
+body.light-mode .sw-display { background: linear-gradient(135deg, #f8fafc, #e2e8f0); color: #2563eb; text-shadow: none; }
+.sw-status { font-size: 16px; color: #94a3b8; margin-bottom: 20px; font-weight: bold; }
+.sw-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 20px; }
+.sw-btn-start { background: #22c55e; color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 16px; cursor: pointer; }
+.sw-btn-pause { background: #f59e0b; color: #0f172a; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 16px; cursor: pointer; }
+.sw-btn-lap { background: #3b82f6; color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 16px; cursor: pointer; }
+.sw-btn-reset { background: #ef4444; color: white; border: none; padding: 12px 24px; border-radius: 30px; font-weight: bold; font-size: 16px; cursor: pointer; }
+.sw-stats { display: flex; justify-content: space-around; flex-wrap: wrap; gap: 8px; margin-bottom: 20px; color: #94a3b8; font-size: 13px; }
+.sw-stats strong { color: #38bdf8; display: block; font-size: 16px; }
+.sw-lap-section { text-align: left; }
+.sw-lap-section h3 { color: #94a3b8; margin-bottom: 10px; font-size: 15px; }
+.sw-lap-item { display: flex; justify-content: space-between; padding: 10px 15px; background: #0f172a; border-radius: 10px; margin-bottom: 5px; color: #e2e8f0; font-family: monospace; font-size: 15px; }
+body.light-mode .sw-lap-item { background: #f8fafc; color: #1e293b; }
+.sw-lap-item.best-lap { border-left: 4px solid #22c55e; }
