@@ -2565,3 +2565,9 @@ body.light-mode .quiz-opt-btn {
 }
 
 body.light-mode .quiz-result p { color: #1e293b; }
+.quiz-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    gap: 10px;
+}

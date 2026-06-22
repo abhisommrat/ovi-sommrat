@@ -2,16 +2,14 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>কুইজ অ্যাপ - অভি</title>
+    <title>কুইজ অ্যাপ PRO - অভি</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="welcomeMessage" class="welcome-message"></div>
-
     <div class="theme-toggle">
         <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
     </div>
-
     <nav>
         <a href="index.html">🏠 হোম</a>
         <a href="about.html">👤 সম্পর্কে</a>
@@ -29,33 +27,29 @@
         <a href="contact.html">📞 যোগাযোগ</a>
     </nav>
 
-    <h1>🧠 জাভাস্ক্রিপ্ট কুইজ</h1>
-    <p>১০টি প্রশ্ন, প্রতি প্রশ্নে ১৫ সেকেন্ড! দেখা যাক কত পাবে!</p>
+    <h1>🧠 সাধারণ জ্ঞান কুইজ <span class="pro-badge">PRO</span></h1>
+    <p>প্রতিবার ১০টি র‌্যান্ডম প্রশ্ন! ⬅️ ➡️ আগে-পরে যাও!</p>
 
     <div class="quiz-container">
-        <!-- স্কোর -->
         <div class="quiz-header">
             <span>🏆 সেরা: <strong id="quizBest">--</strong></span>
             <span>📊 স্কোর: <strong id="quizScore">0</strong></span>
             <span>❓ প্রশ্ন: <strong id="quizQno">1/10</strong></span>
         </div>
 
-        <!-- টাইমার -->
         <div class="quiz-timer">
             <div class="timer-bar" id="timerBar"></div>
             <span id="timerText">⏰ ১৫ সেকেন্ড</span>
         </div>
 
-        <!-- প্রশ্ন -->
         <div id="quizQuestion" class="quiz-question"></div>
-
-        <!-- অপশন -->
         <div id="quizOptions" class="quiz-options"></div>
 
-        <!-- নেক্সট বাটন -->
-        <button id="nextBtn" class="btn-primary" onclick="nextQuestion()" style="display:none;">➡️ পরবর্তী প্রশ্ন</button>
+        <div class="quiz-nav">
+            <button id="prevBtn" class="btn-outline" onclick="prevQuestion()" style="display:none;">⬅️ আগের প্রশ্ন</button>
+            <button id="nextBtn" class="btn-primary" onclick="nextQuestion()" style="display:none;">➡️ পরবর্তী প্রশ্ন</button>
+        </div>
 
-        <!-- রেজাল্ট -->
         <div id="quizResult" class="quiz-result" style="display:none;"></div>
     </div>
 
