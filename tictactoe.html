@@ -29,10 +29,9 @@
     </nav>
 
     <h1>❌⭕ টিক ট্যাক টো <span class="pro-badge">PRO</span></h1>
-    <p>নাম এডিট করো, খেলো আর স্কোর জমা রাখো! 🔊 সাউন্ড আর 🎵 মিউজিক সহ!</p>
+    <p>নাম এডিট করো, খেলো আর স্কোর জমা রাখো!</p>
 
     <div class="ttt-container">
-        <!-- প্লেয়ার নাম এডিট -->
         <div class="ttt-players">
             <div class="ttt-player-edit">
                 <input type="text" id="playerXName" value="Player X" class="player-name-input" onchange="updatePlayerNames()">
@@ -45,26 +44,14 @@
             </div>
         </div>
 
-        <!-- স্কোর -->
         <div class="ttt-scoreboard">
-            <div class="ttt-score" id="scoreXBox">
-                <span id="displayNameX">Player X</span>
-                <span id="scoreX">0</span>
-            </div>
-            <div class="ttt-score">
-                <span>ড্র</span>
-                <span id="scoreDraw">0</span>
-            </div>
-            <div class="ttt-score" id="scoreOBox">
-                <span id="displayNameO">Player O</span>
-                <span id="scoreO">0</span>
-            </div>
+            <div class="ttt-score"><span id="displayNameX">Player X</span><span id="scoreX">0</span></div>
+            <div class="ttt-score"><span>ড্র</span><span id="scoreDraw">0</span></div>
+            <div class="ttt-score"><span id="displayNameO">Player O</span><span id="scoreO">0</span></div>
         </div>
 
-        <!-- স্ট্যাটাস -->
         <div id="tttStatus" class="ttt-status">❌ Player X-এর পালা</div>
 
-        <!-- বোর্ড -->
         <div class="ttt-board" id="tttBoard">
             <div class="ttt-cell" onclick="makeMove(0)"></div>
             <div class="ttt-cell" onclick="makeMove(1)"></div>
@@ -77,23 +64,19 @@
             <div class="ttt-cell" onclick="makeMove(8)"></div>
         </div>
 
-        <!-- বাটন -->
         <div style="display:flex;gap:10px;justify-content:center;margin-top:15px;flex-wrap:wrap;">
             <button onclick="resetTTT()" class="btn-primary">🔄 নতুন খেলা</button>
             <button onclick="resetAllScores()" class="btn-outline" style="border-color:#ef4444;color:#ef4444;">🗑️ স্কোর রিসেট</button>
         </div>
 
-        <!-- মিউজিক টগল বাটন -->
-        <button id="musicToggleBtn" onclick="toggleTTTMusic()" style="background:#ef4444;color:white;border:none;padding:10px 20px;border-radius:25px;font-size:14px;cursor:pointer;margin-top:10px;">🔇 মিউজিক চালু</button>
-
+        <button id="musicToggleBtn" onclick="toggleMusic()" style="background:#22c55e;color:white;border:none;padding:10px 20px;border-radius:25px;font-size:14px;cursor:pointer;margin-top:10px;">🔊 মিউজিক বন্ধ</button>
     </div>
 
-    <!-- কনফেট্টি -->
     <div id="confettiContainer" class="confetti-container"></div>
 
     <hr>
     <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
 
-    <script src="script.js"></script>
+    <script src="ttt.js"></script>
 </body>
 </html>
