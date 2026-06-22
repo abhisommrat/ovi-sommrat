@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>কুইজ অ্যাপ PRO - অভি</title>
+    <title>প্রো কুইজ - অভি</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -27,27 +27,32 @@
         <a href="contact.html">📞 যোগাযোগ</a>
     </nav>
 
-    <h1>🧠 সাধারণ জ্ঞান কুইজ <span class="pro-badge">PRO</span></h1>
-    <p>প্রতিবার ১০টি র‌্যান্ডম প্রশ্ন! ⬅️ ➡️ আগে-পরে যাও!</p>
+    <h1>🧠 প্রো কুইজ <span class="pro-badge">PRO</span></h1>
+    <p>৮টি বিষয় | ২০টি প্রশ্ন | ২০ সেকেন্ড | র‌্যান্ডম</p>
 
     <div class="quiz-container">
-        <div class="quiz-header">
+        <div class="quiz-top-bar">
             <span>🏆 সেরা: <strong id="quizBest">--</strong></span>
             <span>📊 স্কোর: <strong id="quizScore">0</strong></span>
-            <span>❓ প্রশ্ন: <strong id="quizQno">1/10</strong></span>
+            <span>❓ <strong id="quizQno">1/20</strong></span>
+            <span>📂 <strong id="quizCategory"></strong></span>
+        </div>
+
+        <div class="quiz-progress">
+            <div class="quiz-progress-bar" id="quizProgressBar"></div>
         </div>
 
         <div class="quiz-timer">
             <div class="timer-bar" id="timerBar"></div>
-            <span id="timerText">⏰ ১৫ সেকেন্ড</span>
+            <span id="timerText">⏰ ২০ সেকেন্ড</span>
         </div>
 
         <div id="quizQuestion" class="quiz-question"></div>
         <div id="quizOptions" class="quiz-options"></div>
 
         <div class="quiz-nav">
-            <button id="prevBtn" class="btn-outline" onclick="prevQuestion()" style="display:none;">⬅️ আগের প্রশ্ন</button>
-            <button id="nextBtn" class="btn-primary" onclick="nextQuestion()" style="display:none;">➡️ পরবর্তী প্রশ্ন</button>
+            <button id="prevBtn" class="btn-outline" onclick="prevQuestion()">⬅️ আগের</button>
+            <button id="nextBtn" class="btn-primary" onclick="nextQuestion()">পরের ➡️</button>
         </div>
 
         <div id="quizResult" class="quiz-result" style="display:none;"></div>
