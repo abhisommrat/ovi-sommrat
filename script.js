@@ -536,13 +536,32 @@ function startNewGame() {
     secretNumber = Math.floor(Math.random() * 100) + 1;
     chances = 0;
     guesses = [];
-    document.getElementById("gameStatus").textContent = "নতুন খেলা শুরু! ১-১০০ এর মধ্যে guess করো";
-    document.getElementById("gameStatus").style.color = "#38bdf8";
-    document.getElementById("chanceCount").textContent = "0";
-    document.getElementById("resultMessage").textContent = "";
-    document.getElementById("guessList").innerHTML = "";
-    document.getElementById("guessInput").value = "";
-    document.getElementById("guessInput").focus();
+    
+    let input = document.getElementById("guessInput");
+    if (input) {
+        input.value = "";
+        input.disabled = false;
+        input.focus();
+    }
+    
+    let statusEl = document.getElementById("gameStatus");
+    if (statusEl) {
+        statusEl.textContent = "নতুন খেলা শুরু! ১-১০০ এর মধ্যে guess করো";
+        statusEl.style.color = "#38bdf8";
+    }
+    
+    let chanceEl = document.getElementById("chanceCount");
+    if (chanceEl) chanceEl.textContent = "0";
+    
+    let resultEl = document.getElementById("resultMessage");
+    if (resultEl) {
+        resultEl.textContent = "";
+        resultEl.className = "result-message";
+    }
+    
+    let guessListEl = document.getElementById("guessList");
+    if (guessListEl) guessListEl.innerHTML = "";
+    
     updateBestScore();
 }
 
