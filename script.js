@@ -655,7 +655,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// ==================== ১৫. টিক ট্যাক টো PRO (সাউন্ড + মিউজিক) ====================
+// ==================== ১৫. টিক ট্যাক টো PRO (অটো মিউজিক + সাউন্ড) ====================
 
 let tttBoard = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
@@ -772,6 +772,8 @@ function resetTTT() {
     let nameX = document.getElementById("playerXName").value || "Player X";
     document.getElementById("tttStatus").textContent = "❌ " + nameX + "-এর পালা";
     document.querySelectorAll(".ttt-cell").forEach(c => { c.textContent = ""; c.className = "ttt-cell"; });
+    // নতুন খেলায় আবার মিউজিক চালু
+    if (!tttMusicOn) toggleTTTMusic();
 }
 
 function resetAllScores() {
@@ -799,7 +801,6 @@ function playTTTSound(type) {
             osc.start();
             osc.stop(ctx.currentTime + 0.08);
         } else if (type === "win") {
-            // জয়ের মিউজিক: তিনটা বীপ
             [523, 659, 784].forEach((freq, i) => {
                 let o = ctx.createOscillator();
                 let g = ctx.createGain();
@@ -840,7 +841,7 @@ function startTTTMusic() {
     let ctx;
     try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) { return; }
 
-    let notes = [262, 294, 330, 349, 392, 349, 330, 294]; // Do Re Mi Fa Sol Fa Mi Re
+    let notes = [262, 294, 330, 349, 392, 349, 330, 294];
     let noteIndex = 0;
 
     tttMusicInterval = setInterval(() => {
@@ -884,9 +885,13 @@ function spawnTTTConfetti() {
     setTimeout(() => container.innerHTML = "", 2000);
 }
 
+// পেজ লোডেই ব্যাকগ্রাউন্ড মিউজিক অটো চালু
 document.addEventListener("DOMContentLoaded", function() {
     if (document.getElementById("tttBoard")) {
         loadPlayerNames();
         refreshTTTScoreDisplay();
+        // অটো মিউজিক চালু
+        tttMusicOn = false;
+        toggleTTTMusic();
     }
 });
