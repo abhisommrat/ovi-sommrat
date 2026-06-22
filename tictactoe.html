@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>টিক ট্যাক টো - অভি</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcomeMessage" class="welcome-message"></div>
+
+    <div class="theme-toggle">
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+        <a href="game.html">🎮 গেম</a>
+        <a href="number-game.html">🔢 নাম্বার</a>
+        <a href="tictactoe.html">❌⭕ টিক ট্যাক টো</a>
+        <a href="calculator.html">🧮 ক্যালকুলেটর</a>
+        <a href="todo.html">✅ টু-ডু</a>
+        <a href="weather.html">🌤️ ওয়েদার</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+    </nav>
+
+    <h1>❌⭕ টিক ট্যাক টো</h1>
+    <p>দুইজন খেলোয়াড়ের ক্লাসিক গেম! পালাক্রমে খেলো।</p>
+
+    <div class="ttt-container">
+        <!-- স্কোর -->
+        <div class="ttt-scoreboard">
+            <div class="ttt-score">
+                <span>❌ Player X</span>
+                <span id="scoreX">0</span>
+            </div>
+            <div class="ttt-score">
+                <span>ড্র</span>
+                <span id="scoreDraw">0</span>
+            </div>
+            <div class="ttt-score">
+                <span>⭕ Player O</span>
+                <span id="scoreO">0</span>
+            </div>
+        </div>
+
+        <!-- স্ট্যাটাস -->
+        <div id="tttStatus" class="ttt-status">❌ Player X-এর পালা</div>
+
+        <!-- গেম বোর্ড -->
+        <div class="ttt-board" id="tttBoard">
+            <div class="ttt-cell" onclick="makeMove(0)"></div>
+            <div class="ttt-cell" onclick="makeMove(1)"></div>
+            <div class="ttt-cell" onclick="makeMove(2)"></div>
+            <div class="ttt-cell" onclick="makeMove(3)"></div>
+            <div class="ttt-cell" onclick="makeMove(4)"></div>
+            <div class="ttt-cell" onclick="makeMove(5)"></div>
+            <div class="ttt-cell" onclick="makeMove(6)"></div>
+            <div class="ttt-cell" onclick="makeMove(7)"></div>
+            <div class="ttt-cell" onclick="makeMove(8)"></div>
+        </div>
+
+        <!-- রিস্টার্ট -->
+        <button onclick="resetTTT()" class="btn-primary" style="margin-top: 15px;">🔄 নতুন খেলা</button>
+    </div>
+
+    <hr>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -654,3 +654,107 @@ document.addEventListener("DOMContentLoaded", function() {
         startNewGame();
     }
 });
+
+// ==================== ১৫. টিক ট্যাক টো ====================
+
+let tttBoard = ["", "", "", "", "", "", "", "", ""];
+let currentPlayer = "X";
+let tttGameOver = false;
+
+function makeMove(index) {
+    if (tttBoard[index] !== "" || tttGameOver) return;
+
+    tttBoard[index] = currentPlayer;
+    let cell = document.querySelectorAll(".ttt-cell")[index];
+    cell.textContent = currentPlayer;
+    cell.className = "ttt-cell " + (currentPlayer === "X" ? "x-cell" : "o-cell");
+
+    // চেক উইনার
+    let winner = checkWinner();
+    if (winner) {
+        tttGameOver = true;
+        document.getElementById("tttStatus").textContent = "🎉 Player " + winner + " জিতেছে!";
+        updateTTTScore(winner);
+        return;
+    }
+
+    // চেক ড্র
+    if (!tttBoard.includes("")) {
+        tttGameOver = true;
+        document.getElementById("tttStatus").textContent = "🤝 ড্র!";
+        updateTTTScore("draw");
+        return;
+    }
+
+    // প্লেয়ার বদল
+    currentPlayer = currentPlayer === "X" ? "O" : "X";
+    document.getElementById("tttStatus").textContent = currentPlayer === "X" ? "❌ Player X-এর পালা" : "⭕ Player O-এর পালা";
+}
+
+function checkWinner() {
+    let wins = [
+        [0,1,2], [3,4,5], [6,7,8], // row
+        [0,3,6], [1,4,7], [2,5,8], // column
+        [0,4,8], [2,4,6]            // diagonal
+    ];
+
+    for (let combo of wins) {
+        let [a, b, c] = combo;
+        if (tttBoard[a] && tttBoard[a] === tttBoard[b] && tttBoard[a] === tttBoard[c]) {
+            // উইনিং সেল হাইলাইট
+            document.querySelectorAll(".ttt-cell")[a].classList.add("win-cell");
+            document.querySelectorAll(".ttt-cell")[b].classList.add("win-cell");
+            document.querySelectorAll(".ttt-cell")[c].classList.add("win-cell");
+            return tttBoard[a];
+        }
+    }
+    return null;
+}
+
+function updateTTTScore(result) {
+    let scoreX = localStorage.getItem("tttScoreX") || 0;
+    let scoreO = localStorage.getItem("tttScoreO") || 0;
+    let scoreDraw = localStorage.getItem("tttScoreDraw") || 0;
+
+    scoreX = parseInt(scoreX);
+    scoreO = parseInt(scoreO);
+    scoreDraw = parseInt(scoreDraw);
+
+    if (result === "X") scoreX++;
+    else if (result === "O") scoreO++;
+    else scoreDraw++;
+
+    localStorage.setItem("tttScoreX", scoreX);
+    localStorage.setItem("tttScoreO", scoreO);
+    localStorage.setItem("tttScoreDraw", scoreDraw);
+
+    document.getElementById("scoreX").textContent = scoreX;
+    document.getElementById("scoreO").textContent = scoreO;
+    document.getElementById("scoreDraw").textContent = scoreDraw;
+}
+
+function loadTTTScores() {
+    let sx = document.getElementById("scoreX");
+    let so = document.getElementById("scoreO");
+    let sd = document.getElementById("scoreDraw");
+    if (sx) sx.textContent = localStorage.getItem("tttScoreX") || 0;
+    if (so) so.textContent = localStorage.getItem("tttScoreO") || 0;
+    if (sd) sd.textContent = localStorage.getItem("tttScoreDraw") || 0;
+}
+
+function resetTTT() {
+    tttBoard = ["", "", "", "", "", "", "", "", ""];
+    currentPlayer = "X";
+    tttGameOver = false;
+    document.getElementById("tttStatus").textContent = "❌ Player X-এর পালা";
+    document.querySelectorAll(".ttt-cell").forEach(cell => {
+        cell.textContent = "";
+        cell.className = "ttt-cell";
+    });
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    if (document.getElementById("tttBoard")) {
+        loadTTTScores();
+    }
+});
