@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্টপওয়াচ - অভি</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcomeMessage" class="welcome-message"></div>
+    <div class="theme-toggle">
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+        <a href="game.html">🎮 গেম</a>
+        <a href="number-game.html">🔢 নাম্বার</a>
+        <a href="tictactoe.html">❌⭕ টিক ট্যাক টো</a>
+        <a href="quiz.html">🧠 কুইজ</a>
+        <a href="stopwatch.html">⏱️ স্টপওয়াচ</a>
+        <a href="calculator.html">🧮 ক্যালকুলেটর</a>
+        <a href="todo.html">✅ টু-ডু</a>
+        <a href="weather.html">🌤️ ওয়েদার</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+    </nav>
+
+    <h1>⏱️ স্টপওয়াচ</h1>
+    <p>স্পেসবার চেপে স্টার্ট/পজ করো! ল্যাপ রেকর্ড করো!</p>
+
+    <div class="stopwatch-container">
+        <div class="stopwatch-display">
+            <span id="swMinutes">00</span>:<span id="swSeconds">00</span>.<span id="swMilliseconds">00</span>
+        </div>
+
+        <div class="stopwatch-buttons">
+            <button id="swStartBtn" class="btn-primary" onclick="swStart()">▶️ স্টার্ট</button>
+            <button id="swPauseBtn" class="btn-outline" onclick="swPause()" style="display:none;">⏸️ পজ</button>
+            <button onclick="swLap()" class="btn-outline">🏁 ল্যাপ</button>
+            <button onclick="swReset()" style="background:#ef4444;color:white;border:none;padding:12px 20px;border-radius:25px;cursor:pointer;font-weight:bold;">🔄 রিসেট</button>
+        </div>
+
+        <div class="lap-list" id="lapList">
+            <h3>📋 ল্যাপ টাইম</h3>
+            <div id="laps"></div>
+        </div>
+    </div>
+
+    <hr>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+
+    <script src="stopwatch.js"></script>
+</body>
+</html>
