@@ -12,6 +12,7 @@
         <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
     </div>
 
+    <!-- ভাষা সিলেক্টর -->
     <div class="language-selector">
         <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
         <select class="custom-lang-select" onchange="changeLanguage(this.value)">
@@ -29,6 +30,9 @@
         </select>
     </div>
 
+    <!-- গুগল ট্রান্সলেট এলিমেন্ট -->
+    <div id="google_translate_element"></div>
+
     <nav>
         <a href="index.html">🏠 হোম</a>
         <a href="about.html">👤 সম্পর্কে</a>
@@ -40,6 +44,7 @@
         <a href="flexbox-grid.html">📐 লেআউট</a>
         <a href="calculator.html">🧮 ক্যালকুলেটর</a>
         <a href="todo.html">✅ টু-ডু</a>
+        <a href="weather.html">🌤️ ওয়েদার</a>
         <a href="contact.html">📞 যোগাযোগ</a>
     </nav>
 
@@ -157,13 +162,16 @@
     <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
 
     <script src="script.js"></script>
+
+    <!-- গুগল ট্রান্সলেট স্ক্রিপ্ট -->
     <script type="text/javascript">
     function googleTranslateElementInit() {
         new google.translate.TranslateElement({
             pageLanguage: 'bn',
             includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
-            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-            autoDisplay: false
+            layout: google.translate.TranslateElement.InlineStyle.SIMPLE,
+            autoDisplay: false,
+            gaTrack: false
         }, 'google_translate_element');
     }
     </script>
