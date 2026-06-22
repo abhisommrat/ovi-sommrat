@@ -655,11 +655,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 
-// ==================== ১৫. টিক ট্যাক টো PRO ====================
+// ==================== ১৫. টিক ট্যাক টো PRO (সাউন্ড + মিউজিক) ====================
 
 let tttBoard = ["", "", "", "", "", "", "", "", ""];
 let currentPlayer = "X";
 let tttGameOver = false;
+let tttMusicOn = false;
+let tttMusicInterval = null;
 
 function getTTTScores() {
     return {
@@ -691,10 +693,14 @@ function loadPlayerNames() {
 
 function makeMove(index) {
     if (tttBoard[index] !== "" || tttGameOver) return;
+
     tttBoard[index] = currentPlayer;
     let cell = document.querySelectorAll(".ttt-cell")[index];
     cell.textContent = currentPlayer;
     cell.className = "ttt-cell " + (currentPlayer === "X" ? "x-cell" : "o-cell");
+
+    // ক্লিক সাউন্ড
+    playTTTSound("click");
 
     let winner = checkTTTWinner();
     let nameX = document.getElementById("playerXName").value || "Player X";
@@ -707,6 +713,7 @@ function makeMove(index) {
         updateTTTScore(winner);
         spawnTTTConfetti();
         playTTTSound("win");
+        stopTTTMusic();
         return;
     }
 
@@ -715,6 +722,7 @@ function makeMove(index) {
         document.getElementById("tttStatus").textContent = "🤝 ড্র!";
         updateTTTScore("draw");
         playTTTSound("draw");
+        stopTTTMusic();
         return;
     }
 
@@ -775,6 +783,91 @@ function resetAllScores() {
     }
 }
 
+// ===== সাউন্ড সিস্টেম =====
+function playTTTSound(type) {
+    try {
+        let ctx = new (window.AudioContext || window.webkitAudioContext)();
+        let osc = ctx.createOscillator();
+        let gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === "click") {
+            osc.frequency.value = currentPlayer === "X" ? 500 : 400;
+            osc.type = "sine";
+            gain.gain.value = 0.15;
+            osc.start();
+            osc.stop(ctx.currentTime + 0.08);
+        } else if (type === "win") {
+            // জয়ের মিউজিক: তিনটা বীপ
+            [523, 659, 784].forEach((freq, i) => {
+                let o = ctx.createOscillator();
+                let g = ctx.createGain();
+                o.connect(g); g.connect(ctx.destination);
+                o.frequency.value = freq;
+                o.type = "triangle";
+                g.gain.value = 0.3;
+                o.start(ctx.currentTime + i * 0.2);
+                o.stop(ctx.currentTime + i * 0.2 + 0.2);
+            });
+        } else if (type === "draw") {
+            osc.frequency.value = 250;
+            osc.type = "square";
+            gain.gain.value = 0.2;
+            osc.start();
+            osc.stop(ctx.currentTime + 0.3);
+        }
+    } catch(e) {}
+}
+
+// ===== ব্যাকগ্রাউন্ড মিউজিক =====
+function toggleTTTMusic() {
+    tttMusicOn = !tttMusicOn;
+    let btn = document.getElementById("musicToggleBtn");
+    if (tttMusicOn) {
+        startTTTMusic();
+        if (btn) btn.textContent = "🔊 মিউজিক বন্ধ";
+        if (btn) btn.style.background = "#22c55e";
+    } else {
+        stopTTTMusic();
+        if (btn) btn.textContent = "🔇 মিউজিক চালু";
+        if (btn) btn.style.background = "#ef4444";
+    }
+}
+
+function startTTTMusic() {
+    stopTTTMusic();
+    let ctx;
+    try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) { return; }
+
+    let notes = [262, 294, 330, 349, 392, 349, 330, 294]; // Do Re Mi Fa Sol Fa Mi Re
+    let noteIndex = 0;
+
+    tttMusicInterval = setInterval(() => {
+        if (!tttMusicOn) return;
+        try {
+            let osc = ctx.createOscillator();
+            let gain = ctx.createGain();
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.frequency.value = notes[noteIndex % notes.length];
+            osc.type = "sine";
+            gain.gain.value = 0.06;
+            osc.start();
+            osc.stop(ctx.currentTime + 0.3);
+            noteIndex++;
+        } catch(e) {}
+    }, 500);
+}
+
+function stopTTTMusic() {
+    if (tttMusicInterval) {
+        clearInterval(tttMusicInterval);
+        tttMusicInterval = null;
+    }
+    tttMusicOn = false;
+}
+
 function spawnTTTConfetti() {
     let container = document.getElementById("confettiContainer");
     if (!container) return;
@@ -789,16 +882,6 @@ function spawnTTTConfetti() {
         container.appendChild(piece);
     }
     setTimeout(() => container.innerHTML = "", 2000);
-}
-
-function playTTTSound(type) {
-    try {
-        let ctx = new (window.AudioContext || window.webkitAudioContext)();
-        let osc = ctx.createOscillator(), gain = ctx.createGain();
-        osc.connect(gain); gain.connect(ctx.destination);
-        if (type === "win") { osc.frequency.value = 600; osc.type = "triangle"; gain.gain.value = 0.3; osc.start(); osc.stop(ctx.currentTime + 0.3); }
-        else if (type === "draw") { osc.frequency.value = 300; osc.type = "square"; gain.gain.value = 0.2; osc.start(); osc.stop(ctx.currentTime + 0.2); }
-    } catch(e) {}
 }
 
 document.addEventListener("DOMContentLoaded", function() {
