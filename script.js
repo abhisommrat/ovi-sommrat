@@ -897,13 +897,20 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ==================== থিম কাস্টমাইজার ====================
+
 function toggleThemePanel() {
     let panel = document.getElementById("themePanel");
-    panel.style.display = panel.style.display === "none" ? "block" : "none";
+    if (panel.style.display === "none" || panel.style.display === "") {
+        panel.style.display = "block";
+    } else {
+        panel.style.display = "none";
+    }
 }
 
 function setThemeColor(color) {
+    // CSS ভেরিয়েবল সেট
     document.documentElement.style.setProperty("--accent-color", color);
+    document.documentElement.style.setProperty("--accent-color-light", color + "cc");
     localStorage.setItem("accentColor", color);
     applyAccentColor(color);
 }
@@ -911,26 +918,76 @@ function setThemeColor(color) {
 function resetThemeColor() {
     localStorage.removeItem("accentColor");
     document.documentElement.style.removeProperty("--accent-color");
-    applyAccentColor("#3b82f6");
+    document.documentElement.style.removeProperty("--accent-color-light");
+    let defaultColor = "#3b82f6";
+    applyAccentColor(defaultColor);
 }
 
 function applyAccentColor(color) {
-    // যেসব জায়গায় অ্যাকসেন্ট কালার চেঞ্জ হবে
-    let elements = document.querySelectorAll("h1, .btn-primary, .progress, .quiz-opt-btn.correct, .sw-display, nav a:hover, .project-card h3, .contact-info-card:hover");
-    elements.forEach(el => {
-        // শুধু border-color আর color চেঞ্জ করো, background না
-        el.style.borderColor = color;
+    // h1
+    let h1s = document.querySelectorAll("h1");
+    h1s.forEach(function(el) {
+        if (!el.querySelector("span")) {
+            el.style.color = color;
+        }
+    });
+
+    // btn-primary
+    let primaryBtns = document.querySelectorAll(".btn-primary");
+    primaryBtns.forEach(function(el) {
+        el.style.background = color;
+    });
+
+    // progress bar
+    let progressBars = document.querySelectorAll(".progress");
+    progressBars.forEach(function(el) {
+        el.style.background = color;
+    });
+
+    // nav a:hover
+    let navLinks = document.querySelectorAll("nav a");
+    navLinks.forEach(function(el) {
+        el.onmouseover = function() {
+            el.style.background = color;
+        };
+    });
+
+    // project-card h3
+    let cardTitles = document.querySelectorAll(".project-card h3");
+    cardTitles.forEach(function(el) {
+        el.style.color = color;
+    });
+
+    // section-title
+    let sectionTitles = document.querySelectorAll(".section-title");
+    sectionTitles.forEach(function(el) {
+        el.style.color = color;
+    });
+
+    // hero span
+    let heroSpan = document.querySelector(".hero h1 span");
+    if (heroSpan) heroSpan.style.color = color;
+
+    // typing-cursor
+    let cursor = document.querySelector(".typing-cursor");
+    if (cursor) cursor.style.color = color;
+
+    // score numbers
+    let scoreNums = document.querySelectorAll(".score-number");
+    scoreNums.forEach(function(el) {
+        el.style.color = color;
     });
 }
 
-// পেজ লোডে অ্যাকসেন্ট লোড
 function loadAccent() {
     let saved = localStorage.getItem("accentColor");
     if (saved) {
         document.documentElement.style.setProperty("--accent-color", saved);
+        applyAccentColor(saved);
     }
 }
 
+// পেজ লোডে অ্যাকসেন্ট লোড
 document.addEventListener("DOMContentLoaded", function() {
     loadAccent();
 });
