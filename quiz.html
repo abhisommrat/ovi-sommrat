@@ -27,35 +27,33 @@
         <a href="contact.html">📞 যোগাযোগ</a>
     </nav>
 
-    <h1>🧠 প্রো কুইজ <span class="pro-badge">PRO</span></h1>
-    <p>৮টি বিষয় | ২০টি প্রশ্ন | ২০ সেকেন্ড | র‌্যান্ডম</p>
+    <h1>🧠 প্রো কুইজ</h1>
+    <p>প্রতি গেমে ২০টি নতুন প্রশ্ন | কোনো রিপিট নেই!</p>
 
-    <div class="quiz-container">
+    <div class="quiz-container" id="quizContainer">
         <div class="quiz-top-bar">
             <span>🏆 সেরা: <strong id="quizBest">--</strong></span>
             <span>📊 স্কোর: <strong id="quizScore">0</strong></span>
             <span>❓ <strong id="quizQno">1/20</strong></span>
-            <span>📂 <strong id="quizCategory"></strong></span>
+            <span>📂 <strong id="quizCat"></strong></span>
         </div>
 
-        <div class="quiz-progress">
-            <div class="quiz-progress-bar" id="quizProgressBar"></div>
-        </div>
+        <div class="quiz-progress"><div class="quiz-progress-bar" id="quizBar"></div></div>
 
         <div class="quiz-timer">
             <div class="timer-bar" id="timerBar"></div>
-            <span id="timerText">⏰ ২০ সেকেন্ড</span>
+            <span id="timerText">⏰ ২০ সে.</span>
         </div>
 
-        <div id="quizQuestion" class="quiz-question"></div>
-        <div id="quizOptions" class="quiz-options"></div>
+        <div id="quizQ" class="quiz-question"></div>
+        <div id="quizOpts" class="quiz-options"></div>
 
         <div class="quiz-nav">
-            <button id="prevBtn" class="btn-outline" onclick="prevQuestion()">⬅️ আগের</button>
-            <button id="nextBtn" class="btn-primary" onclick="nextQuestion()">পরের ➡️</button>
+            <button id="prevBtn" class="btn-outline" onclick="prevQ()">⬅️ আগের</button>
+            <button id="nextBtn" class="btn-primary" onclick="nextQ()">পরের ➡️</button>
         </div>
 
-        <div id="quizResult" class="quiz-result" style="display:none;"></div>
+        <div id="quizEnd" class="quiz-result" style="display:none;"></div>
     </div>
 
     <hr>
