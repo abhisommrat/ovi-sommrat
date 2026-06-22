@@ -28,8 +28,9 @@
     </nav>
 
     <h1>🧠 প্রো কুইজ</h1>
-    <button onclick="start()" style="display:block;margin:10px auto;background:#f59e0b;color:#0f172a;border:none;padding:10px 25px;border-radius:25px;font-weight:bold;cursor:pointer;font-size:15px;">🔄 একদম নতুন প্রশ্ন</button>
-    <p>প্রতি গেমে ২০টি নতুন প্রশ্ন | কোনো রিপিট নেই!</p>
+    <p>প্রতি গেমে ২০টি নতুন প্রশ্ন | কীবোর্ড: 1-4 বা A-D | ⬅️➡️ Arrow</p>
+
+    <button onclick="startQuiz()" style="display:block;margin:10px auto;background:#f59e0b;color:#0f172a;border:none;padding:12px 30px;border-radius:30px;font-weight:bold;cursor:pointer;font-size:16px;">🔄 নতুন প্রশ্ন শুরু করো</button>
 
     <div class="quiz-container" id="quizContainer">
         <div class="quiz-top-bar">
@@ -40,13 +41,12 @@
         </div>
 
         <div class="quiz-progress"><div class="quiz-progress-bar" id="quizBar"></div></div>
-
         <div class="quiz-timer">
             <div class="timer-bar" id="timerBar"></div>
             <span id="timerText">⏰ ২০ সে.</span>
         </div>
 
-        <div id="quizQ" class="quiz-question"></div>
+        <div id="quizQ" class="quiz-question">লোড হচ্ছে...</div>
         <div id="quizOpts" class="quiz-options"></div>
 
         <div class="quiz-nav">
