@@ -6,46 +6,40 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="welcomeMessage" class="welcome-message"></div>
-    <div class="theme-toggle">
-        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
-    </div>
-
-    <nav>
-        <a href="index.html">🏠 হোম</a>
-        <a href="about.html">👤 সম্পর্কে</a>
-        <a href="profile.html">📷 প্রোফাইল</a>
-        <a href="projects.html">📁 প্রজেক্ট</a>
-        <a href="hobbies.html">🎮 শখ</a>
-        <a href="diary.html">📓 ডায়েরি</a>
-        <a href="game.html">🎮 গেম</a>
-        <a href="flexbox-grid.html">📐 লেআউট</a>
-        <a href="calculator.html">🧮 ক্যালকুলেটর</a>
-        <a href="todo.html">✅ টু-ডু</a>
-        <a href="weather.html">🌤️ ওয়েদার</a>
-        <a href="contact.html">📞 যোগাযোগ</a>
-    </nav>
-
     <h1>🌤️ ওয়েদার অ্যাপ</h1>
-    <p>যেকোনো শহরের আবহাওয়া দেখো! (ইংরেজিতে লিখো: Dhaka, London)</p>
+    <p>শহরের নাম ইংরেজিতে লিখো (Dhaka, London)</p>
 
-    <div class="weather-container" id="weatherContainer">
+    <div class="weather-container">
         <div class="weather-search">
-            <input type="text" id="cityInput" placeholder="শহরের নাম লিখো... (Dhaka, London)" onkeydown="if(event.key==='Enter')getWeather()">
-            <button onclick="getWeather()" class="btn-primary">🔍 সার্চ</button>
+            <input type="text" id="cityInput" placeholder="Dhaka">
+            <button onclick="getWeather()">🔍 সার্চ</button>
         </div>
-        <div id="weatherResult" class="weather-result">
+        <div class="weather-result">
             <div class="weather-icon" id="weatherIcon">🌍</div>
             <div class="weather-temp" id="weatherTemp">--°C</div>
             <div class="weather-city" id="weatherCity">শহর নির্বাচন করো</div>
             <div class="weather-desc" id="weatherDesc"></div>
-            <div class="weather-details" id="weatherDetails"></div>
         </div>
     </div>
 
-    <hr>
-    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+    <script>
+    const API_KEY = "ea9bb6ca05c3c25d3f110101fef73eb2";
 
-    <script src="script.js"></script>
+    async function getWeather() {
+        let city = document.getElementById("cityInput").value.trim();
+        if (!city) { alert("শহরের নাম লিখো!"); return; }
+        let url = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + API_KEY + "&units=metric&lang=bn";
+        try {
+            let response = await fetch(url);
+            let data = await response.json();
+            if (data.cod !== 200) { alert("শহর খুঁজে পাওয়া যায়নি! ইংরেজিতে সঠিক নাম লিখো (Dhaka)"); return; }
+            document.getElementById("weatherTemp").textContent = Math.round(data.main.temp) + "°C";
+            document.getElementById("weatherCity").textContent = data.name + ", " + data.sys.country;
+            document.getElementById("weatherDesc").textContent = data.weather[0].description;
+            let icons = { "Clear": "☀️", "Clouds": "☁️", "Rain": "🌧️", "Snow": "❄️" };
+            document.getElementById("weatherIcon").textContent = icons[data.weather[0].main] || "🌍";
+        } catch (error) { alert("নেটওয়ার্ক সমস্যা!"); }
+    }
+    </script>
 </body>
 </html>

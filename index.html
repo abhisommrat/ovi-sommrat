@@ -2,146 +2,171 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>আমার স্বপ্নের পাতা</title>
+    <title>অভি - সফটওয়্যার ইঞ্জিনিয়ার</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-   
-<!-- কাস্টম ল্যাঙ্গুয়েজ সিলেক্টর -->
-<div class="language-selector">
-    <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
-    <select class="custom-lang-select" onchange="changeLanguage(this.value)">
-        <option value="bn">🇧🇩 বাংলা</option>
-        <option value="en">🇬🇧 English</option>
-        <option value="hi">🇮🇳 हिन्दी</option>
-        <option value="ar">🇸🇦 العربية</option>
-        <option value="ur">🇵🇰 اردو</option>
-        <option value="es">🇪🇸 Español</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="de">🇩🇪 Deutsch</option>
-        <option value="ja">🇯🇵 日本語</option>
-        <option value="ko">🇰🇷 한국어</option>
-        <option value="zh-CN">🇨🇳 中文</option>
-    </select>
-</div>
-
     <div id="welcomeMessage" class="welcome-message"></div>
-    
+
     <div class="theme-toggle">
-    <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
-</div>
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
 
-<nav>
-    <a href="index.html">🏠 হোম</a>
-    <a href="about.html">👤 সম্পর্কে</a>
-    <a href="profile.html">📷 প্রোফাইল</a>
-    <a href="projects.html">📁 প্রজেক্ট</a>
-    <a href="hobbies.html">🎮 শখ</a>
-    <a href="contact.html">📞 যোগাযোগ</a>
-    <a href="diary.html">📓 ডায়েরি</a>
-    <a href="game.html">🎮 গেম</a>
-    <a href="flexbox-grid.html">📐 লেআউট</a>
-    <a href="calculator.html">🧮 ক্যালকুলেটর</a>
-    <a href="todo.html">✅ টু-ডু</a>
-    <a href="weather.html">🌤️ ওয়েদার</a>
-</nav>
-<!-- হিরো সেকশন -->
-<div class="hero">
-    <h1>আমি অভি</h1>
-    <p class="subtitle">সফটওয়্যার ইঞ্জিনিয়ার | ওয়েব ডেভেলপার</p>
-    <p class="tagline">স্বপ্ন দেখি, কোড লিখি, বাস্তব করি। পরিবারের পাশে দাঁড়ানোর প্রত্যয়ে প্রতিদিন শিখছি।</p>
-    <div class="hero-buttons">
-        <a href="projects.html" class="btn-primary">📁 আমার প্রজেক্ট</a>
-        <a href="contact.html" class="btn-outline">📞 যোগাযোগ</a>
+    <div class="language-selector">
+        <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
+        <select class="custom-lang-select" onchange="changeLanguage(this.value)">
+            <option value="bn">🇧🇩 বাংলা</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="ur">🇵🇰 اردو</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="zh-CN">🇨🇳 中文</option>
+        </select>
     </div>
-</div>
-    <h1>সব বাধা পেরোবো</h1>
-    <p>আমি অভি,আমি নিজেকে সব সময় প্রস্তুত রাখি সব পরিস্থিতিতে।জীবনে যাই হয়ে যাক না কেন আমি নিজেকে নিজেই শান্তনা দিয়ে যাই।</p>
 
-    <img src="images/swapner-chobi.jpg" alt="আমার অনুপ্রেরণার ছবি">
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+        <a href="game.html">🎮 গেম</a>
+        <a href="flexbox-grid.html">📐 লেআউট</a>
+        <a href="calculator.html">🧮 ক্যালকুলেটর</a>
+        <a href="todo.html">✅ টু-ডু</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+    </nav>
 
-    <p>
-        <a href="https://www.google.com" target="_blank">গুগলে সার্চ করতে ক্লিক করো</a>
-    </p>
+    <!-- ==================== হিরো সেকশন ==================== -->
+    <div class="hero">
+        <h1>আমি <span style="color: #38bdf8;">অভি</span></h1>
+        <p class="subtitle">
+            <span id="typingText" data-text="সফটওয়্যার ইঞ্জিনিয়ার | ওয়েব ডেভেলপার"></span><span class="typing-cursor">|</span>
+        </p>
+        <p class="tagline">স্বপ্ন দেখি, কোড লিখি, বাস্তব করি। পরিবারের পাশে দাঁড়ানোর প্রত্যয়ে প্রতিদিন শিখছি।</p>
+        <div class="hero-buttons">
+            <a href="projects.html" class="btn-primary">📁 আমার প্রজেক্ট</a>
+            <a href="contact.html" class="btn-outline">📞 যোগাযোগ</a>
+        </div>
+    </div>
 
-    <h2>আমার শেখার তালিকা</h2>
-    <h2>💪 আমার স্কিল</h2>
+    <!-- ==================== অ্যাবাউট সেকশন ==================== -->
+    <div class="section scroll-animate">
+        <h2 class="section-title">👤 আমার সম্পর্কে</h2>
+        <p class="section-subtitle">কিছু কথা আমার সম্পর্কে</p>
+        <div class="about-grid">
+            <img src="images/profile-pic.jpg" alt="অভি" class="about-image" onerror="this.src='https://via.placeholder.com/200'">
+            <div class="about-text">
+                <p>আমি একজন প্যাশনেট ওয়েব ডেভেলপার। HTML, CSS, JavaScript শিখে নিজের ওয়েবসাইট নিজেই বানিয়েছি।</p>
+                <p>এখন পর্যন্ত ১০+ প্রজেক্ট তৈরি করেছি—ডায়েরি অ্যাপ, গেম, ক্যালকুলেটর, টু-ডু লিস্ট সহ আরও অনেক কিছু।</p>
+                <p>আমার লক্ষ্য একজন ফুল-স্ট্যাক ডেভেলপার হওয়া এবং পরিবারের পাশে দাঁড়ানো।</p>
+            </div>
+        </div>
+    </div>
 
-<div class="skill">
-    <p>HTML</p>
-    <div class="progress-bar">
-        <div class="progress" style="--progress-width: 90%; width: 90%;">90%</div>
-    </div>
-    <button class="details-btn" onclick="toggleDetails('html-details')">বিস্তারিত দেখুন ▼</button>
-    <div id="html-details" class="details-content">
-        <p>HTML (HyperText Markup Language) দিয়ে ওয়েবসাইটের মৌলিক গঠন তৈরি করি। টেবিল, লিস্ট, ছবি, লিংক সবই HTML দিয়ে বানানো।</p>
-    </div>
-</div>
+    <!-- ==================== স্কিল সেকশন ==================== -->
+    <div class="section scroll-animate">
+        <h2 class="section-title">💪 আমার স্কিল</h2>
+        <p class="section-subtitle">যেসব টেকনোলজি নিয়ে কাজ করছি</p>
 
-<div class="skill">
-    <p>CSS</p>
-    <div class="progress-bar">
-        <div class="progress" style="--progress-width: 75%; width: 75%;">75%</div>
-    </div>
-    <button class="details-btn" onclick="toggleDetails('css-details')">বিস্তারিত দেখুন ▼</button>
-    <div id="css-details" class="details-content">
-        <p>CSS (Cascading Style Sheets) দিয়ে ওয়েবসাইট সুন্দর ও রঙিন করি। অ্যানিমেশন, গ্রেডিয়েন্ট, ফ্লেক্সবক্স সবই CSS-এর জাদু।</p>
-    </div>
-</div>
+        <div class="skill scroll-animate">
+            <p>HTML</p>
+            <div class="progress-bar">
+                <div class="progress" style="--progress-width: 95%; width: 95%;">95%</div>
+            </div>
+            <button class="details-btn" onclick="toggleDetails('html-details')">বিস্তারিত দেখুন ▼</button>
+            <div id="html-details" class="details-content">
+                <p>HTML (HyperText Markup Language) দিয়ে ওয়েবসাইটের মৌলিক গঠন তৈরি করি। টেবিল, লিস্ট, ছবি, লিংক সবই HTML দিয়ে বানানো।</p>
+            </div>
+        </div>
 
-<div class="skill">
-    <p>JavaScript</p>
-    <div class="progress-bar">
-        <div class="progress" style="--progress-width: 40%; width: 40%;">40%</div>
-    </div>
-    <button class="details-btn" onclick="toggleDetails('js-details')">বিস্তারিত দেখুন ▼</button>
-    <div id="js-details" class="details-content">
-        <p>JavaScript দিয়ে ওয়েবসাইটে প্রাণ দিই। ডার্ক মোড টগল, পপ-আপ, ক্লিক ইভেন্ট—সবই JavaScript শিখে করেছি।</p>
-    </div>
-</div>
+        <div class="skill scroll-animate">
+            <p>CSS</p>
+            <div class="progress-bar">
+                <div class="progress" style="--progress-width: 85%; width: 85%;">85%</div>
+            </div>
+            <button class="details-btn" onclick="toggleDetails('css-details')">বিস্তারিত দেখুন ▼</button>
+            <div id="css-details" class="details-content">
+                <p>CSS দিয়ে ওয়েবসাইট সুন্দর ও রঙিন করি। অ্যানিমেশন, গ্রেডিয়েন্ট, ফ্লেক্সবক্স, গ্রিড সবই শিখেছি।</p>
+            </div>
+        </div>
 
-<div class="skill">
-    <p>Git & GitHub</p>
-    <div class="progress-bar">
-        <div class="progress" style="--progress-width: 50%; width: 50%;">50%</div>
-    </div>
-    <button class="details-btn" onclick="toggleDetails('git-details')">বিস্তারিত দেখুন ▼</button>
-    <div id="git-details" class="details-content">
-        <p>Git দিয়ে কোড ভার্সন কন্ট্রোল করি, আর GitHub-এ প্রজেক্ট আপলোড করে সারা বিশ্বের সাথে শেয়ার করি।</p>
-    </div>
-</div>
+        <div class="skill scroll-animate">
+            <p>JavaScript</p>
+            <div class="progress-bar">
+                <div class="progress" style="--progress-width: 70%; width: 70%;">70%</div>
+            </div>
+            <button class="details-btn" onclick="toggleDetails('js-details')">বিস্তারিত দেখুন ▼</button>
+            <div id="js-details" class="details-content">
+                <p>JavaScript দিয়ে ওয়েবসাইটে প্রাণ দিই। DOM ম্যানিপুলেশন, ইভেন্ট হ্যান্ডলিং, API, লোকাল স্টোরেজ—সবই পারি।</p>
+            </div>
+        </div>
 
-<div class="skill">
-    <p>Git & GitHub</p>
-    <div class="progress-bar">
-        <div class="progress" style="width: 90%;">90%</div>
+        <div class="skill scroll-animate">
+            <p>Git & GitHub</p>
+            <div class="progress-bar">
+                <div class="progress" style="--progress-width: 60%; width: 60%;">60%</div>
+            </div>
+            <button class="details-btn" onclick="toggleDetails('git-details')">বিস্তারিত দেখুন ▼</button>
+            <div id="git-details" class="details-content">
+                <p>Git দিয়ে কোড ভার্সন কন্ট্রোল করি, আর GitHub-এ প্রজেক্ট আপলোড করে লাইভ সাইট বানাই।</p>
+            </div>
+        </div>
     </div>
-</div>
-<h2> JavaScript test</h2>
-<button onlick="showMessage()">আমাকে ক্লিক করো!</button>
-    <ul class="timeline">
-        <li>HTML</li>
-        <li>CSS</li>
-        <li>JavaScript</li>
-        <li>Git ও GitHub</li>
-        <li>React</li>
-    </ul>
+
+    <!-- ==================== প্রজেক্ট সেকশন ==================== -->
+    <div class="section scroll-animate">
+        <h2 class="section-title">📁 আমার প্রজেক্ট</h2>
+        <p class="section-subtitle">এ পর্যন্ত যেসব প্রজেক্ট বানিয়েছি</p>
+
+        <div class="project-grid">
+            <div class="project-card scroll-animate">
+                <h3>📓 ডায়েরি অ্যাপ</h3>
+                <p>নোট যোগ, এডিট, ডিলিট, সার্চ, পিন—সব ফিচার সহ প্রফেশনাল ডায়েরি।</p>
+            </div>
+            <div class="project-card scroll-animate">
+                <h3>🎮 পাথর-কাগজ-কাঁচি</h3>
+                <p>কাউন্টডাউন, সাউন্ড, কনফেট্টি, কম্বো সিস্টেম সহ প্রো গেম।</p>
+            </div>
+            <div class="project-card scroll-animate">
+                <h3>🧮 ক্যালকুলেটর</h3>
+                <p>সুন্দর UI, কীবোর্ড সাপোর্ট, হিস্টোরি সহ পূর্ণাঙ্গ ক্যালকুলেটর।</p>
+            </div>
+            <div class="project-card scroll-animate">
+                <h3>✅ টু-ডু লিস্ট</h3>
+                <p>টাস্ক যোগ, এডিট, ডিলিট, ফিল্টার, প্রোগ্রেস বার, ড্র্যাগ & ড্রপ।</p>
+            </div>
+            <div class="project-card scroll-animate">
+                <h3>🌐 পোর্টফোলিও</h3>
+                <p>নিজের ওয়েবসাইট—১২+ পেজ, ডার্ক/লাইট মোড, মাল্টি-ল্যাঙ্গুয়েজ।</p>
+            </div>
+            <div class="project-card scroll-animate">
+                <h3>🌍 মাল্টি-ল্যাঙ্গুয়েজ</h3>
+                <p>১১টি ভাষায় অনুবাদ, কাস্টম ল্যাঙ্গুয়েজ সিলেক্টর।</p>
+            </div>
+        </div>
+    </div>
+
     <hr>
-    <p style="font-size: 14px; color: #94a3b8;">& copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
 
     <script src="script.js"></script>
-    <!-- Google Translate Script -->
-<script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'bn',
-        includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-        autoDisplay: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
+    <script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'bn',
+            includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
+            layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
+            autoDisplay: false
+        }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

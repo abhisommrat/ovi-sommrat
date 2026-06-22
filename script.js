@@ -427,3 +427,101 @@ document.addEventListener("DOMContentLoaded", function() {
     if (document.getElementById("todoList")) renderTodos();
     if (document.getElementById("weatherContainer")) loadLastCity();
 });
+
+// ==================== ১০. পোর্টফোলিও অ্যানিমেশন ====================
+
+// টাইপিং ইফেক্ট
+function typeWriter(elementId, text, speed) {
+    let element = document.getElementById(elementId);
+    if (!element) return;
+    let i = 0;
+    element.textContent = "";
+    function type() {
+        if (i < text.length) {
+            element.textContent += text.charAt(i);
+            i++;
+            setTimeout(type, speed);
+        }
+    }
+    type();
+}
+
+// স্ক্রল অ্যানিমেশন (Intersection Observer)
+function setupScrollAnimation() {
+    let elements = document.querySelectorAll(".scroll-animate");
+    if (elements.length === 0) return;
+
+    let observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("visible");
+            }
+        });
+    }, { threshold: 0.2 });
+
+    elements.forEach(function(el) {
+        observer.observe(el);
+    });
+}
+
+// স্ক্রল-টু-টপ বাটন
+function createScrollTopButton() {
+    // বাটন থাকলে আর তৈরি করবে না
+    if (document.getElementById("scrollTopBtn")) return;
+
+    let btn = document.createElement("button");
+    btn.id = "scrollTopBtn";
+    btn.innerHTML = "⬆️";
+    btn.title = "উপরে যাও";
+    btn.style.cssText = "position:fixed;bottom:25px;right:25px;z-index:999;width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#2563eb,#38bdf8);color:white;border:none;font-size:22px;cursor:pointer;box-shadow:0 5px 20px rgba(0,0,0,0.4);transition:all 0.3s;display:none;";
+    btn.onclick = function() { window.scrollTo({ top: 0, behavior: "smooth" }); };
+    btn.onmouseover = function() { btn.style.transform = "scale(1.1)"; };
+    btn.onmouseout = function() { btn.style.transform = "scale(1)"; };
+    document.body.appendChild(btn);
+
+    window.addEventListener("scroll", function() {
+        if (window.scrollY > 300) {
+            btn.style.display = "block";
+        } else {
+            btn.style.display = "none";
+        }
+    });
+}
+
+// স্কিল বার কাউন্ট-আপ
+function animateSkillBars() {
+    let progressBars = document.querySelectorAll(".progress");
+    if (progressBars.length === 0) return;
+
+    let observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                let bar = entry.target;
+                let targetWidth = bar.style.getPropertyValue("--progress-width") || bar.style.width;
+                bar.style.width = "0%";
+                setTimeout(function() {
+                    bar.style.width = targetWidth;
+                }, 200);
+                observer.unobserve(bar);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    progressBars.forEach(function(bar) {
+        observer.observe(bar);
+    });
+}
+
+// পেজ লোডে সব চালু
+document.addEventListener("DOMContentLoaded", function() {
+    // টাইপিং ইফেক্ট (যদি typingText এলিমেন্ট থাকে)
+    let typingEl = document.getElementById("typingText");
+    if (typingEl) {
+        let text = typingEl.getAttribute("data-text") || "সফটওয়্যার ইঞ্জিনিয়ার | ওয়েব ডেভেলপার";
+        typeWriter("typingText", text, 80);
+    }
+
+    setupScrollAnimation();
+    createScrollTopButton();
+    animateSkillBars();
+});

@@ -2190,3 +2190,33 @@ body.light-mode .copy-btn:hover {
     color: white !important;
     border-color: #22c55e !important;
 }
+
+/* ==================== পোর্টফোলিও অ্যানিমেশন ==================== */
+
+/* টাইপিং কার্সর */
+.typing-cursor {
+    animation: blink 0.7s infinite;
+    color: #38bdf8;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* স্ক্রল অ্যানিমেশন */
+.scroll-animate {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease;
+}
+
+.scroll-animate.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* স্কিল বার স্মুথ */
+.progress {
+    transition: width 1.5s ease;
+}
