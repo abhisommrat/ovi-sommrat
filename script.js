@@ -525,3 +525,113 @@ document.addEventListener("DOMContentLoaded", function() {
     createScrollTopButton();
     animateSkillBars();
 });
+
+// ==================== ১৪. নাম্বার গেসিং গেম ====================
+
+let secretNumber = 0;
+let chances = 0;
+let guesses = [];
+
+function startNewGame() {
+    secretNumber = Math.floor(Math.random() * 100) + 1;
+    chances = 0;
+    guesses = [];
+    document.getElementById("gameStatus").textContent = "নতুন খেলা শুরু! ১-১০০ এর মধ্যে guess করো";
+    document.getElementById("gameStatus").style.color = "#38bdf8";
+    document.getElementById("chanceCount").textContent = "0";
+    document.getElementById("resultMessage").textContent = "";
+    document.getElementById("guessList").innerHTML = "";
+    document.getElementById("guessInput").value = "";
+    document.getElementById("guessInput").focus();
+    updateBestScore();
+}
+
+function updateBestScore() {
+    let best = localStorage.getItem("numberGameBest");
+    let bestEl = document.getElementById("bestScore");
+    if (bestEl) {
+        bestEl.textContent = best ? best : "--";
+    }
+}
+
+function makeGuess() {
+    let input = document.getElementById("guessInput");
+    let guess = parseInt(input.value);
+
+    if (isNaN(guess) || guess < 1 || guess > 100) {
+        alert("অনুগ্রহ করে ১ থেকে ১০০ এর মধ্যে একটি সংখ্যা লিখো!");
+        input.value = "";
+        return;
+    }
+
+    chances++;
+    guesses.push(guess);
+    document.getElementById("chanceCount").textContent = chances;
+
+    let resultEl = document.getElementById("resultMessage");
+    let statusEl = document.getElementById("gameStatus");
+
+    if (guess === secretNumber) {
+        // জিতেছে!
+        resultEl.textContent = "🎉 অভিনন্দন! তুমি " + chances + " চান্সে ধরেছো!";
+        resultEl.className = "result-message correct";
+        statusEl.textContent = "তুমি জিতেছো! 🔄 নতুন খেলার জন্য বাটনে ক্লিক করো";
+        statusEl.style.color = "#22c55e";
+
+        // বেস্ট স্কোর চেক
+        let best = localStorage.getItem("numberGameBest");
+        if (!best || chances < parseInt(best)) {
+            localStorage.setItem("numberGameBest", chances);
+            updateBestScore();
+        }
+
+        // কনফেট্টি
+        spawnNumberConfetti();
+        input.disabled = true;
+    } else if (guess > secretNumber) {
+        resultEl.textContent = "📉 আরও ছোট সংখ্যা!";
+        resultEl.className = "result-message high";
+    } else {
+        resultEl.textContent = "📈 আরও বড় সংখ্যা!";
+        resultEl.className = "result-message low";
+    }
+
+    // আগের guesses দেখানো
+    let guessListEl = document.getElementById("guessList");
+    guessListEl.innerHTML = "";
+    guesses.forEach(function(g) {
+        let badge = document.createElement("span");
+        badge.className = "guess-badge";
+        if (g > secretNumber) badge.classList.add("high-badge");
+        else if (g < secretNumber) badge.classList.add("low-badge");
+        badge.textContent = g;
+        guessListEl.appendChild(badge);
+    });
+
+    input.value = "";
+    input.focus();
+}
+
+function spawnNumberConfetti() {
+    let container = document.getElementById("confettiContainer");
+    if (!container) return;
+    container.innerHTML = "";
+    let colors = ["#22c55e", "#38bdf8", "#f59e0b", "#ef4444", "#a855f7", "#ec4899"];
+    for (let i = 0; i < 60; i++) {
+        let piece = document.createElement("div");
+        piece.className = "confetti-piece";
+        piece.style.left = Math.random() * 100 + "%";
+        piece.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        piece.style.animationDelay = Math.random() * 0.8 + "s";
+        piece.style.animationDuration = (1 + Math.random() * 2) + "s";
+        container.appendChild(piece);
+    }
+    setTimeout(function() { container.innerHTML = ""; }, 3000);
+}
+
+// পেজ লোডে গেম শুরু
+document.addEventListener("DOMContentLoaded", function() {
+    if (document.getElementById("number-game-container") || document.querySelector(".number-game-container")) {
+        startNewGame();
+    }
+});

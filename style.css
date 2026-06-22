@@ -2220,3 +2220,132 @@ body.light-mode .copy-btn:hover {
 .progress {
     transition: width 1.5s ease;
 }
+
+/* ==================== নাম্বার গেসিং গেম ==================== */
+
+.number-game-container {
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #1e293b;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border: 1px solid #334155;
+}
+
+body.light-mode .number-game-container {
+    background-color: #ffffff;
+    border-color: #e2e8f0;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+}
+
+.best-score {
+    font-size: 16px;
+    color: #f59e0b;
+    margin-bottom: 15px;
+}
+
+.best-score span {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.game-status {
+    font-size: 18px;
+    font-weight: bold;
+    color: #38bdf8;
+    margin-bottom: 10px;
+    min-height: 30px;
+}
+
+.chance-counter {
+    font-size: 14px;
+    color: #94a3b8;
+    margin-bottom: 20px;
+}
+
+.chance-counter span {
+    font-weight: bold;
+    color: #e2e8f0;
+}
+
+.guess-area {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.guess-area input {
+    flex: 1;
+    padding: 12px 15px;
+    border-radius: 25px;
+    border: 2px solid #334155;
+    background-color: #0f172a;
+    color: #e2e8f0;
+    font-size: 18px;
+    text-align: center;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.guess-area input:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+body.light-mode .guess-area input {
+    background-color: #f8fafc;
+    color: #1e293b;
+    border-color: #cbd5e1;
+}
+
+.result-message {
+    font-size: 20px;
+    font-weight: bold;
+    min-height: 30px;
+    margin: 15px 0;
+}
+
+.result-message.high {
+    color: #ef4444;
+}
+
+.result-message.low {
+    color: #f59e0b;
+}
+
+.result-message.correct {
+    color: #22c55e;
+    animation: winPulse 0.6s ease;
+}
+
+.previous-guesses {
+    margin-top: 15px;
+    color: #94a3b8;
+    font-size: 14px;
+}
+
+#guessList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.guess-badge {
+    background-color: #334155;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 13px;
+    color: #e2e8f0;
+}
+
+.guess-badge.high-badge {
+    border: 1px solid #ef4444;
+}
+
+.guess-badge.low-badge {
+    border: 1px solid #f59e0b;
+}

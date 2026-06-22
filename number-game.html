@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>নাম্বার গেসিং গেম - অভি</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="welcomeMessage" class="welcome-message"></div>
+
+    <div class="theme-toggle">
+        <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+    </div>
+
+    <nav>
+        <a href="index.html">🏠 হোম</a>
+        <a href="about.html">👤 সম্পর্কে</a>
+        <a href="profile.html">📷 প্রোফাইল</a>
+        <a href="projects.html">📁 প্রজেক্ট</a>
+        <a href="hobbies.html">🎮 শখ</a>
+        <a href="diary.html">📓 ডায়েরি</a>
+        <a href="game.html">🎮 গেম</a>
+        <a href="number-game.html">🔢 নাম্বার</a>
+        <a href="calculator.html">🧮 ক্যালকুলেটর</a>
+        <a href="todo.html">✅ টু-ডু</a>
+        <a href="weather.html">🌤️ ওয়েদার</a>
+        <a href="contact.html">📞 যোগাযোগ</a>
+    </nav>
+
+    <h1>🔢 নাম্বার গেসিং গেম</h1>
+    <p>আমি ১-১০০-এর মধ্যে একটি সংখ্যা ভেবেছি। তুমি কত তাড়াতাড়ি ধরতে পারো?</p>
+
+    <div class="number-game-container">
+        <!-- বেস্ট স্কোর -->
+        <div class="best-score">
+            🏆 সেরা স্কোর: <span id="bestScore">--</span> চান্স
+        </div>
+
+        <!-- গেম স্ট্যাটাস -->
+        <div class="game-status" id="gameStatus">
+            নতুন খেলা শুরু করো!
+        </div>
+
+        <!-- চান্স কাউন্টার -->
+        <div class="chance-counter">
+            চান্স: <span id="chanceCount">0</span>
+        </div>
+
+        <!-- নাম্বার ইনপুট -->
+        <div class="guess-area">
+            <input type="number" id="guessInput" min="1" max="100" placeholder="১-১০০ এর মধ্যে একটি সংখ্যা লিখো" onkeydown="if(event.key==='Enter')makeGuess()">
+            <button onclick="makeGuess()" class="btn-primary">🔍 Guess করো</button>
+        </div>
+
+        <!-- রেজাল্ট -->
+        <div id="resultMessage" class="result-message"></div>
+
+        <!-- আগের guesses -->
+        <div class="previous-guesses">
+            <strong>তোমার আগের guesses:</strong>
+            <div id="guessList"></div>
+        </div>
+
+        <!-- রিস্টার্ট বাটন -->
+        <button onclick="startNewGame()" class="btn-outline" style="margin-top: 15px;">🔄 নতুন খেলা</button>
+    </div>
+
+    <!-- কনফেট্টি -->
+    <div id="confettiContainer" class="confetti-container"></div>
+
+    <hr>
+    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+
+    <script src="script.js"></script>
+</body>
+</html>
