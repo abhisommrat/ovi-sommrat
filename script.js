@@ -991,3 +991,49 @@ function loadAccent() {
 document.addEventListener("DOMContentLoaded", function() {
     loadAccent();
 });
+
+// ==================== ইমেজ স্লাইডার ====================
+let currentSlide = 0;
+const slides = document.querySelectorAll(".slider-slide");
+const dotsContainer = document.getElementById("sliderDots");
+
+if (slides.length > 0 && dotsContainer) {
+    // ডট তৈরি
+    slides.forEach((_, i) => {
+        let dot = document.createElement("span");
+        dot.className = "slider-dot";
+        dot.onclick = () => goToSlide(i);
+        dotsContainer.appendChild(dot);
+    });
+    updateSlider();
+    // অটো স্লাইড (৫ সেকেন্ড)
+    setInterval(() => changeSlide(1), 5000);
+}
+
+function changeSlide(dir) {
+    currentSlide += dir;
+    if (currentSlide >= slides.length) currentSlide = 0;
+    if (currentSlide < 0) currentSlide = slides.length - 1;
+    updateSlider();
+}
+
+function goToSlide(index) {
+    currentSlide = index;
+    updateSlider();
+}
+
+function updateSlider() {
+    slides.forEach((s, i) => s.classList.toggle("active", i === currentSlide));
+    let dots = document.querySelectorAll(".slider-dot");
+    dots.forEach((d, i) => d.classList.toggle("active-dot", i === currentSlide));
+}
+
+// ==================== ভিজিটর কাউন্টার ====================
+function updateVisitorCount() {
+    let count = parseInt(localStorage.getItem("visitorCount") || 0);
+    count++;
+    localStorage.setItem("visitorCount", count);
+    let el = document.getElementById("visitorCount");
+    if (el) el.textContent = count;
+}
+updateVisitorCount();
