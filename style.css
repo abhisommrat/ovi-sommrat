@@ -2517,22 +2517,30 @@ body.light-mode .theme-panel h4 { color: #1e293b; }
 }
 
 .slider-slide.active { 
-    display: flex; 
-    align-items: center; 
-    justify-content: center; 
+    display: block; 
     animation: fadeIn 0.5s; 
-    height: 350px; 
 }
 
 .slider-slide img { 
-    width: auto; 
-    height: auto; 
-    max-width: 100%; 
-    max-height: 350px; 
+    width: 100%; 
+    max-height: 250px; 
     object-fit: contain; 
-    border-radius: 20px; 
+    border-radius: 20px 20px 0 0; 
+    display: block; 
+    background-color: #0f172a; 
+    padding: 10px;
+    box-sizing: border-box;
 }
-.slider-caption { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 12px; font-weight: bold; font-size: 16px; border-radius: 0 0 20px 20px; }
+.slider-caption { 
+    background: #1e293b; 
+    color: #e2e8f0; 
+    padding: 15px; 
+    font-weight: bold; 
+    font-size: 16px; 
+    text-align: center; 
+    border-radius: 0 0 20px 20px; 
+    margin-top: 0; 
+}
 .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.6); color: white; border: none; font-size: 24px; padding: 10px 15px; cursor: pointer; border-radius: 50%; transition: all 0.3s; z-index: 5; }
 .slider-btn:hover { background: #38bdf8; }
 .slider-prev { left: 10px; }
@@ -2541,9 +2549,32 @@ body.light-mode .theme-panel h4 { color: #1e293b; }
 .slider-dot { display: inline-block; width: 12px; height: 12px; background: #475569; border-radius: 50%; margin: 0 5px; cursor: pointer; transition: all 0.3s; }
 .slider-dot.active-dot { background: #38bdf8; width: 30px; border-radius: 10px; }
 
-/* ==================== হোয়াটসঅ্যাপ চ্যাট ==================== */
-.whatsapp-float { position: fixed; bottom: 25px; left: 25px; width: 55px; height: 55px; background: #25D366; color: white; border-radius: 50%; text-align: center; font-size: 26px; line-height: 55px; box-shadow: 0 5px 20px rgba(37,211,102,0.5); z-index: 999; text-decoration: none; animation: pulse 2s infinite; transition: all 0.3s; }
-.whatsapp-float:hover { transform: scale(1.1); box-shadow: 0 8px 30px rgba(37,211,102,0.7); }
+.whatsapp-float { 
+    position: fixed; 
+    bottom: 25px; 
+    left: 25px; 
+    width: 45px; 
+    height: 45px; 
+    background: linear-gradient(135deg, #25D366, #128C7E); 
+    color: white; 
+    border-radius: 50%; 
+    text-align: center; 
+    font-size: 22px; 
+    line-height: 45px; 
+    box-shadow: 0 4px 15px rgba(37,211,102,0.4); 
+    z-index: 999; 
+    text-decoration: none; 
+    transition: all 0.3s ease; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+}
+
+.whatsapp-float:hover { 
+    transform: scale(1.1); 
+    box-shadow: 0 8px 25px rgba(37,211,102,0.6); 
+    background: linear-gradient(135deg, #128C7E, #25D366); 
+}
 
 /* ==================== ভিজিটর কাউন্টার ==================== */
 .visitor-counter { text-align: center; margin: 15px 0; color: #94a3b8; font-size: 14px; }
