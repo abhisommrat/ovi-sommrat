@@ -1,41 +1,48 @@
-// ==================== কুইজ API (Open Trivia DB) ====================
+// কুইজ API - The Trivia API
 
-let Q = [], idx = 0, score = 0, ans = [], timer, sec = 20;
+var Q = [];
+var idx = 0;
+var score = 0;
+var ans = [];
+var timer;
+var sec = 20;
 
 async function fetchQuiz() {
-    let cat = document.getElementById("categorySelect").value;
-    let diff = document.getElementById("difficultySelect").value;
-    let amt = document.getElementById("amountSelect").value;
+    var cat = document.getElementById("categorySelect").value;
+    var diff = document.getElementById("difficultySelect").value;
+    var amt = document.getElementById("amountSelect").value;
 
     document.getElementById("quizLoading").style.display = "block";
     document.getElementById("quizContainer").style.display = "none";
     document.getElementById("quizEnd").style.display = "none";
 
-    let url = https//opentdb.com/api.php?amount=${amt}&category=${cat}&difficulty=${diff}&type=multiple;
+    var url = "https://the-trivia-api.com/api/questions?categories=" + cat + "&difficulty=" + diff + "&limit=" + amt;
 
     try {
-        let res = await fetch(url);
-        let data = await res.json();
+        var res = await fetch(url);
+        if (!res.ok) throw new Error("API error");
+        var data = await res.json();
 
-        if (data.response_code !== 0) {
-            alert("প্রশ্ন লোড করা যায়নি! আবার চেষ্টা করো।");
+        if (!data || data.length === 0) {
+            alert("প্রশ্ন পাওয়া যায়নি! আবার চেষ্টা করো।");
             document.getElementById("quizLoading").style.display = "none";
             return;
         }
 
-        Q = data.results.map(q => ({
-            q: decodeHTML(q.question),
-            o: shuffleArr([...q.incorrect_answers, q.correct_answer].map(decodeHTML)),
-            a: q.incorrect_answers.length // correct answer index after shuffle (will set below)
-        }));
-
-        // সঠিক উত্তরের ইনডেক্স ঠিক করা
-        Q.forEach((q, i) => {
-            let correct = decodeHTML(data.results[i].correct_answer);
-            q.a = q.o.indexOf(correct);
+        Q = data.map(function(q) {
+            var allAnswers = q.incorrectAnswers.concat(q.correctAnswer);
+            var shuffled = shuffleArr(allAnswers);
+            return {
+                q: q.question,
+                c: q.category,
+                o: shuffled,
+                a: shuffled.indexOf(q.correctAnswer)
+            };
         });
 
-        idx = 0; score = 0; ans = new Array(Q.length).fill(undefined);
+        idx = 0;
+        score = 0;
+        ans = new Array(Q.length).fill(undefined);
 
         document.getElementById("quizLoading").style.display = "none";
         document.getElementById("quizContainer").style.display = "block";
@@ -45,53 +52,78 @@ async function fetchQuiz() {
 
         loadQ();
     } catch (e) {
-        alert("নেটওয়ার্ক সমস্যা! ইন্টারনেট চেক করো।");
+        console.error(e);
+        alert("API লোড করা যায়নি! লোকাল প্রশ্ন দেখানো হচ্ছে।");
+        useLocalQuestions();
         document.getElementById("quizLoading").style.display = "none";
     }
 }
 
-function decodeHTML(html) {
-    let txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
+function useLocalQuestions() {
+    var LOCAL = [
+        { q: "HTML পূর্ণরূপ?", o: ["HyperText Markup Language","HighText Machine","Hyper Trainer","None"], a: 0, c: "প্রযুক্তি" },
+        { q: "CSS কাজ?", o: ["লজিক","ডিজাইন","ডাটাবেস","সার্ভার"], a: 1, c: "প্রযুক্তি" },
+        { q: "JavaScript ধরন?", o: ["Compiled","Interpreted","Machine","Assembly"], a: 1, c: "প্রযুক্তি" },
+        { q: "GitHub কী?", o: ["গেম","সোশ্যাল","কোড হোস্টিং","অ্যাপ"], a: 2, c: "প্রযুক্তি" },
+        { q: "বাংলাদেশের রাজধানী?", o: ["চট্টগ্রাম","ঢাকা","খুলনা","রাজশাহী"], a: 1, c: "বাংলাদেশ" },
+        { q: "মুক্তিযুদ্ধ কত সালে?", o: ["১৯৫২","১৯৬৯","১৯৭১","১৯৭৫"], a: 2, c: "বাংলাদেশ" },
+        { q: "পানির সংকেত?", o: ["H2O","CO2","NaCl","O2"], a: 0, c: "বিজ্ঞান" },
+        { q: "সূর্যের আলোতে ভিটামিন?", o: ["A","B","C","D"], a: 3, c: "বিজ্ঞান" },
+        { q: "এক ডজন = ?", o: ["১০","১১","১২","১৩"], a: 2, c: "গণিত" },
+        { q: "২^৮ = ?", o: ["১২৮","২৫৬","৫১২","১০২৪"], a: 1, c: "গণিত" }
+    ];
+
+    Q = shuffleArr(LOCAL).slice(0, 10);
+    idx = 0;
+    score = 0;
+    ans = new Array(Q.length).fill(undefined);
+
+    document.getElementById("quizContainer").style.display = "block";
+    document.getElementById("quizScore").textContent = "0";
+    document.getElementById("quizBar").style.width = "0%";
+    document.getElementById("quizBest").textContent = localStorage.getItem("apiQuizBest") || "--";
+
+    loadQ();
 }
 
 function shuffleArr(arr) {
-    let a = [...arr];
-    for (let i = a.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        [a[i], a[j]] = [a[j], a[i]];
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = a[i];
+        a[i] = a[j];
+        a[j] = temp;
     }
     return a;
 }
 
 function loadQ() {
     if (idx >= Q.length) { endQuiz(); return; }
-    let q = Q[idx];
-    document.getElementById("quizQno").textContent = (idx+1)+"/"+Q.length;
-    document.getElementById("quizCat").textContent = "API Trivia";
+    var q = Q[idx];
+    document.getElementById("quizQno").textContent = (idx + 1) + "/" + Q.length;
+    document.getElementById("quizCat").textContent = q.c || "General";
     document.getElementById("quizQ").textContent = q.q;
     document.getElementById("quizScore").textContent = score;
-    document.getElementById("quizBar").style.width = (idx/Q.length*100)+"%";
+    document.getElementById("quizBar").style.width = (idx / Q.length * 100) + "%";
 
-    let optDiv = document.getElementById("quizOpts");
+    var optDiv = document.getElementById("quizOpts");
     optDiv.innerHTML = "";
-    q.o.forEach((o, i) => {
-        let btn = document.createElement("button");
+    q.o.forEach(function(o, i) {
+        var btn = document.createElement("button");
         btn.className = "quiz-opt-btn";
-        btn.innerHTML = '<span class="opt-key">'+(i+1)+'</span> '+o;
+        btn.innerHTML = '<span class="opt-key">' + (i + 1) + '</span> ' + o;
         if (ans[idx] !== undefined) {
             btn.disabled = true;
             if (i === q.a) btn.classList.add("correct");
             if (i === ans[idx] && i !== q.a) btn.classList.add("wrong");
         } else {
-            btn.onclick = () => pick(i);
+            btn.onclick = function() { pick(i); };
         }
         optDiv.appendChild(btn);
     });
 
-    document.getElementById("prevBtn").style.display = idx > 0 ? "inline-block":"none";
-    document.getElementById("nextBtn").style.display = ans[idx] !== undefined ? "inline-block":"none";
+    document.getElementById("prevBtn").style.display = idx > 0 ? "inline-block" : "none";
+    document.getElementById("nextBtn").style.display = ans[idx] !== undefined ? "inline-block" : "none";
 
     if (ans[idx] === undefined) timerStart();
     else stopTimer();
@@ -100,14 +132,14 @@ function loadQ() {
 function timerStart() {
     stopTimer();
     sec = 20;
-    document.getElementById("timerText").textContent = "⏰ "+sec+" সে.";
+    document.getElementById("timerText").textContent = "⏰ " + sec + " সে.";
     document.getElementById("timerBar").style.width = "100%";
     document.getElementById("timerBar").style.background = "#22c55e";
-    timer = setInterval(() => {
+    timer = setInterval(function() {
         sec--;
-        document.getElementById("timerText").textContent = "⏰ "+sec+" সে.";
-        let p = (sec/20)*100;
-        document.getElementById("timerBar").style.width = p+"%";
+        document.getElementById("timerText").textContent = "⏰ " + sec + " সে.";
+        var p = (sec / 20) * 100;
+        document.getElementById("timerBar").style.width = p + "%";
         if (sec <= 5) document.getElementById("timerBar").style.background = "#ef4444";
         else if (sec <= 10) document.getElementById("timerBar").style.background = "#f59e0b";
         if (sec <= 0) { stopTimer(); ans[idx] = -1; loadQ(); }
@@ -124,7 +156,7 @@ function pick(i) {
     loadQ();
 }
 
-function nextQ() { if (idx < Q.length-1) { idx++; loadQ(); } }
+function nextQ() { if (idx < Q.length - 1) { idx++; loadQ(); } }
 function prevQ() { if (idx > 0) { idx--; loadQ(); } }
 
 function endQuiz() {
@@ -139,9 +171,9 @@ function endQuiz() {
     document.getElementById("quizQno").textContent = "শেষ";
     document.getElementById("quizCat").textContent = "";
 
-    let total = Q.length;
-    let pct = Math.round((score/total)*100);
-    let grade, emoji;
+    var total = Q.length;
+    var pct = Math.round((score / total) * 100);
+    var grade, emoji;
     if (pct >= 90) { grade = "A+"; emoji = "🌟"; }
     else if (pct >= 80) { grade = "A"; emoji = "🎉"; }
     else if (pct >= 70) { grade = "B"; emoji = "👍"; }
@@ -150,14 +182,13 @@ function endQuiz() {
     else { grade = "F"; emoji = "😢"; }
 
     document.getElementById("quizEnd").style.display = "block";
-    document.getElementById("quizEnd").innerHTML = `
-        <div class="grade">${emoji}</div>
-        <h2>গ্রেড: ${grade}</h2>
-        <p>স্কোর: <strong>${score}/${total}</strong> (${pct}%)</p>
-        <button class="quiz-refresh-btn" onclick="location.reload()">🔄 নতুন খেলা</button>
-    `;
+    document.getElementById("quizEnd").innerHTML =
+        '<div class="grade">' + emoji + '</div>' +
+        '<h2>গ্রেড: ' + grade + '</h2>' +
+        '<p>স্কোর: <strong>' + score + '/' + total + '</strong> (' + pct + '%)</p>' +
+        '<button class="quiz-refresh-btn" onclick="location.reload()">🔄 নতুন খেলা</button>';
 
-    let best = parseInt(localStorage.getItem("apiQuizBest")||0);
+    var best = parseInt(localStorage.getItem("apiQuizBest") || 0);
     if (score > best) {
         localStorage.setItem("apiQuizBest", score);
         document.getElementById("quizBest").textContent = score;
@@ -165,11 +196,11 @@ function endQuiz() {
 }
 
 document.addEventListener("keydown", function(e) {
-    if (document.getElementById("quizEnd").style.display === "block") return;
+    if (document.getElementById("quizEnd") && document.getElementById("quizEnd").style.display === "block") return;
     if (!document.getElementById("quizQ").textContent) return;
     if (ans[idx] !== undefined) return;
-    let key = e.key.toLowerCase();
-    let map = {"1":0,"2":1,"3":2,"4":3,"a":0,"b":1,"c":2,"d":3};
+    var key = e.key.toLowerCase();
+    var map = { "1": 0, "2": 1, "3": 2, "4": 3, "a": 0, "b": 1, "c": 2, "d": 3 };
     if (map[key] !== undefined) pick(map[key]);
     if (key === "arrowright") nextQ();
     if (key === "arrowleft") prevQ();
