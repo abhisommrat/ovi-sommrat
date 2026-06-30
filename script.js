@@ -1049,3 +1049,41 @@ document.addEventListener("DOMContentLoaded", function() {
         if (el) el.style.display = "none";
     }
 });
+
+// ==================== সাইট মিউজিক ====================
+let siteMusicOn = false;
+let siteMusicInterval = null;
+function toggleSiteMusic() {
+    siteMusicOn = !siteMusicOn;
+    let btn = document.getElementById("siteMusicBtn");
+    if (siteMusicOn) {
+        startSiteMusic();
+        btn.textContent = "🔊 মিউজিক বন্ধ";
+        btn.style.background = "#22c55e";
+    } else {
+        stopSiteMusic();
+        btn.textContent = "🔇 মিউজিক";
+        btn.style.background = "#8b5cf6";
+    }
+}
+function startSiteMusic() {
+    stopSiteMusic();
+    let ctx;
+    try { ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch(e) { return; }
+    let notes = [262, 294, 330, 349, 392, 349, 330, 294];
+    let i = 0;
+    siteMusicInterval = setInterval(() => {
+        if (!siteMusicOn) return;
+        try {
+            let o = ctx.createOscillator(), g = ctx.createGain();
+            o.connect(g); g.connect(ctx.destination);
+            o.frequency.value = notes[i % notes.length];
+            o.type = "sine"; g.gain.value = 0.03;
+            o.start(); o.stop(ctx.currentTime + 0.3);
+            i++;
+        } catch(e) {}
+    }, 600);
+}
+function stopSiteMusic() {
+    if (siteMusicInterval) { clearInterval(siteMusicInterval); siteMusicInterval = null; }
+}
