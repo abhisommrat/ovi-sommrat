@@ -1037,3 +1037,15 @@ function updateVisitorCount() {
     if (el) el.textContent = count;
 }
 updateVisitorCount();
+
+// ==================== কুকি কনসেন্ট ====================
+function acceptCookies() {
+    document.getElementById("cookieConsent").style.display = "none";
+    localStorage.setItem("cookiesAccepted", "true");
+}
+document.addEventListener("DOMContentLoaded", function() {
+    if (localStorage.getItem("cookiesAccepted") === "true") {
+        let el = document.getElementById("cookieConsent");
+        if (el) el.style.display = "none";
+    }
+});

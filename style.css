@@ -2579,3 +2579,30 @@ body.light-mode .theme-panel h4 { color: #1e293b; }
 /* ==================== ভিজিটর কাউন্টার ==================== */
 .visitor-counter { text-align: center; margin: 15px 0; color: #94a3b8; font-size: 14px; }
 .visitor-counter strong { color: #38bdf8; font-size: 18px; }
+
+/* ==================== কাস্টম কার্সার ==================== */
+* { cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"><circle cx="10" cy="10" r="8" fill="%2338bdf8" opacity="0.8"/></svg>') 10 10, auto; }
+
+a, button, .btn-primary, .btn-outline, .quiz-opt-btn, .ttt-cell, .choice-btn, .calc-btn, .copy-btn, .slider-btn { 
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"><circle cx="12" cy="12" r="10" fill="%23f59e0b" opacity="0.9"/></svg>') 12 12, pointer !important; 
+}
+
+/* ==================== প্রিন্ট স্টাইল ==================== */
+@media print {
+    nav, .theme-toggle, .language-selector, .whatsapp-float, #scrollTopBtn, 
+    .slider-btn, .slider-dots, .hero-buttons, button, .theme-customizer, 
+    .theme-gear-btn, #google_translate_element { display: none !important; }
+    
+    body { background: white !important; color: black !important; font-size: 14px; }
+    body.light-mode { background: white !important; color: black !important; }
+    h1, h2, h3, p, li { color: black !important; }
+    .hero { background: white !important; border: none !important; }
+    .project-card, .skill, .contact-info-card { border: 1px solid #ccc !important; box-shadow: none !important; }
+    a { color: #2563eb !important; text-decoration: underline !important; }
+}
+
+/* ==================== কুকি কনসেন্ট ==================== */
+.cookie-consent { position: fixed; bottom: 0; left: 0; right: 0; background: #1e293b; color: #e2e8f0; padding: 12px 20px; display: flex; justify-content: center; align-items: center; gap: 15px; z-index: 1000; font-size: 14px; flex-wrap: wrap; border-top: 2px solid #38bdf8; }
+body.light-mode .cookie-consent { background: #ffffff; color: #1e293b; border-top-color: #2563eb; }
+.cookie-accept-btn { background: #38bdf8; color: #0f172a; border: none; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; transition: all 0.3s; }
+.cookie-accept-btn:hover { background: #0ea5e9; transform: scale(1.05); }
