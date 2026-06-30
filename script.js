@@ -297,13 +297,21 @@ document.addEventListener("keydown", function(e) {
     }
 });
 
-// ==================== ৫. কাস্টম ল্যাঙ্গুয়েজ ====================
 function changeLanguage(lang) {
     let googleSelect = document.querySelector(".goog-te-combo");
-    if (googleSelect) { googleSelect.value = lang; googleSelect.dispatchEvent(new Event("change")); }
-    let langNames = { bn: "বাংলা", en: "English", hi: "हिन्दी", ar: "العربية", ur: "اردو", es: "Español", fr: "Français", de: "Deutsch", ja: "日本語", ko: "한국어", "zh-CN": "中文" };
+    if (googleSelect) {
+        googleSelect.value = lang;
+        googleSelect.dispatchEvent(new Event("change"));
+    }
+    let langNames = {
+        bn: "বাংলা", en: "English", hi: "हिन्दी", ar: "العربية",
+        ur: "اردو", es: "Español", fr: "Français", de: "Deutsch",
+        ja: "日本語", ko: "한국어", "zh-CN": "中文"
+    };
     let currentLangEl = document.querySelector(".current-lang");
-    if (currentLangEl && langNames[lang]) { currentLangEl.textContent = langNames[lang]; }
+    if (currentLangEl && langNames[lang]) {
+        currentLangEl.textContent = langNames[lang];
+    }
     localStorage.setItem("selectedLanguage", lang);
 }
 
