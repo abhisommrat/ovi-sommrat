@@ -2606,3 +2606,12 @@ a, button, .btn-primary, .btn-outline, .quiz-opt-btn, .ttt-cell, .choice-btn, .c
 body.light-mode .cookie-consent { background: #ffffff; color: #1e293b; border-top-color: #2563eb; }
 .cookie-accept-btn { background: #38bdf8; color: #0f172a; border: none; padding: 8px 18px; border-radius: 20px; cursor: pointer; font-weight: bold; font-size: 13px; transition: all 0.3s; }
 .cookie-accept-btn:hover { background: #0ea5e9; transform: scale(1.05); }
+
+/* কুইজ সেটিংস */
+.quiz-settings { max-width:500px; margin:20px auto; background:#1e293b; padding:20px; border-radius:16px; text-align:center; }
+body.light-mode .quiz-settings { background:#fff; }
+.setting-row { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; color:#e2e8f0; }
+body.light-mode .setting-row { color:#1e293b; }
+.setting-row select { background:#0f172a; color:#e2e8f0; border:1px solid #334155; padding:8px 12px; border-radius:8px; font-size:14px; cursor:pointer; }
+body.light-mode .setting-row select { background:#f8fafc; color:#1e293b; }
+.quiz-loading { text-align:center; font-size:20px; color:#f59e0b; padding:40px; animation:pulse 1s infinite; }

@@ -2,85 +2,114 @@
 <html>
 <head>
     <link rel="icon" type="image/png" href="images/profile-pic.jpg">
-    <link rel="icon" type="image/png" href="images/profile-pic.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রো কুইজ - অভি</title>
-    <meta name="description" content="OviForge - Professional Web Developer Portfolio. HTML, CSS, JavaScript projects.">
-<meta name="keywords" content="web developer, HTML, CSS, JavaScript, oviforge, portfolio">
-<meta name="author" content="OviForge">
+    <title>প্রো কুইজ API - OviForge</title>
+    <meta name="description" content="Professional Quiz App with live questions from Open Trivia DB. Unlimited questions, never repeat!">
+    <meta name="keywords" content="quiz, api, trivia, oviforge, unlimited questions">
+    <meta name="author" content="OviForge">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div id="welcomeMessage" class="welcome-message"></div>
+
     <div class="theme-toggle">
-        <button id="siteMusicBtn" onclick="toggleSiteMusic()" style="background:#8b5cf6;color:white;border:none;padding:8px 15px;border-radius:20px;font-size:12px;cursor:pointer;margin:5px;">🔇 মিউজিক</button>
         <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
+        <button id="siteMusicBtn" onclick="toggleSiteMusic()" style="background:#8b5cf6;color:white;border:none;padding:8px 15px;border-radius:20px;font-size:12px;cursor:pointer;margin:5px;">🔇 মিউজিক</button>
     </div>
+
     <nav>
         <a href="index.html">🏠 হোম</a>
         <a href="about.html">👤 সম্পর্কে</a>
         <a href="profile.html">📷 প্রোফাইল</a>
         <a href="projects.html">📁 প্রজেক্ট</a>
-        <a href="hobbies.html">🎮 শখ</a>
-        <a href="diary.html">📓 ডায়েরি</a>
-        <a href="game.html">🎮 গেম</a>
-        <a href="number-game.html">🔢 নাম্বার</a>
-        <a href="tictactoe.html">❌⭕ টিক ট্যাক টো</a>
         <a href="quiz.html">🧠 কুইজ</a>
-        <a href="calculator.html">🧮 ক্যালকুলেটর</a>
-        <a href="todo.html">✅ টু-ডু</a>
-        <a href="weather.html">🌤️ ওয়েদার</a>
         <a href="contact.html">📞 যোগাযোগ</a>
         <a href="https://fiverr.com/oviforge" target="_blank">💼 Fiverr</a>
     </nav>
 
-    <h1>🧠 প্রো কুইজ</h1>
-    <p>প্রতি গেমে ২০টি নতুন প্রশ্ন | কীবোর্ড: 1-4 বা A-D | ⬅️➡️ Arrow</p>
+    <h1>🧠 প্রো কুইজ <span class="pro-badge">API</span></h1>
+    <p>🌐 Open Trivia DB থেকে লাইভ প্রশ্ন | 🎲 প্রতিবার নতুন প্রশ্ন | কখনো ফুরাবে না!</p>
 
-    <button onclick="startQuiz()" style="display:block;margin:10px auto;background:#f59e0b;color:#0f172a;border:none;padding:12px 30px;border-radius:30px;font-weight:bold;cursor:pointer;font-size:16px;">🔄 নতুন প্রশ্ন শুরু করো</button>
+    <!-- সেটিংস -->
+    <div class="quiz-settings" id="quizSettings">
+        <div class="setting-row">
+            <label>📂 ক্যাটাগরি:</label>
+            <select id="categorySelect">
+                <option value="9">General Knowledge</option>
+                <option value="18">Science: Computers</option>
+                <option value="21">Sports</option>
+                <option value="22">Geography</option>
+                <option value="23">History</option>
+                <option value="17">Science & Nature</option>
+                <option value="15">Video Games</option>
+                <option value="11">Film</option>
+                <option value="12">Music</option>
+                <option value="27">Animals</option>
+            </select>
+        </div>
+        <div class="setting-row">
+            <label>🎯 লেভেল:</label>
+            <select id="difficultySelect">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <div class="setting-row">
+            <label>❓ প্রশ্ন সংখ্যা:</label>
+            <select id="amountSelect">
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20" selected>20</option>
+                <option value="30">30</option>
+            </select>
+        </div>
+        <button onclick="fetchQuiz()" class="quiz-refresh-btn">🚀 শুরু করো!</button>
+    </div>
 
-    <div class="quiz-container" id="quizContainer">
-        <div class="quiz-top-bar">
-            <span>🏆 সেরা: <strong id="quizBest">--</strong></span>
-            <span>📊 স্কোর: <strong id="quizScore">0</strong></span>
-            <span>❓ <strong id="quizQno">1/20</strong></span>
-            <span>📂 <strong id="quizCat"></strong></span>
+    <!-- কুইজ কন্টেইনার -->
+    <div class="quiz-pro-container" id="quizContainer" style="display:none;">
+        <div class="quiz-top">
+            <div class="quiz-stat"><span>🏆 সেরা</span><strong id="quizBest">--</strong></div>
+            <div class="quiz-stat"><span>📊 স্কোর</span><strong id="quizScore">0</strong></div>
+            <div class="quiz-stat"><span>❓ প্রশ্ন</span><strong id="quizQno">1/20</strong></div>
+            <div class="quiz-stat"><span>📂 বিষয়</span><strong id="quizCat"></strong></div>
         </div>
 
-        <div class="quiz-progress"><div class="quiz-progress-bar" id="quizBar"></div></div>
-        <div class="quiz-timer">
-            <div class="timer-bar" id="timerBar"></div>
+        <div class="quiz-progress-wrap"><div class="quiz-progress-fill" id="quizBar"></div></div>
+
+        <div class="quiz-timer-wrap">
+            <div class="quiz-timer-fill" id="timerBar"></div>
             <span id="timerText">⏰ ২০ সে.</span>
         </div>
 
-        <div id="quizQ" class="quiz-question">লোড হচ্ছে...</div>
-        <div id="quizOpts" class="quiz-options"></div>
+        <div id="quizQ" class="quiz-question-pro">প্রশ্ন লোড হচ্ছে...</div>
+        <div id="quizOpts" class="quiz-options-pro"></div>
 
-        <div class="quiz-nav">
-            <button id="prevBtn" class="btn-outline" onclick="prevQ()">⬅️ আগের</button>
-            <button id="nextBtn" class="btn-primary" onclick="nextQ()">পরের ➡️</button>
+        <div class="quiz-nav-pro">
+            <button id="prevBtn" class="quiz-nav-btn" onclick="prevQ()">⬅️ আগের</button>
+            <button id="nextBtn" class="quiz-nav-btn quiz-nav-next" onclick="nextQ()">পরের ➡️</button>
         </div>
 
-        <div id="quizEnd" class="quiz-result" style="display:none;"></div>
+        <div id="quizEnd" class="quiz-result-pro" style="display:none;"></div>
     </div>
 
-    <hr>
-    <p style="font-size: 14px; color: #94a3b8;">&copy; ২০২৬ অভি। সমস্ত অধিকার সংরক্ষিত।</p>
+    <!-- লোডিং -->
+    <div id="quizLoading" class="quiz-loading" style="display:none;">⏳ প্রশ্ন লোড হচ্ছে...</div>
 
-    <script src="quiz.js"></script>
+    <!-- কুকি -->
+    <div id="cookieConsent" class="cookie-consent">
+        <span>🍪 এই ওয়েবসাইট কুকি ব্যবহার করে।</span>
+        <button onclick="acceptCookies()" class="cookie-accept-btn">ঠিক আছে</button>
+    </div>
 
-<div id="cookieConsent" class="cookie-consent">
-    <span>🍪 এই ওয়েবসাইট কুকি ব্যবহার করে।</span>
-    <button onclick="acceptCookies()" class="cookie-accept-btn">ঠিক আছে</button>
-</div>
+    <!-- হোয়াটসঅ্যাপ -->
+    <a href="https://wa.me/8801876093765" target="_blank" class="whatsapp-float" title="WhatsApp-এ কথা বলো">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+    </a>
 
-<a href="https://wa.me/8801876093765" target="_blank" class="whatsapp-float" title="WhatsApp-এ কথা বলো">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="white">
-        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-    </svg>
-</a>
-
-<script src="script.js"></script>
-
+    <script src="quiz-api.js"></script>
 </body>
 </html>
