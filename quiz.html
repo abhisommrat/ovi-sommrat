@@ -4,9 +4,7 @@
     <link rel="icon" type="image/png" href="images/profile-pic.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>প্রো কুইজ - OviForge</title>
-    <meta name="description" content="Professional Quiz App with live questions from API. Multi-language support.">
-    <meta name="keywords" content="quiz, api, trivia, oviforge">
-    <meta name="author" content="OviForge">
+    <meta name="description" content="Professional Quiz App by OviForge. API live questions.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,24 +15,8 @@
         <button id="siteMusicBtn" onclick="toggleSiteMusic()" style="background:#8b5cf6;color:white;border:none;padding:8px 15px;border-radius:20px;font-size:12px;cursor:pointer;margin:5px;">🔇 মিউজিক</button>
     </div>
 
-    <!-- ভাষা সিলেক্টর -->
-    <div class="language-selector">
-        <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
-        <select class="custom-lang-select" onchange="changeLanguage(this.value)">
-            <option value="bn">🇧🇩 বাংলা</option>
-            <option value="en">🇬🇧 English</option>
-            <option value="hi">🇮🇳 हिन्दी</option>
-            <option value="ar">🇸🇦 العربية</option>
-            <option value="ur">🇵🇰 اردو</option>
-            <option value="es">🇪🇸 Español</option>
-            <option value="fr">🇫🇷 Français</option>
-            <option value="de">🇩🇪 Deutsch</option>
-            <option value="ja">🇯🇵 日本語</option>
-            <option value="ko">🇰🇷 한국어</option>
-            <option value="zh-CN">🇨🇳 中文</option>
-        </select>
-    </div>
-    <div id="google_translate_element" style="display:none;"></div>
+    <!-- গুগল ট্রান্সলেট উইজেট -->
+    <div id="google_translate_element"></div>
 
     <nav>
         <a href="index.html">🏠 হোম</a>
@@ -47,7 +29,7 @@
     </nav>
 
     <h1>🧠 প্রো কুইজ <span class="pro-badge">API</span></h1>
-    <p>🌐 API থেকে লাইভ প্রশ্ন | 🎲 প্রতিবার নতুন | 🌍 যেকোনো ভাষায় অনুবাদ</p>
+    <p>🌐 API থেকে লাইভ প্রশ্ন | 🎲 প্রতিবার নতুন | গুগল ট্রান্সলেট দিয়ে ভাষা বদলাও</p>
 
     <!-- সেটিংস -->
     <div class="quiz-settings" id="quizSettings">
@@ -129,7 +111,6 @@
         </svg>
     </a>
 
-    <script src="script.js"></script>
     <script src="quiz-api.js"></script>
 
     <!-- গুগল ট্রান্সলেট -->
@@ -139,8 +120,7 @@
             pageLanguage: 'en',
             includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
             layout: google.translate.TranslateElement.InlineStyle.SIMPLE,
-            autoDisplay: false,
-            gaTrack: false
+            autoDisplay: true
         }, 'google_translate_element');
     }
     </script>
