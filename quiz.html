@@ -3,9 +3,9 @@
 <head>
     <link rel="icon" type="image/png" href="images/profile-pic.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>প্রো কুইজ API - OviForge</title>
-    <meta name="description" content="Professional Quiz App with live questions from Open Trivia DB. Unlimited questions, never repeat!">
-    <meta name="keywords" content="quiz, api, trivia, oviforge, unlimited questions">
+    <title>প্রো কুইজ - OviForge</title>
+    <meta name="description" content="Professional Quiz App with live questions from API. Multi-language support.">
+    <meta name="keywords" content="quiz, api, trivia, oviforge">
     <meta name="author" content="OviForge">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -13,26 +13,28 @@
     <div id="welcomeMessage" class="welcome-message"></div>
 
     <div class="theme-toggle">
-        <div class="language-selector">
-    <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
-    <select class="custom-lang-select" onchange="changeLanguage(this.value)">
-        <option value="bn">🇧🇩 বাংলা</option>
-        <option value="en">🇬🇧 English</option>
-        <option value="hi">🇮🇳 हिन्दी</option>
-        <option value="ar">🇸🇦 العربية</option>
-        <option value="ur">🇵🇰 اردو</option>
-        <option value="es">🇪🇸 Español</option>
-        <option value="fr">🇫🇷 Français</option>
-        <option value="de">🇩🇪 Deutsch</option>
-        <option value="ja">🇯🇵 日本語</option>
-        <option value="ko">🇰🇷 한국어</option>
-        <option value="zh-CN">🇨🇳 中文</option>
-    </select>
-</div>
-<div id="google_translate_element"></div>
         <button id="themeButton" onclick="toggleTheme()">🌙 ডার্ক মোড</button>
         <button id="siteMusicBtn" onclick="toggleSiteMusic()" style="background:#8b5cf6;color:white;border:none;padding:8px 15px;border-radius:20px;font-size:12px;cursor:pointer;margin:5px;">🔇 মিউজিক</button>
     </div>
+
+    <!-- ভাষা সিলেক্টর -->
+    <div class="language-selector">
+        <span class="language-badge">🌐 <span class="current-lang">বাংলা</span></span>
+        <select class="custom-lang-select" onchange="changeLanguage(this.value)">
+            <option value="bn">🇧🇩 বাংলা</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="hi">🇮🇳 हिन्दी</option>
+            <option value="ar">🇸🇦 العربية</option>
+            <option value="ur">🇵🇰 اردو</option>
+            <option value="es">🇪🇸 Español</option>
+            <option value="fr">🇫🇷 Français</option>
+            <option value="de">🇩🇪 Deutsch</option>
+            <option value="ja">🇯🇵 日本語</option>
+            <option value="ko">🇰🇷 한국어</option>
+            <option value="zh-CN">🇨🇳 中文</option>
+        </select>
+    </div>
+    <div id="google_translate_element" style="display:none;"></div>
 
     <nav>
         <a href="index.html">🏠 হোম</a>
@@ -45,24 +47,24 @@
     </nav>
 
     <h1>🧠 প্রো কুইজ <span class="pro-badge">API</span></h1>
-    <p>🌐 Open Trivia DB থেকে লাইভ প্রশ্ন | 🎲 প্রতিবার নতুন প্রশ্ন | কখনো ফুরাবে না!</p>
+    <p>🌐 API থেকে লাইভ প্রশ্ন | 🎲 প্রতিবার নতুন | 🌍 যেকোনো ভাষায় অনুবাদ</p>
 
     <!-- সেটিংস -->
     <div class="quiz-settings" id="quizSettings">
         <div class="setting-row">
             <label>📂 ক্যাটাগরি:</label>
-<select id="categorySelect">
-    <option value="general_knowledge">General Knowledge</option>
-    <option value="science">Science</option>
-    <option value="sport_and_leisure">Sports</option>
-    <option value="geography">Geography</option>
-    <option value="history">History</option>
-    <option value="music">Music</option>
-    <option value="film_and_tv">Film & TV</option>
-    <option value="food_and_drink">Food & Drink</option>
-    <option value="society_and_culture">Society & Culture</option>
-    <option value="arts_and_literature">Arts & Literature</option>
-</select>
+            <select id="categorySelect">
+                <option value="general_knowledge">General Knowledge</option>
+                <option value="science">Science</option>
+                <option value="sport_and_leisure">Sports</option>
+                <option value="geography">Geography</option>
+                <option value="history">History</option>
+                <option value="music">Music</option>
+                <option value="film_and_tv">Film & TV</option>
+                <option value="food_and_drink">Food & Drink</option>
+                <option value="society_and_culture">Society & Culture</option>
+                <option value="arts_and_literature">Arts & Literature</option>
+            </select>
         </div>
         <div class="setting-row">
             <label>🎯 লেভেল:</label>
@@ -127,18 +129,21 @@
         </svg>
     </a>
 
+    <script src="script.js"></script>
     <script src="quiz-api.js"></script>
+
+    <!-- গুগল ট্রান্সলেট -->
     <script type="text/javascript">
-function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
-        layout: google.translate.TranslateElement.InlineStyle.SIMPLE,
-        autoDisplay: false,
-        gaTrack: false
-    }, 'google_translate_element');
-}
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({
+            pageLanguage: 'en',
+            includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
+            layout: google.translate.TranslateElement.InlineStyle.SIMPLE,
+            autoDisplay: false,
+            gaTrack: false
+        }, 'google_translate_element');
+    }
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
