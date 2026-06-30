@@ -1,4 +1,4 @@
-// কুইজ API - The Trivia API
+// কুইজ API - প্রশ্ন বাংলায় অনুবাদ সহ
 
 var Q = [];
 var idx = 0;
@@ -6,6 +6,14 @@ var score = 0;
 var ans = [];
 var timer;
 var sec = 20;
+var targetLang = "bn"; // ডিফল্ট বাংলা
+
+function setLanguage(lang) {
+    targetLang = lang;
+    localStorage.setItem("quizLang", lang);
+    // পেজ রিলোড
+    location.reload();
+}
 
 async function fetchQuiz() {
     var cat = document.getElementById("categorySelect").value;
@@ -24,12 +32,15 @@ async function fetchQuiz() {
         var data = await res.json();
 
         if (!data || data.length === 0) {
-            alert("প্রশ্ন পাওয়া যায়নি! আবার চেষ্টা করো।");
+            alert("প্রশ্ন পাওয়া যায়নি!");
             document.getElementById("quizLoading").style.display = "none";
             return;
         }
 
-        Q = data.map(function(q) {
+        // ইংরেজি থেকে বাংলায় অনুবাদ
+        var translatedData = await translateQuestions(data);
+
+        Q = translatedData.map(function(q) {
             var allAnswers = q.incorrectAnswers.concat(q.correctAnswer);
             var shuffled = shuffleArr(allAnswers);
             return {
@@ -57,6 +68,51 @@ async function fetchQuiz() {
         useLocalQuestions();
         document.getElementById("quizLoading").style.display = "none";
     }
+}
+
+// Google Translate API ব্যবহার করে প্রশ্ন অনুবাদ
+async function translateQuestions(data) {
+    if (targetLang === "en") return data; // ইংরেজি থাকলে অনুবাদ না
+
+    var translated = [];
+    for (var i = 0; i < data.length; i++) {
+        var q = data[i];
+        try {
+            // প্রশ্ন অনুবাদ
+            var qTrans = await translateText(q.question, targetLang);
+            // উত্তর অনুবাদ
+            var correctTrans = await translateText(q.correctAnswer, targetLang);
+            var incorrectTrans = [];
+            for (var j = 0; j < q.incorrectAnswers.length; j++) {
+                var inc = await translateText(q.incorrectAnswers[j], targetLang);
+                incorrectTrans.push(inc);
+            }
+            translated.push({
+                question: qTrans,
+                correctAnswer: correctTrans,
+                incorrectAnswers: incorrectTrans,
+                category: q.category,
+                difficulty: q.difficulty
+            });
+        } catch(e) {
+            translated.push(q); // এরর হলে ইংরেজি
+        }
+    }
+    return translated;
+}
+
+// Google Translate API (ফ্রি, unofficial)
+async function translateText(text, lang) {
+    if (!text || lang === "en") return text;
+    try {
+        var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=en&tl=" + lang + "&dt=t&q=" + encodeURIComponent(text);
+        var res = await fetch(url);
+        var data = await res.json();
+        if (data && data[0] && data[0][0] && data[0][0][0]) {
+            return data[0][0][0];
+        }
+    } catch(e) {}
+    return text;
 }
 
 function useLocalQuestions() {
@@ -101,7 +157,7 @@ function loadQ() {
     if (idx >= Q.length) { endQuiz(); return; }
     var q = Q[idx];
     document.getElementById("quizQno").textContent = (idx + 1) + "/" + Q.length;
-    document.getElementById("quizCat").textContent = q.c || "General";
+    document.getElementById("quizCat").textContent = q.c || "সাধারণ";
     document.getElementById("quizQ").textContent = q.q;
     document.getElementById("quizScore").textContent = score;
     document.getElementById("quizBar").style.width = (idx / Q.length * 100) + "%";
@@ -205,3 +261,9 @@ document.addEventListener("keydown", function(e) {
     if (key === "arrowright") nextQ();
     if (key === "arrowleft") prevQ();
 });
+
+// সংরক্ষিত ভাষা লোড
+(function() {
+    var saved = localStorage.getItem("quizLang");
+    if (saved) targetLang = saved;
+})();

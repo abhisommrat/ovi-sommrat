@@ -4,7 +4,7 @@
     <link rel="icon" type="image/png" href="images/profile-pic.jpg">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>প্রো কুইজ - OviForge</title>
-    <meta name="description" content="Professional Quiz App by OviForge. API live questions.">
+    <meta name="description" content="Professional Quiz App with live API questions. Multi-language support.">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -15,8 +15,14 @@
         <button id="siteMusicBtn" onclick="toggleSiteMusic()" style="background:#8b5cf6;color:white;border:none;padding:8px 15px;border-radius:20px;font-size:12px;cursor:pointer;margin:5px;">🔇 মিউজিক</button>
     </div>
 
-    <!-- গুগল ট্রান্সলেট উইজেট -->
-    <div id="google_translate_element"></div>
+    <!-- ভাষা সিলেক্টর -->
+    <div style="text-align:center;margin:10px 0;">
+        <button onclick="setLanguage('bn')" style="background:#22c55e;color:white;border:none;padding:8px 20px;border-radius:20px;cursor:pointer;font-weight:bold;margin:3px;">🇧🇩 বাংলা</button>
+        <button onclick="setLanguage('en')" style="background:#3b82f6;color:white;border:none;padding:8px 20px;border-radius:20px;cursor:pointer;font-weight:bold;margin:3px;">🇬🇧 English</button>
+        <button onclick="setLanguage('hi')" style="background:#f59e0b;color:white;border:none;padding:8px 20px;border-radius:20px;cursor:pointer;font-weight:bold;margin:3px;">🇮🇳 हिन्दी</button>
+        <button onclick="setLanguage('ar')" style="background:#ef4444;color:white;border:none;padding:8px 20px;border-radius:20px;cursor:pointer;font-weight:bold;margin:3px;">🇸🇦 العربية</button>
+        <button onclick="setLanguage('es')" style="background:#8b5cf6;color:white;border:none;padding:8px 20px;border-radius:20px;cursor:pointer;font-weight:bold;margin:3px;">🇪🇸 Español</button>
+    </div>
 
     <nav>
         <a href="index.html">🏠 হোম</a>
@@ -29,40 +35,40 @@
     </nav>
 
     <h1>🧠 প্রো কুইজ <span class="pro-badge">API</span></h1>
-    <p>🌐 API থেকে লাইভ প্রশ্ন | 🎲 প্রতিবার নতুন | গুগল ট্রান্সলেট দিয়ে ভাষা বদলাও</p>
+    <p>🌐 API থেকে লাইভ প্রশ্ন | 🌍 ৫ ভাষায় অনুবাদ | 🎲 প্রতিবার নতুন প্রশ্ন</p>
 
     <!-- সেটিংস -->
     <div class="quiz-settings" id="quizSettings">
         <div class="setting-row">
             <label>📂 ক্যাটাগরি:</label>
             <select id="categorySelect">
-                <option value="general_knowledge">General Knowledge</option>
-                <option value="science">Science</option>
-                <option value="sport_and_leisure">Sports</option>
-                <option value="geography">Geography</option>
-                <option value="history">History</option>
-                <option value="music">Music</option>
-                <option value="film_and_tv">Film & TV</option>
-                <option value="food_and_drink">Food & Drink</option>
-                <option value="society_and_culture">Society & Culture</option>
-                <option value="arts_and_literature">Arts & Literature</option>
+                <option value="general_knowledge">সাধারণ জ্ঞান</option>
+                <option value="science">বিজ্ঞান</option>
+                <option value="sport_and_leisure">খেলাধুলা</option>
+                <option value="geography">ভূগোল</option>
+                <option value="history">ইতিহাস</option>
+                <option value="music">সঙ্গীত</option>
+                <option value="film_and_tv">চলচ্চিত্র</option>
+                <option value="food_and_drink">খাবার</option>
+                <option value="society_and_culture">সমাজ ও সংস্কৃতি</option>
+                <option value="arts_and_literature">শিল্প ও সাহিত্য</option>
             </select>
         </div>
         <div class="setting-row">
             <label>🎯 লেভেল:</label>
             <select id="difficultySelect">
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
+                <option value="easy">সহজ</option>
+                <option value="medium">মাঝারি</option>
+                <option value="hard">কঠিন</option>
             </select>
         </div>
         <div class="setting-row">
             <label>❓ প্রশ্ন সংখ্যা:</label>
             <select id="amountSelect">
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20" selected>20</option>
-                <option value="30">30</option>
+                <option value="10">১০</option>
+                <option value="15">১৫</option>
+                <option value="20" selected>২০</option>
+                <option value="30">৩০</option>
             </select>
         </div>
         <button onclick="fetchQuiz()" class="quiz-refresh-btn">🚀 শুরু করো!</button>
@@ -111,19 +117,7 @@
         </svg>
     </a>
 
+    <script src="script.js"></script>
     <script src="quiz-api.js"></script>
-
-    <!-- গুগল ট্রান্সলেট -->
-    <script type="text/javascript">
-    function googleTranslateElementInit() {
-        new google.translate.TranslateElement({
-            pageLanguage: 'en',
-            includedLanguages: 'bn,en,hi,ar,ur,es,fr,de,ja,ko,zh-CN',
-            layout: google.translate.TranslateElement.InlineStyle.SIMPLE,
-            autoDisplay: true
-        }, 'google_translate_element');
-    }
-    </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>
